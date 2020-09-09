@@ -1,7 +1,7 @@
 <?php
 
 
-
+include 'connexion_dbh.php';
 
 
 if(isset($_POST["submit"])){ // Debut de la connexion
@@ -12,23 +12,25 @@ if(isset($_POST["submit"])){ // Debut de la connexion
         
         if(!empty($mailconnect) AND !empty($mdpconnect)) { //Verifie si le champs adresse mail et mot de passe n'est pas vide sinon affiche message erreur
 
-        $req_connexion = $dbh->prepare("SELECT Mail,Mdp FROM Members WHERE Mail = ?");
+        $req_connexion = $dbh->prepare("SELECT email_util,password_util FROM utilisateur WHERE email_util = ?");
         $req_connexion->execute(array($mailconnect));
         $resultat = $req_connexion->fetch();
 
 
         // Comparaison du pass envoyé via le formulaire avec la base
-        $isPasswordCorrect = password_verify($mdpconnect, $resultat['Mdp']);
+        //$isPasswordCorrect = password_verify($mdpconnect, $resultat['password_util']);
 
-        if ($isPasswordCorrect == 1) {
+        if ($mdpconnect == $resultat['password_util']) {
             
             session_start(); //connexion de l'utilisateur
-            $_SESSION['Mail'] = $mailconnect; //Definie le $_SESSION
+            $_SESSION['email_util'] = $mailconnect; //Definie le $_SESSION
             
-
+            header("Location:index");
+        }else{
+            $erreur = "<h5>Erreur de mot de passe/adresse mail !</h5>"; //message erreur
         }  
     }else{
-        $erreur = "<h5>Erreur de mot de passe/adresse mail !</h5>"; //message erreur
+        $erreur = "<h5>Tous les champs doivent être complétés !</h5>"; //message erreur
     }
 
 }
@@ -59,7 +61,7 @@ if(isset($_POST["submit"])){ // Debut de la connexion
       <h1>Connexion</h1>
         <br>
          <form method="post">
-         <p>Adresse Mail <br><input type="email" name="mailconnect" placeholder="Adresse Mail" require/></p>
+         <p>Adresse Mail <br><input type="email" name="mailconnect" placeholder="Adresse Mail" value="<?php echo $mailconnect ?>"require/></p>
          <p>Mot de passe <br><input type="password" name="mdpconnect" placeholder="Mot de passe" require/></p>
          <a href="recuperation" class="mot-de-passe-oublie">mot de passe oublié ?</a>
          <br>
