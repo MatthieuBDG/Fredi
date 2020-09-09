@@ -4,12 +4,12 @@
 include 'connexion_dbh.php';
 
 
+
 if(isset($_POST["submit"])){ // Debut de la connexion
-        
+
         $mailconnect = htmlspecialchars($_POST["mailconnect"]);
         $mdpconnect = htmlspecialchars($_POST["mdpconnect"]);
 
-        
         if(!empty($mailconnect) AND !empty($mdpconnect)) { //Verifie si le champs adresse mail et mot de passe n'est pas vide sinon affiche message erreur
 
         $req_connexion = $dbh->prepare("SELECT email_util,password_util FROM utilisateur WHERE email_util = ?");
@@ -34,8 +34,6 @@ if(isset($_POST["submit"])){ // Debut de la connexion
     }
 
 }
-
-
     $longueurKey = 15;
     $key = "";
     for($i=1;$i<$longueurKey;$i++) {
@@ -61,7 +59,7 @@ if(isset($_POST["submit"])){ // Debut de la connexion
       <h1>Connexion</h1>
         <br>
          <form method="post">
-         <p>Adresse Mail <br><input type="email" name="mailconnect" placeholder="Adresse Mail" value="<?php echo $mailconnect ?>"require/></p>
+         <p>Adresse Mail <br><input type="email" name="mailconnect" placeholder="Adresse Mail" value="<?php if(!empty($mailconnect)){ echo $mailconnect; } ?>"require/></p>
          <p>Mot de passe <br><input type="password" name="mdpconnect" placeholder="Mot de passe" require/></p>
          <a href="recuperation" class="mot-de-passe-oublie">mot de passe oublié ?</a>
          <br>
