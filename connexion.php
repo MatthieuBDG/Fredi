@@ -1,12 +1,10 @@
 <?php
 
-include 'connexion_dbh.php'; //connexion base de données
 
-session_start();  // démarrage d'une session
 
-$submit = $_POST["submit"];
 
-if($submit){ // Debut de la connexion
+
+if(isset($_POST["submit"])){ // Debut de la connexion
         
         $mailconnect = htmlspecialchars($_POST["mailconnect"]);
         $mdpconnect = htmlspecialchars($_POST["mdpconnect"]);
@@ -35,6 +33,13 @@ if($submit){ // Debut de la connexion
 
 }
 
+
+    $longueurKey = 15;
+    $key = "";
+    for($i=1;$i<$longueurKey;$i++) {
+       $key .= mt_rand(0,9);
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -42,9 +47,12 @@ if($submit){ // Debut de la connexion
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
-    <link rel="stylesheet" href="css/styles.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="css/styles.css" type="text/css" />
 </head>
 <body class="connexion">
+<center>
+<a href="index" id="bouton">accueil</a>    
+</center>
 
 <div class="connexion">
     <center>
@@ -53,6 +61,7 @@ if($submit){ // Debut de la connexion
          <form method="post">
          <p>Adresse Mail <br><input type="email" name="mailconnect" placeholder="Adresse Mail" require/></p>
          <p>Mot de passe <br><input type="password" name="mdpconnect" placeholder="Mot de passe" require/></p>
+         <a href="recuperation" class="mot-de-passe-oublie">mot de passe oublié ?</a>
          <br>
          <p><a href="inscription">PAS ENCORE MEMBRE ?</a></p> 
         <br>

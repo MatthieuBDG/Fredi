@@ -4,7 +4,7 @@
 //
 session_start();
 
-$db = 'mysql:dbname=todolist;host=localhost';
+$db = 'mysql:dbname=fredi;host=localhost';
 $db_user = 'root';
 $db_password = '';
 try {
