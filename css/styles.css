@@ -1,0 +1,47 @@
+body.connexion{
+    background: #d8d8d8;
+    font-family: Verdana, Geneva, sans-serif;
+}
+.connexion{
+    width:400px;
+    margin:0 auto;
+    margin-top:10%;
+
+}
+
+.connexion form {
+    padding: 30px;
+    border: 1px solid #f1f1f1;
+    background: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.connexion input[type=email], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.connexion input[type=submit] {
+    background-color: #53af57;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.connexion input[type=submit]:hover {
+    background-color: #47974b;
+}
+a:link{
+    text-decoration: none;
+}
+
+a:link:hover{
+    text-decoration: underline;
+}
