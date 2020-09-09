@@ -10,11 +10,6 @@ session_destroy();
  
 }
 
-if(isset($_GET['section'])) {
-   $section = htmlspecialchars($_GET['section']);
-} else {
-   $section = "";
-}
 
 if(isset($_POST['recup_submit'])) {
    if(!empty($_POST['recup_mail'])) {
@@ -38,15 +33,15 @@ if(isset($_POST['recup_submit'])) {
            <meta charset="utf-8" />
          </head>
         <body>
-
         <p style="text-align: center;">Salut '.$recup_mail.',</p>
         <p><b>'.$mdp.'</b></p>
-
         </body>
          </html>
          ';
          mail($recup_mail, "Récupération de mot de passe - Fredi", $message, $header);
-         header("Location:recuperation?section=envoyer");
+
+         $section = "<h3>Le mot de passe à été envoyé $mdp</h3>";
+
          } else {
             $erreur = "<h3>Cette adresse mail n'est pas enregistrée</h3>";
          }
@@ -75,12 +70,12 @@ if(isset($_POST['recup_submit'])) {
 <h1>Recupération de mot de passe</h1>
 
 <?php
-if(isset($erreur)) { echo '<span style="color:red">'.$erreur.'</span>'; } else { echo ""; } 
+if(isset($erreur)) { echo '<span style="color:red">'.$erreur.'</span>'; }else { echo ""; } 
+
+if(isset($section)) { echo '<span style="color:green">'.$section.'</span>'; }else { echo ""; }
+
 ?>
-<?php if($section == 'envoyer') { ?>
-   <h3 style="color:green">Un code de vérification vous a été envoyé par mail !</h3>
 <br/>
-<?php } ?>
 <form method="post">
    <input type="email" placeholder="Votre adresse mail" name="recup_mail"/><br/>
    <input type="submit" value="Valider" name="recup_submit"/>
