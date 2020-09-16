@@ -3,7 +3,11 @@
 
 include 'connexion_dbh.php';
 
-
+if(isset($_SESSION['email_util'])) { 
+$prenom = $_SESSION['prenom_util'];
+$nom = $_SESSION['nom_util'];
+$dejaconnexion = "<h3>$prenom $nom vous etes deja connecté</h3>";
+}
 
 if(isset($_POST["submit"])){ // Debut de la connexion
 
@@ -12,7 +16,7 @@ if(isset($_POST["submit"])){ // Debut de la connexion
 
         if(!empty($mailconnect) AND !empty($mdpconnect)) { //Verifie si le champs adresse mail et mot de passe n'est pas vide sinon affiche message erreur
 
-        $req_connexion = $dbh->prepare("SELECT email_util,password_util FROM utilisateur WHERE email_util = ?");
+        $req_connexion = $dbh->prepare("SELECT * FROM utilisateur WHERE email_util = ?");
         $req_connexion->execute(array($mailconnect));
         $resultat = $req_connexion->fetch();
 
@@ -22,10 +26,14 @@ if(isset($_POST["submit"])){ // Debut de la connexion
 
         if ($mdpconnect == $resultat['password_util']) {
             
-            session_start(); //connexion de l'utilisateur
-            $_SESSION['email_util'] = $mailconnect; //Definie le $_SESSION
             
-            header("Location:index");
+            $_SESSION['email_util'] = $mailconnect; //Definie le $_SESSION
+            $_SESSION['id_type_util'] = $resultat['id_type_util']; //Definie le $_SESSION id_type_util
+            $_SESSION['statut_util'] = $resultat['statut_util']; //Definie le $_SESSION statut_util
+            $_SESSION['nom_util'] = $resultat['nom_util']; //Definie le $_SESSION nom_util
+            $_SESSION['prenom_util'] = $resultat['prenom_util']; //Definie le $_SESSION prenom_util
+            
+            $connexion = "<h3>Vous etes connecté !</h3>"; //message de connexion
         }else{
             $erreur = "<h5>Erreur de mot de passe/adresse mail !</h5>"; //message erreur
         }  
@@ -53,15 +61,32 @@ if(isset($_POST["submit"])){ // Debut de la connexion
 <div class="menu">
 <ul>
 <li><a href="index">Accueil</a></li>
+<?php if(!isset($_SESSION['email_util'])) { ?>
 <li><a class="active" href="connexion">Connexion</a></li>
+<?php }else{ ?>
+<li><a href="deconnexion">Deconnexion</a></li>
+<?php } ?>
 <li><a href="#contact">Contact</a></li>
 <li><a  href="#about">About</a></li>
+<?php if(isset($_SESSION['email_util'])) { ?>
+<li><a href=""><?php echo $_SESSION['prenom_util']; ?></a></li>
+<?php } ?>
 </ul>     
 </div>
 </header>
 <body class="connexion">
 
-
+<?php
+if(isset($dejaconnexion))
+{
+echo "<center>";
+echo "$dejaconnexion";
+echo "<br><br>";
+echo '<a href="deconnexion" id="bouton">Se déconnecter</a>';
+echo "</center>";
+exit;
+}
+if(!isset($dejaconnexion)){ ?>
 <div class="connexion">
     <center>
       <h1>Connexion</h1>
@@ -77,12 +102,18 @@ if(isset($_POST["submit"])){ // Debut de la connexion
          if(isset($erreur))
          {
             echo '<font color="red">'.$erreur."</font>";
+         }if(isset($connexion))
+         {
+            echo '<font color="green">'.$connexion."</font>";
+            exit;
          }
+         
         ?>
         <input type="submit" name="submit" value="Connexion" />
         </form>
     </center>  
 </div>    
+<?php } ?>
 </body>
 </html>
 

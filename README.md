@@ -54,7 +54,7 @@ On s'inscrit puis les frais peuvent être saissis par les adhérents . Cette sai
 | ADMINISTRATEUR | Demander le renvoi du mot de passe |
 | CONTROLEUR | Changer le statut d'une LIGNE DE FRAIS |
 | CONTROLEUR | Consulter de la LISTE DE FRAIS sur l'application WEB |
-| CONTROLEUR | Générer le CERFA 11580-02 |
+| CONTROLEUR | Générer le CERFA  |
 | CONTROLEUR | Se connecter à l'application |
 | CONTROLEUR | Se déconnecter à l'application |
 | ADHERENT | Créer une LIGNE DE FRAIS |
@@ -74,6 +74,7 @@ On s'inscrit puis les frais peuvent être saissis par les adhérents . Cette sai
 
 - [X] Lot 0. Conception de la base de données
 - [x] Lot 1. Connexion (tous les rôles) 
+- [X] Lot 1. Cas d'utilisation 
 - [] Lot 2. Gestion des utilisateurs(CRUD / CSV)  
 - [] Lot 3. Gestion des périodes et motifs(CRUD / CSV)  
 - [] Lot 4. Gestion des clubs et ligues(CRUD/CSV)  

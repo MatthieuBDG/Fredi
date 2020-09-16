@@ -2,9 +2,7 @@
 
 include 'connexion_dbh.php';
 
-if(isset($_SESSION['ID_Members'])) {
-setcookie('email','',time()-3600);
-setcookie('password','',time()-3600);
+if(isset($_SESSION['email_util'])) {
 $_SESSION = array();
 session_destroy();
  
@@ -47,9 +45,16 @@ if(isset($_POST['recup_submit'])) {
 <div class="menu">
 <ul>
 <li><a href="index">Accueil</a></li>
+<?php if(!isset($_SESSION['email_util'])) { ?>
 <li><a href="connexion">Connexion</a></li>
+<?php }else{ ?>
+<li><a href="deconnexion">Deconnexion</a></li>
+<?php } ?>
 <li><a href="#contact">Contact</a></li>
 <li><a  href="#about">About</a></li>
+<?php if(isset($_SESSION['email_util'])) { ?>
+<li><a href=""><?php echo $_SESSION['prenom_util']; ?></a></li>
+<?php } ?>
 </ul>     
 </div>
 <body class="recuperation">
