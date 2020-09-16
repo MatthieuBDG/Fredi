@@ -100,9 +100,9 @@ Base de données , Connexion et déconnexion
 
 Lucas Dalla Costa
 
-Matthieu Boubee de Grammont
+Matthieu Boubee de Gramont
 
-Mathias Bourdim 
+Mathias Bourdim
 
 
 
