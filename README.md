@@ -1,8 +1,8 @@
 ## Description
 
-Sujet M2L pour le BTS SIO première année.
+Sujet PROJET FREDI pour le BTS SIO deuxième année.
 
-Ce sujet nous amène a construire une application avec PHP et MYSQL pour la Gestion de la FAQ de la mission WEB_M2L_SLAM
+Ce sujet nous amène a construire une application avec PHP et MYSQL pour que les frais des adhérents de clubs seront remplis en ligne , sur notre site Web . Ce site web (appelé FREDI WEB) sera accessible par l’ensemble des clubs hébergés par la Maison des Ligues de Lorraine.
 
 ---
 
@@ -11,7 +11,7 @@ Ce sujet nous amène a construire une application avec PHP et MYSQL pour la Gest
 Le site n'est accessible que par inscription et hachage du mot de passe.
 
 On définit les droit de différents profils :    
-utilisateur , administrateur , administrateur de la ligue , administrateur de toutes les lignes 
+utilisateur , administrateur , adhérent
 
 Utilisateurs de test : 
 - (admin) : pseudo = jeff, password = jeff;
@@ -19,53 +19,53 @@ Utilisateurs de test :
 - (Utilisateur) : pseudo = jeff2, password = jeff2;
 ----
 ## Utilisation 
-On s'inscrit puis on pose des questions sur le sport de la ligue via la page add.php . L'administrateur répond ensuite aux questions .
+On s'inscrit puis les frais peuvent être saissis par les adhérents . Cette saisie peut commencer dès l'ouverture de la période annuelle début janvier
 
 ---
 
 ## Installation 
-- Télécharger le dossier "M2L" depuis GitHub. 
+- Télécharger le dossier "FREDI" depuis GitHub. 
 - Placer le dossier sur le serveur web.
-- Intégrer la base de données, dans le serveur de base de données, à partir du fichier "m2l.sql" contenu dans le dossier "M2L/db".
+- Intégrer la base de données, dans le serveur de base de données, à partir du fichier "bdd.sql" contenu dans le dossier "Design".
 
 ---
 ## Taches 
 
 
-- [] Création du projet 
-- [] Création du menu de l'application 
-- [] Création de base de données  
-- [] Création de la page d'accueil de la FAQ  
-- [] Création de la page connexion  
-- [] Création de la page inscription    
-- [] Création du script PHP connexion  
-- [] Création du script PHP déconnexion  
-- [] Création du script PHP d'affichage de la liste des messages 
-- [] Création du script PHP (question)  
-- [] Création du script PHP de modification d'un message (question + réponse)
-- [] Création du script PHP de suppression d'un message (question + réponse)  
+- [X] Lot 0. Conception de la base de données
+- [x] Lot 1. Connexion (tous les rôles) 
+- [] Lot 2. Gestion des utilisateurs(CRUD / CSV)  
+- [] Lot 3. Gestion des périodes et motifs(CRUD / CSV)  
+- [] Lot 4. Gestion des clubs et ligues(CRUD/CSV)  
+- [] Lot 5. Gestion des lignes de frais (CRUD)
+- [] Lot 6. Edition bordereau et CERFA (PDF)
+- [] Lot 7 : Web service (REST/JSON pourandroid)
+
 
 --- 
 ## Versions
 
 
-### V1.3 29/01/2020
+### V1.2 16/09/2020
 
-- Restructuration de tout le projet : fichiers et dossiers du git , mise en place de toutes les pages html avec le menu.php inclus dans toutes les pages .
-Rédaction de la documentation du projet et commentaire des programmes .
+Base de données , Connexion et déconnexion 
+- 
 
-### V1.4 20/03/2020
+### V1.*** 20/03/2020
 
-- Site fini, toutes les pages sont opérationnelles. 
+
 
 ---
-## Team
 
-AxelGGNT 
+### V1.*** 20/03/2020
+
+
+---
+## Team 
+
+LUCASDALLACOSTA
 
 MatthieuBDG
-
-Mathieu
 
 MBourdim 
 
