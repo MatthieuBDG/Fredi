@@ -18,7 +18,7 @@ if(isset($_POST["submit"])){ // Debut de la connexion
 
 
         // Comparaison du pass envoyé via le formulaire avec la base
-        //$isPasswordCorrect = password_verify($mdpconnect, $resultat['password_util']);
+        // $isPasswordCorrect = password_verify($mdpconnect, $resultat['password_util']);
 
         if ($mdpconnect == $resultat['password_util']) {
             
@@ -49,10 +49,18 @@ if(isset($_POST["submit"])){ // Debut de la connexion
     <title>Connexion</title>
     <link rel="stylesheet" href="css/styles.css" type="text/css" />
 </head>
+<header>
+<div class="menu">
+<ul>
+<li><a href="index">Accueil</a></li>
+<li><a class="active" href="connexion">Connexion</a></li>
+<li><a href="#contact">Contact</a></li>
+<li><a  href="#about">About</a></li>
+</ul>     
+</div>
+</header>
 <body class="connexion">
-<center>
-<a href="index" id="bouton">accueil</a>    
-</center>
+
 
 <div class="connexion">
     <center>
@@ -64,7 +72,7 @@ if(isset($_POST["submit"])){ // Debut de la connexion
          <a href="recuperation" class="mot-de-passe-oublie">mot de passe oublié ?</a>
          <br>
          <p><a href="inscription">PAS ENCORE MEMBRE ?</a></p> 
-        <br>
+        
         <?php
          if(isset($erreur))
          {

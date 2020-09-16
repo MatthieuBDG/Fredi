@@ -40,16 +40,16 @@ if(isset($_POST['recup_submit'])) {
          ';
          mail($recup_mail, "Récupération de mot de passe - Fredi", $message, $header);
 
-         $section = "<h3>Le mot de passe à été envoyé $mdp</h3>";
+         $section = "<h5>Le mot de passe à été envoyé $recup_mail : $mdp</h5>";
 
          } else {
-            $erreur = "<h3>Cette adresse mail n'est pas enregistrée</h3>";
+            $erreur = "<h5>Cette adresse mail n'est pas enregistrée</h5>";
          }
       } else {
-         $erreur = "<h3>Adresse mail invalide</h3>";
+         $erreur = "<h5>Adresse mail invalide</h5>";
       }
    } else {
-      $erreur = "<h3>Veuillez entrer votre adresse mail</h3>";
+      $erreur = "<h5>Veuillez entrer votre adresse mail</h5>";
    }
 }
 
@@ -62,23 +62,32 @@ if(isset($_POST['recup_submit'])) {
     <title>Recuperation</title>
     <link rel="stylesheet" href="css/styles.css" type="text/css" />
 </head>
-<body>
+<div class="menu">
+<ul>
+<li><a href="index">Accueil</a></li>
+<li><a href="connexion">Connexion</a></li>
+<li><a href="#contact">Contact</a></li>
+<li><a  href="#about">About</a></li>
+</ul>     
+</div>
+<body class="recuperation">
 <center>
-<br>
-<a href="index" id="bouton">accueil</a>
+
 <div class="recuperation">
 <h1>Recupération de mot de passe</h1>
 
+
+<br/>
+<form method="post">
+   <input type="email" placeholder="Votre adresse mail" name="recup_mail"/><br/>
 <?php
 if(isset($erreur)) { echo '<span style="color:red">'.$erreur.'</span>'; }else { echo ""; } 
 
 if(isset($section)) { echo '<span style="color:green">'.$section.'</span>'; }else { echo ""; }
 
 ?>
-<br/>
-<form method="post">
-   <input type="email" placeholder="Votre adresse mail" name="recup_mail"/><br/>
    <input type="submit" value="Valider" name="recup_submit"/>
+
 </form>
 
 
