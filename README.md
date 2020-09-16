@@ -37,7 +37,7 @@ On s'inscrit puis les frais peuvent être saissis par les adhérents . Cette sai
 ---
 
 
-### Cas d'utilisation de FREDI
+## Cas d'utilisation de FREDI
 
 | Droit | Libelle|
 | ------| ------ | 
