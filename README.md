@@ -14,9 +14,15 @@ On définit les droit de différents profils :
 utilisateur , administrateur , adhérent
 
 Utilisateurs de test : 
-- (admin) : pseudo = jeff, password = jeff;
-- (Adhérent) : pseudo = jeff1, password = jeff1;
-- (Utilisateur) : pseudo = jeff2, password = jeff2;
+- (admin) : pseudo = jeffadmin, 
+             adresse mail = jeffadmin@jeff.com, 
+             password = admin;
+- (Adhérent) : pseudo = jeffadherent, 
+               adresse mail = jeffadherent@jeff.com, 
+               password = adherent;
+- (Contôleur) : pseudo = jeffcontroleur, 
+                adresse mail = jeffcontroleur@jeff.com, 
+                password = controleur;
 ----
 ## Utilisation 
 On s'inscrit puis les frais peuvent être saissis par les adhérents . Cette saisie peut commencer dès l'ouverture de la période annuelle début janvier
