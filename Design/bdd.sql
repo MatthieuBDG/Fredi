@@ -89,7 +89,9 @@ CREATE TABLE utilisateur(
 
 INSERT INTO `utilisateur` (`email_util`, `password_util`, `nom_util`, `prenom_util`, `statut_util`, `matricule_cont`, `id_type_util`) VALUES
 ('dclucas31@gmail.com', 'mdp115', 'DC', 'Lucas', '0', '123', 1),
-('ligue@ligue.fr', 'ligue', 'ligue', 'ligue', '0', '0000000', 1);
+('jeffadherent@jeff.com', 'adherent', 'adherent', 'jeff', '0', '0', 3),
+('jeffcontroleur', 'controleur', 'controleur', 'jeff', '0', '0', 2),
+('jeffadmin@jeff.com', 'admin', 'admin', 'jeff', '0', '0', 1);
 
 #------------------------------------------------------------
 # Table: ligue
@@ -112,12 +114,14 @@ CREATE TABLE ligue(
 --
 
 INSERT INTO `ligue` (`id_ligue`, `lib_ligue`, `URL_ligue`, `contact_ligue`, `telephone_ligue`, `email_util`) VALUES
-(1, 'Natation', 'www.grandest.ffnatation.fr', 'www.grandest.ffnatation.fr', '03.83.18.87.32', 'ligue@ligue.fr'),
-(2, 'Tennis', 'www.ligue-grandest-fft.fr', 'www.ligue-grandest-fft.fr', '03 83 67 60 10', 'ligue@ligue.fr'),
-(3, 'Cyclisme', 'www.grandestcyclisme.fr', 'www.grandestcyclisme.fr', '09 61 06 27 79', 'ligue@ligue.fr'),
-(4, 'Equitation', 'www.cregrandest.fr', 'www.cregrandest.fr', '03.83.15.87.30', 'ligue@ligue.fr'),
-(5, 'Athlétisme', 'www.large.athle.fr', 'www.large.athle.fr', '03 26 06 75 83', 'ligue@ligue.fr'),
-(6, 'Judo', 'www.judograndest.fr', 'www.judograndest.fr', '03 88 26 94 11', 'ligue@ligue.fr');
+(1, 'Natation', 'www.grandest.ffnatation.fr', 'www.grandest.ffnatation.fr', '03.83.18.87.32', 'jeffadmin@jeff.com'),
+(2, 'Tennis', 'www.ligue-grandest-fft.fr', 'www.ligue-grandest-fft.fr', '03 83 67 60 10', 'jeffadmin@jeff.com'),
+(3, 'Cyclisme', 'www.grandestcyclisme.fr', 'www.grandestcyclisme.fr', '09 61 06 27 79', 'jeffadmin@jeff.com'),
+(4, 'Equitation', 'www.cregrandest.fr', 'www.cregrandest.fr', '03.83.15.87.30', 'jeffadmin@jeff.com'),
+(5, 'Athlétisme', 'www.large.athle.fr', 'www.large.athle.fr', '03 26 06 75 83', 'jeffadmin@jeff.com'),
+(6, 'Judo', 'www.judograndest.fr', 'www.judograndest.fr', '03 88 26 94 11', 'jeffadmin@jeff.com');
+
+
 
 -- --------------------------------------------------------
 
@@ -125,7 +129,7 @@ INSERT INTO `ligue` (`id_ligue`, `lib_ligue`, `URL_ligue`, `contact_ligue`, `tel
 #------------------------------------------------------------
 # Table: club
 #------------------------------------------------------------
-
+        
 CREATE TABLE club(
         id_club   Int  Auto_increment  NOT NULL ,
         lib_club  Varchar (50) NOT NULL ,
