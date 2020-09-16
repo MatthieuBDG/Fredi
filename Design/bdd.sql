@@ -2,10 +2,17 @@
 #        Script MySQL.
 #------------------------------------------------------------
 
+#------------------------------------------------------------
+# Create database
+#------------------------------------------------------------
+
+CREATE DATABASE IF NOT EXISTS `fredi` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `fredi`;
 
 #------------------------------------------------------------
 # Table: periode
 #------------------------------------------------------------
+
 
 CREATE TABLE periode(
         annee_per      Int NOT NULL ,
