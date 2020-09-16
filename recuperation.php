@@ -21,7 +21,7 @@ if(isset($_POST['recup_submit'])) {
             $mdp = $mail['password_util'];
 
 
-         $section = "<h5>Votre mot de passe est : $mdp</h5>";
+         $section = "<h5>Votre mot de passe vient de vous etre renvoyé à l'adresse mail suivante : $recup_mail</h5>";
 
          } else {
             $erreur = "<h5>Cette adresse mail n'est pas enregistrée</h5>";

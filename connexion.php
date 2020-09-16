@@ -3,6 +3,12 @@
 
 include 'connexion_dbh.php';
 
+if(isset($_GET["code"]) == "deconnexion"){ ?>
+<center>
+<?php echo "<font color='green'><h3>Déconnexion réussie</h3></font>"; ?>
+</center>
+<?php
+}
 if(isset($_SESSION['email_util'])) { 
 $prenom = $_SESSION['prenom_util'];
 $nom = $_SESSION['nom_util'];
@@ -22,9 +28,9 @@ if(isset($_POST["submit"])){ // Debut de la connexion
 
 
         // Comparaison du pass envoyé via le formulaire avec la base
-        // $isPasswordCorrect = password_verify($mdpconnect, $resultat['password_util']);
+        $isPasswordCorrect = password_verify($mdpconnect, $resultat['password_util']);
 
-        if ($mdpconnect == $resultat['password_util']) {
+        if ($isPasswordCorrect == 1) {
             
             
             $_SESSION['email_util'] = $mailconnect; //Definie le $_SESSION
@@ -35,7 +41,7 @@ if(isset($_POST["submit"])){ // Debut de la connexion
             
             $connexion = "<h3>Vous etes connecté !</h3>"; //message de connexion
         }else{
-            $erreur = "<h5>Erreur de mot de passe/adresse mail !</h5>"; //message erreur
+            $erreur = "<h5>Votre identifiant et / ou votre mot de passe est erroné</h5>"; //message erreur
         }  
     }else{
         $erreur = "<h5>Tous les champs doivent être complétés !</h5>"; //message erreur
@@ -96,8 +102,6 @@ if(!isset($dejaconnexion)){ ?>
          <p>Mot de passe <br><input type="password" name="mdpconnect" placeholder="Mot de passe" require/></p>
          <a href="recuperation" class="mot-de-passe-oublie">mot de passe oublié ?</a>
          <br>
-         <p><a href="inscription">PAS ENCORE MEMBRE ?</a></p> 
-        
         <?php
          if(isset($erreur))
          {
