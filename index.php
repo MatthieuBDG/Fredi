@@ -1,3 +1,6 @@
+<?php
+include 'connexion_dbh.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,11 +13,18 @@
 <div class="menu">
 <ul>
 <li><a class="active" href="index">Accueil</a></li>
+<?php if(!isset($_SESSION['email_util'])) { ?>
 <li><a  href="connexion">Connexion</a></li>
+<?php }else{ ?>
+<li><a href="deconnexion">Deconnexion</a></li>
+<?php } ?>
 <li><a href="#contact">Contact</a></li>
 <li><a  href="#about">About</a></li>
+<?php if(isset($_SESSION['email_util'])) { ?>
+<li><a href=""><?php echo $_SESSION['prenom_util']; ?></a></li>
+<?php } ?>
 </ul>     
-</div>    
+</div>   
 </header>
 <body class="index">
 
