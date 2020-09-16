@@ -22,25 +22,8 @@ if(isset($_POST['recup_submit'])) {
             $mail = $mailexist->fetch();
             $mdp = $mail['password_util'];
 
-        $header="MIME-Version: 1.0\r\n";
-         $header.='From:"fredi.com"<support@fredi.com>'."\n";
-         $header.='Content-Type:text/html; charset="utf-8"'."\n";
-         $header.='Content-Transfer-Encoding: 8bit';
-         $message = '
-         <html>
-         <head>
-           <title>Récupération de mot de passe - Fredi</title>
-           <meta charset="utf-8" />
-         </head>
-        <body>
-        <p style="text-align: center;">Salut '.$recup_mail.',</p>
-        <p><b>'.$mdp.'</b></p>
-        </body>
-         </html>
-         ';
-         mail($recup_mail, "Récupération de mot de passe - Fredi", $message, $header);
 
-         $section = "<h5>Le mot de passe à été envoyé $recup_mail : $mdp</h5>";
+         $section = "<h5>Votre mot de passe est : $mdp</h5>";
 
          } else {
             $erreur = "<h5>Cette adresse mail n'est pas enregistrée</h5>";
@@ -52,7 +35,6 @@ if(isset($_POST['recup_submit'])) {
       $erreur = "<h5>Veuillez entrer votre adresse mail</h5>";
    }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
