@@ -48,7 +48,7 @@ On s'inscrit puis les frais peuvent être saissis par les adhérents . Cette sai
 | ADMINISTRATEUR | Demander le renvoi du mot de passe |
 | CONTROLEUR | Changer le statut d'une LIGNE DE FRAIS |
 | CONTROLEUR | Consulter de la LISTE DE FRAIS sur l'application WEB |
-| CONTROLEUR | Générer le CERFA 11580-02 |
+| CONTROLEUR | Générer le CERFA  |
 | CONTROLEUR | Se connecter à l'application |
 | CONTROLEUR | Se déconnecter à l'application |
 | ADHERENT | Créer une LIGNE DE FRAIS |
