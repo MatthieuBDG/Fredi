@@ -46,14 +46,26 @@ header("location: index");
 <img class="avatar" src="images/avatar-icon.png" alt="avatar-icon" >
 <?php if($resultat['id_type_util'] == 1){ ?>
 <h3><?php echo $resultat['prenom_util'] ?> vous etes admin.</h3>
+
 <?php }elseif($resultat['id_type_util'] == 2){ ?>
 <h3><?php echo $resultat['prenom_util'] ?> vous etes controleur.</h3>
 <?php }else{ ?>
 <h3><?php echo $resultat['prenom_util'] ?> vous etes adherent.</h3>
 <?php } ?>
+<hr>
+
+<?php if($resultat['id_type_util'] == 1){ ?>
+<ul class="liens-profil">
+<li><a href="gestion_utilisateur">gestion utilisateur</a></li>
+<li><a style="align:left" href="gestion_motif_de_frais">gestion motif de frais</a></li>
+</ul>
+<?php }elseif($resultat['id_type_util'] == 2){ ?>
+
+<?php }else{ ?>
+
+<?php } ?>
 </center>
 </div>
-
 </div>
 </body>
 </html>

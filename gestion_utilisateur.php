@@ -1,4 +1,7 @@
 <?php
+include 'connexion_dbh.php';
+
+if(isset($_SESSION['id_type_util']) == 1){
 
 $file = fopen("Design/licencies.csv", "r") or exit("<p>Impossible de lire le
 fichier</p>"); //ouverture du fichier csv
@@ -12,7 +15,7 @@ $nb=0;
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="css/styles.css" type="text/css" />
-  <title>gestion</title>
+  <title>Gestion</title>
 </head>
 
 <body>
@@ -36,3 +39,7 @@ $nb=0;
     ?>
 </body>
 </html>
+<?php }else{
+  header("location: connexion");   
+  }
+?>
