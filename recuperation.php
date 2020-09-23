@@ -18,18 +18,8 @@ if(isset($_POST['recup_submit'])) {
          $mailexist_count = $mailexist->rowCount();
          if($mailexist_count == 1) {
 
-            function genererChaineAleatoire($longueur = 10){
-             $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $longueurMax = strlen($caracteres);
-            $chaineAleatoire = '';
-            for ($i = 0; $i < $longueur; $i++){
-            $chaineAleatoire .= $caracteres[rand(0, $longueurMax - 1)];
-            }
-            return $chaineAleatoire;
-            }
-            //Utilisation de la fonction
-            $newpassword = genererChaineAleatoire(10);
-            $passwordhash = password_hash($newpassword,PASSWORD_DEFAULT);  
+            include 'DAO/genere_password.php';
+             
             $req_change_password = $dbh->prepare("UPDATE utilisateur Set password_util = ? WHERE email_util = ?");
             $req_change_password->execute(array($passwordhash,$recup_mail));
                
