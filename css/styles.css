@@ -139,3 +139,10 @@ ul {
   .active {
     background-color: #4CAF50;
   }
+
+  table, th, td {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-collapse: collapse;
+  }
