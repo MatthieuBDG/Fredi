@@ -38,7 +38,8 @@ if(isset($_POST["submit"])){ // Debut de la connexion
             $_SESSION['statut_util'] = $resultat['statut_util']; //Definie le $_SESSION statut_util
             $_SESSION['nom_util'] = $resultat['nom_util']; //Definie le $_SESSION nom_util
             $_SESSION['prenom_util'] = $resultat['prenom_util']; //Definie le $_SESSION prenom_util
-            
+            $mail = $_SESSION['email_util'];
+            header("location: profil?mail=$mail");  
             $connexion = "<h3>Vous etes connecté !</h3>"; //message de connexion
         }else{
             $erreur = "<h5>Votre identifiant et / ou votre mot de passe est erroné</h5>"; //message erreur

@@ -17,11 +17,14 @@ if(isset($_POST['recup_submit'])) {
          $mailexist->execute(array($recup_mail));
          $mailexist_count = $mailexist->rowCount();
          if($mailexist_count == 1) {
-            $mail = $mailexist->fetch();
-            $mdp = $mail['password_util'];
 
-
+            include 'DAO/genere_password.php';
+             
+            $req_change_password = $dbh->prepare("UPDATE utilisateur Set password_util = ? WHERE email_util = ?");
+            $req_change_password->execute(array($passwordhash,$recup_mail));
+               
          $section = "<h5>Votre mot de passe vient de vous etre renvoyé à l'adresse mail suivante : $recup_mail</h5>";
+         $mdp = "<h5>Votre mot de passe est : $newpassword</h5>";
 
          } else {
             $erreur = "<h5>Cette adresse mail n'est pas enregistrée</h5>";
@@ -62,16 +65,14 @@ if(isset($_POST['recup_submit'])) {
 
 <div class="recuperation">
 <h1>Recupération de mot de passe</h1>
-
-
 <br/>
 <form method="post">
-   <input type="email" placeholder="Votre adresse mail" name="recup_mail"/><br/>
+<input type="email" placeholder="Votre adresse mail" name="recup_mail"/><br/>
 <?php
 if(isset($erreur)) { echo '<span style="color:red">'.$erreur.'</span>'; }else { echo ""; } 
 
 if(isset($section)) { echo '<span style="color:green">'.$section.'</span>'; }else { echo ""; }
-
+if(isset($mdp)) { echo '<span>'.$mdp.'</span>'; }else { echo ""; }
 ?>
    <input type="submit" value="Valider" name="recup_submit"/>
 

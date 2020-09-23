@@ -11,7 +11,17 @@ body.recuperation{
     background: #d8d8d8;
     font-family: Verdana, Geneva, sans-serif;
 }
+body.profil{
+    background: #d8d8d8;
+    font-family: Verdana, Geneva, sans-serif;
+}
 .connexion{
+    width:400px;
+    margin:0 auto;
+    margin-top:10%;
+
+}
+.profil{
     width:400px;
     margin:0 auto;
     margin-top:10%;
