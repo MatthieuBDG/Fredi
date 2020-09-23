@@ -67,7 +67,7 @@ if(isset($_POST["submit"])){ // Debut de la connexion
 <header>
 <div class="menu">
 <ul>
-<li><a href="index">Accueil</a></li>
+<li><a  href="index">Accueil</a></li>
 <?php if(!isset($_SESSION['email_util'])) { ?>
 <li><a class="active" href="connexion">Connexion</a></li>
 <?php }else{ ?>
@@ -76,10 +76,10 @@ if(isset($_POST["submit"])){ // Debut de la connexion
 <li><a href="#contact">Contact</a></li>
 <li><a  href="#about">About</a></li>
 <?php if(isset($_SESSION['email_util'])) { ?>
-<li><a href=""><?php echo $_SESSION['prenom_util']; ?></a></li>
+<li><a href="profil?mail=<?php echo $_SESSION['email_util'] ?>"><?php echo $_SESSION['prenom_util']; ?></a></li>
 <?php } ?>
 </ul>     
-</div>
+</div> 
 </header>
 <body class="connexion">
 

@@ -1,4 +1,5 @@
 <?php
+//Génere mot de passe 
 function genererChaineAleatoire($longueur = 15){
     $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $longueurMax = strlen($caracteres);

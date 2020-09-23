@@ -34,14 +34,16 @@ header("location: index");
 <li><a href="#contact">Contact</a></li>
 <li><a  href="#about">About</a></li>
 <?php if(isset($_SESSION['email_util'])) { ?>
-<li><a href=""><?php echo $_SESSION['prenom_util']; ?></a></li>
+<li><a class="active" href="profil?mail=<?php echo $_SESSION['email_util'] ?>"><?php echo $_SESSION['prenom_util']; ?></a></li>
 <?php } ?>
 </ul>     
 </div>   
 </header>
 <body class="profil">
 <div class="profil">
+<div class="container">
 <center>
+<img class="avatar" src="images/avatar-icon.png" alt="avatar-icon" >
 <?php if($resultat['id_type_util'] == 1){ ?>
 <h3><?php echo $resultat['prenom_util'] ?> vous etes admin.</h3>
 <?php }elseif($resultat['id_type_util'] == 2){ ?>
@@ -50,6 +52,8 @@ header("location: index");
 <h3><?php echo $resultat['prenom_util'] ?> vous etes adherent.</h3>
 <?php } ?>
 </center>
+</div>
+
 </div>
 </body>
 </html>

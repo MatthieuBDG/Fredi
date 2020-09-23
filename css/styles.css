@@ -156,3 +156,18 @@ ul {
     border-color: black;
     border-collapse: collapse;
   }
+  .container{
+      padding: 20px;
+    background: #c3c0c0;
+    box-shadow: 3px 1px 3px #c8cdd1;
+    -webkit-border-radius: 5%!important;
+    -moz-border-radius: 5%!important;
+    border-radius: 5%!important;
+    min-height: 460px;
+    width: 430px;}
+
+    img.avatar{
+        border:3px solid green;
+        border-radius: 40px;
+        width:100px
+    }

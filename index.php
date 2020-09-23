@@ -21,7 +21,7 @@ include 'connexion_dbh.php';
 <li><a href="#contact">Contact</a></li>
 <li><a  href="#about">About</a></li>
 <?php if(isset($_SESSION['email_util'])) { ?>
-<li><a href=""><?php echo $_SESSION['prenom_util']; ?></a></li>
+<li><a href="profil?mail=<?php echo $_SESSION['email_util'] ?>"><?php echo $_SESSION['prenom_util']; ?></a></li>
 <?php } ?>
 </ul>     
 </div>   
