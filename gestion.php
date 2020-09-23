@@ -6,7 +6,7 @@ $nb=0;
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,8 +24,10 @@ $nb=0;
       $row=fgetcsv($file, 0, ';');
       $nb++;
       echo "<tr>";
-      foreach ($row as $value) {
-        echo "<td>".$value."</td>";
+      if(is_array($row)){
+        foreach ($row as $value) {
+          echo "<td>".$value."</td>";
+        }
       }
       echo "</tr>";
     }
