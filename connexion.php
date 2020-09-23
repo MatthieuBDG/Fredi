@@ -5,7 +5,7 @@ include 'connexion_dbh.php';
 
 if(isset($_GET["code"]) == "deconnexion"){ ?>
 <center>
-<?php echo "<font color='green'><h3>Déconnexion réussie</h3></font>"; ?>
+<?php echo "<font color='red'><h3>Déconnexion réussie</h3></font>"; ?>
 </center>
 <?php
 }
@@ -25,13 +25,13 @@ if(isset($_POST["submit"])){ // Debut de la connexion
         $req_connexion = $dbh->prepare("SELECT * FROM utilisateur WHERE email_util = ?");
         $req_connexion->execute(array($mailconnect));
         $resultat = $req_connexion->fetch();
-
+        
 
         // Comparaison du pass envoyé via le formulaire avec la base
         $isPasswordCorrect = password_verify($mdpconnect, $resultat['password_util']);
 
         if ($isPasswordCorrect == 1) {
-            
+        if($resultat['statut_util'] == 0){    
             
             $_SESSION['email_util'] = $mailconnect; //Definie le $_SESSION
             $_SESSION['id_type_util'] = $resultat['id_type_util']; //Definie le $_SESSION id_type_util
@@ -39,11 +39,14 @@ if(isset($_POST["submit"])){ // Debut de la connexion
             $_SESSION['nom_util'] = $resultat['nom_util']; //Definie le $_SESSION nom_util
             $_SESSION['prenom_util'] = $resultat['prenom_util']; //Definie le $_SESSION prenom_util
             $mail = $_SESSION['email_util'];
-            header("location: profil?mail=$mail");  
-            $connexion = "<h3>Vous etes connecté !</h3>"; //message de connexion
+            header("location: profil?mail=$mail");
+        }else{
+        $erreur = "<h5>Votre compte est désactivé !</h5>"; //message erreur
+        }
         }else{
             $erreur = "<h5>Votre identifiant et / ou votre mot de passe est erroné</h5>"; //message erreur
         }  
+    
     }else{
         $erreur = "<h5>Tous les champs doivent être complétés !</h5>"; //message erreur
     }

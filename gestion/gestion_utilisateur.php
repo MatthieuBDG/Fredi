@@ -1,5 +1,5 @@
 <?php
-include 'connexion_dbh.php';
+include '../connexion_dbh.php';
 
 if(isset($_SESSION['id_type_util']) == 1){
 
@@ -45,6 +45,6 @@ $nb=0;
 </body>
 </html>
 <?php }else{
-  header("location: connexion");   
+  header("location: ../connexion");   
   }
 ?>

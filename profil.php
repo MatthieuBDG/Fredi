@@ -53,17 +53,22 @@ header("location: index");
 <h3><?php echo $resultat['prenom_util'] ?> vous etes adherent.</h3>
 <?php } ?>
 <hr>
-
 <?php if($resultat['id_type_util'] == 1){ ?>
-<ul class="liens-profil">
-<li><a href="gestion_utilisateur">gestion utilisateur</a></li>
-<li><a style="align:left" href="gestion_motif_de_frais">gestion motif de frais</a></li>
+<div class="div-lien">
+<p><a class='lien' href="gestion/gestion_utilisateur">Gestion utilisateur</a></p>
+<p><a class='lien' href="gestion/gestion_motif_de_frais">Gestion motif de frais</a></p>
+<p><a class='lien' href="gestion/gestion_période">Gestion période</a> </p>
+</div>
+
+
+
 </ul>
 <?php }elseif($resultat['id_type_util'] == 2){ ?>
 
 <?php }else{ ?>
 
 <?php } ?>
+
 </center>
 </div>
 </div>

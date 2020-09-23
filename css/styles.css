@@ -188,8 +188,23 @@ a:link:hover{
      background-color: white;
      color: black;
   }
-.liens-profil li{
-    list-style-type: none;
-    float:left    ;
-    margin-right:37px;
-}
+  .div-lien p{
+    margin-top: 35px;
+  }
+  .lien{
+  border: 1px solid #000;
+  padding: 10px 30px;
+  margin-block-end: auto;
+  background: green;
+  color: white;
+  font-family: Montserrat,sans-serif;
+  text-decoration: none;
+  -webkit-border-radius: 11px;
+  -moz-border-radius: 11px;
+  border-radius: 11px;
+  margin-block-end: 5px;
+  }
+  a.lien:hover{
+  text-decoration: none; 
+  background: rgb(19, 110, 19);   
+  }
