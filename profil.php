@@ -53,7 +53,6 @@ header("location: index");
 <?php } ?>
 </center>
 </div>
-
 </div>
 </body>
 </html>

@@ -11,6 +11,16 @@ body.recuperation{
     background: #d8d8d8;
     font-family: Verdana, Geneva, sans-serif;
 }
+body.profil{
+    background: #d8d8d8;
+    font-family: Verdana, Geneva, sans-serif;
+}
+.profil{
+    width:400px;
+    margin:0 auto;
+    margin-top:10%;
+
+}
 .connexion{
     width:400px;
     margin:0 auto;
@@ -110,7 +120,7 @@ a:link:hover{
     text-decoration: underline;
 }
 
-ul {
+.menu ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -120,11 +130,11 @@ ul {
     top: 0;
   }
   
-  li {
+  .menu li {
     float: left;
   }
   
-  li a {
+  .menu li a {
     display: block;
     color: white;
     text-align: center;
@@ -132,11 +142,11 @@ ul {
     text-decoration: none;
   }
   
-  li a:hover:not(.active) {
+  .menu li a:hover:not(.active) {
     background-color: #111;
   }
   
-  .active {
+  .menu .active {
     background-color: #4CAF50;
   }
 
@@ -147,7 +157,7 @@ ul {
     border-collapse: collapse;
   }
   .container{
-      padding: 20px;
+    padding: 20px;
     background: #c3c0c0;
     box-shadow: 3px 1px 3px #c8cdd1;
     -webkit-border-radius: 5%!important;
@@ -178,3 +188,8 @@ ul {
      background-color: white;
      color: black;
   }
+.liens-profil li{
+    list-style-type: none;
+    float:left    ;
+    margin-right:37px;
+}
