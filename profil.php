@@ -46,7 +46,6 @@ header("location: index");
 <img class="avatar" src="images/avatar-icon.png" alt="avatar-icon" >
 <?php if($resultat['id_type_util'] == 1){ ?>
 <h3><?php echo $resultat['prenom_util'] ?> vous etes admin.</h3>
-
 <?php }elseif($resultat['id_type_util'] == 2){ ?>
 <h3><?php echo $resultat['prenom_util'] ?> vous etes controleur.</h3>
 <?php }else{ ?>
