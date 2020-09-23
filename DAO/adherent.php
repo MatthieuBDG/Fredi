@@ -7,23 +7,17 @@ class Adherent {
     private $adr1_adh;
     private $adr2_adh;
     private $adr3_adh;
-    private $nom_resp;
-    private $prenom_resp;
-    private $code_statut;
     private $id_club;
 
  //constructeur
     public function __construct(array $row) {
-        $this->email_util = $row['id_utilisateur'];
-        $this->lic_adh = $row['numero_licence'];
+        $this->email_util = $row['email_util'];
+        $this->lic_adh = $row['lic_adh '];
         $this->sexe_adh = $row['sexe_adh'];
         $this->date_naissance_adh = $row['date_naissance_adh'];
         $this->adr1_adh = $row['adr1_adh'];
         $this->adr2_adh = $row['adr2_adh'];
         $this->adr3_adh = $row['adr3_adh'];
-        $this->nom_resp = $row['nom_responsable'];
-        $this->prenom_resp = $row['prenom_responsable'];
-        $this->code_statut = $row['code_statut'];
         $this->id_club = $row['id_club'];
     }
 
@@ -81,24 +75,8 @@ class Adherent {
 
 	public function setadr3_adh($adr3_adh){
 		$this->adr3_adh = $adr3_adh;
-	}
-
-	public function getNom_resp(){
-		return $this->nom_resp;
-	}
-
-	public function setNom_resp($nom_resp){
-		$this->nom_resp = $nom_resp;
-	}
-
-	public function getPrenom_resp(){
-		return $this->prenom_resp;
-	}
-
-	public function setPrenom_resp($prenom_resp){
-		$this->prenom_resp = $prenom_resp;
-	}
-
+    }
+    
 	public function getCode_statut(){
 		return $this->code_statut;
 	}
