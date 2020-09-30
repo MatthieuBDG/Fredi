@@ -25,11 +25,7 @@ class Adherent {
 		return $this->email_util;
 	}
 
-<<<<<<< HEAD
 	public function set_email_util($email_util){
-=======
-	public function sete_mail_util($email_util){
->>>>>>> 58ea4f352cdd3c87d58c023248b9cd160bb1f79e
 		$this->email_util = $email_util;
 	}
 
@@ -89,19 +85,11 @@ class Adherent {
 		$this->code_statut = $code_statut;
     }
     
-<<<<<<< HEAD
     public function get_id_club(){
 		return $this->id_club;
 	}
 
 	public function set_id_club($id_club){
-=======
-    public function get_Id_club(){
-		return $this->id_club;
-	}
-
-	public function set_Id_club($id_club){
->>>>>>> 58ea4f352cdd3c87d58c023248b9cd160bb1f79e
 		$this->id_club = $id_club;
 	}
 

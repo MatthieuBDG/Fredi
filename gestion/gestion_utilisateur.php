@@ -15,12 +15,8 @@ $nb=0;
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
   <link rel="stylesheet" href="../css/styles.css" type="text/css" />
-  <title>gestion</title>
-
-  
-
+  <title>Gestion</title>
 </head>
 
 <body>
@@ -32,7 +28,7 @@ $adherents = $dao->findAll();
 
 <table> 
 <tr><th>email</th><th>Num licence</th><th>sexe</th><th>date de naissance</th>
-<th>adresse1</th><th>id_club</th></tr>
+<th>adresse1</th><th>id_club</th><th>Supprimer</th></tr>
 <?php
 foreach ($adherents as $adherent) {
     echo "<tr>";
@@ -42,6 +38,7 @@ foreach ($adherents as $adherent) {
     echo "<td>".$adherent->get_date_naissance_adh()."</td>";
     echo "<td>".$adherent->get_adr1_adh()."</td>";
     echo "<td>".$adherent->get_id_club()."</td>";
+    echo '<td><a href="désactiver_utilisateur.php?id_type_utilisateur='.$row['lic_adh'].'">supprimer</a></td>';
     echo "</tr>";
 }
 ?>
