@@ -30,7 +30,7 @@ if(isset($_POST['recup_submit'])) {
             $erreur = "<h5>Cette adresse mail n'est pas enregistrée</h5>";
          }
       } else {
-         $erreur = "<h5>Adresse mail invalide</h5>";
+         $erreur = "<h5>Votre identifiant est invalide</h5>";
       }
    } else {
       $erreur = "<h5>Veuillez entrer votre adresse mail</h5>";
