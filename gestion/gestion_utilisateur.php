@@ -1,5 +1,6 @@
 <?php
 include '../connexion_dbh.php';
+include '../init.php';
 
 if(isset($_SESSION['id_type_util']) == 1){
 
@@ -18,15 +19,34 @@ $nb=0;
   <link rel="stylesheet" href="../css/styles.css" type="text/css" />
   <title>gestion</title>
 
-  <link rel="stylesheet" href="css/styles.css" type="text/css" />
-  <title>Gestion</title>
+  
 
 </head>
 
 <body>
-  <table>
-    <?php
 
+<?php
+$dao = new adherentDAO();
+$adherents = $dao->findAll(); 
+?>
+
+<table> 
+<tr><th>email</th><th>Num licence</th><th>sexe</th><th>date de naissance</th>
+<th>adresse1</th><th>id_club</th></tr>
+<?php
+foreach ($adherents as $adherent) {
+    echo "<tr>";
+    echo "<td>".$adherent->get_email_util()."</td>";
+    echo "<td>".$adherent->get_lic_adh()."</td>";
+    echo "<td>".$adherent->get_sexe_adh()."</td>";
+    echo "<td>".$adherent->get_date_naissance_adh()."</td>";
+    echo "<td>".$adherent->get_adr1_adh()."</td>";
+    echo "<td>".$adherent->get_id_club()."</td>";
+    echo "</tr>";
+}
+?>
+</table>
+<?php
     while (!feof($file)) {
       echo "<tr>";
       $row=fgetcsv($file, 0, ';');
