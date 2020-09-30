@@ -9,14 +9,14 @@ Class PeriodeDAO extends DAO {
     }
 
     //Nouvelle periode
-    public function createPeriode($anne_pere, $forfait_km_per, $statut_per) {
+    public function createPeriode($anne_per, $forfait_km_per, $statut_per) {
         $sql = "INSERT INTO periode (anne_pere, forfait_km_per, statut_per) ";
         $sql .= "VALUES (:anne_pere, :forfait_km_per, :statut_per)";
 
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(
-                ':anne_pere' => $anne_pere,
+                ':anne_pere' => $anne_per,
                 ':forfait_km_per' => $forfait_km_per,
                 ':statut_per' => $statut_per
             ));
@@ -34,7 +34,7 @@ Class PeriodeDAO extends DAO {
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(
-                ':anne_pere' => $anne_pere,
+                ':anne_pere' => $anne_per,
                 ':forfait_km_per' => $forfait_km_per,
                 ':statut_per' => $statut_per
             ));
@@ -69,13 +69,13 @@ Class PeriodeDAO extends DAO {
     }
 
     //Retourne une période
-    public function find($anne_pere) {
+    public function find($anne_per) {
         $sql = "SELECT * FROM periode WHERE anne_pere = :anne_pere";
 
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(
-                ':anne_pere' => $anne_pere
+                ':anne_pere' => $anne_per
             ));
             $row = $sth->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -87,13 +87,13 @@ Class PeriodeDAO extends DAO {
     }
 
     //Desactive une période
-    public function desactiverPeriode($anne_pere) {
-        $sql = "UPDATE periode SET statut_per = 0 WHERE anne_pere = :anne_pere";
+    public function desactiverPeriode($anne_per) {
+        $sql = "UPDATE periode SET statut_per = 0 WHERE anne_per = :anne_per";
 
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(
-                ':anne_pere' => $anne_pere
+                ':anne_per' => $anne_per
             ));
         } catch (PDOException $e) {
             throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
