@@ -17,6 +17,7 @@ if(isset($_POST['recup_submit'])) {
          $mailexist->execute(array($recup_mail));
          $mailexist_count = $mailexist->rowCount();
          if($mailexist_count == 1) {
+            
 
             include 'DAO/genere_password.php';
              
