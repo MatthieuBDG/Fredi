@@ -31,7 +31,7 @@ Class utilisateurDAO extends DAO {
 
   
     public function findAll() {
-        $sql = "SELECT * FROM u"; 
+        $sql = "SELECT * FROM utilisateur"; 
 
         try {
             $sth = $this->pdo->prepare($sql);
