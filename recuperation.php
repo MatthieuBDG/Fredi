@@ -7,8 +7,6 @@ $_SESSION = array();
 session_destroy();
  
 }
-
-
 if(isset($_POST['recup_submit'])) {
    if(!empty($_POST['recup_mail'])) {
       $recup_mail = htmlspecialchars($_POST['recup_mail']);
@@ -17,7 +15,6 @@ if(isset($_POST['recup_submit'])) {
          $mailexist->execute(array($recup_mail));
          $mailexist_count = $mailexist->rowCount();
          if($mailexist_count == 1) {
-            
 
             include 'DAO/genere_password.php';
              
