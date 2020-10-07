@@ -3,13 +3,7 @@
 
 include 'connexion_dbh.php';
 
-
-if(isset($_SESSION['email_util'])) { 
-$prenom = $_SESSION['prenom_util'];
-$nom = $_SESSION['nom_util'];
-$dejaconnexion = "<h3>$prenom $nom vous etes deja connecté</h3>";
-}
-
+if(isset($_SESSION['id_type_util']) == 1){
 if(isset($_POST["submit"])){ // Debut de la inscription
 
         $mailconnect = htmlspecialchars($_POST["mailconnect"]);
@@ -49,14 +43,13 @@ if(isset($_POST["submit"])){ // Debut de la inscription
         $req_inscription = $dbh->prepare("INSERT INTO utilisateur (email_util,password_util,nom_util,prenom_util,statut_util,matricule_cont,id_type_util)VALUES (?,?,?,?,?,?,?)");
         $req_inscription->execute(array($mailconnect,$hashPassword,$nom,$prenom,0,0,$type_user));   
         }
-        
-        header("location: ./connexion");
+        $inscription = "<h4>L’utilisateur $nom a été créé dans la FREDI</h4>"; //message inscription
         }else{
-            $erreur = "<h5>L'adresse email utilisée existe déja</h5>"; //message erreur
+            $erreur = "<h5>Cette adresse mail est déjà utilisée</h5>"; //message erreur
         }
     
     }else{
-        $erreur = "<h5>Tous les champs doivent être complétés !</h5>"; //message erreur
+        $erreur = "<h5>Une information obligatoire n’a pas été saisie</h5>"; //message erreur
     }
 
 }
@@ -104,7 +97,7 @@ echo '<a href="deconnexion" id="bouton">Se déconnecter</a>';
 echo "</center>";
 exit;
 }
-if(!isset($dejaconnexion)){ ?>
+?>
 <div class="connexion">
     <center>
       <h1>Inscription</h1>
@@ -125,18 +118,21 @@ if(!isset($dejaconnexion)){ ?>
          if(isset($erreur))
          {
             echo '<font color="red">'.$erreur."</font>";
-         }if(isset($connexion))
+         }
+         if(isset($inscription))
          {
             echo '<font color="green">'.$inscription."</font>";
             exit;
          }
-         
         ?>
         <input type="submit" name="submit" value="inscription" />
         </form>
     </center>  
 </div>    
-<?php } ?>
+<?php 
+}else{
+header("location: connexion?erreur=1");
+} ?>
 </body>
 </html>
 
