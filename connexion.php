@@ -9,6 +9,12 @@ if(isset($_GET["code"]) == "deconnexion"){ ?>
 </center>
 <?php
 }
+if(isset($_GET["erreur"]) == "1"){ ?>
+<center>
+<?php echo "<font color='red'><h3>Vous devez d'abord vous connecter !</h3></font>"; ?>
+</center>
+<?php
+}
 if(isset($_SESSION['email_util'])) { 
 $prenom = $_SESSION['prenom_util'];
 $nom = $_SESSION['nom_util'];
