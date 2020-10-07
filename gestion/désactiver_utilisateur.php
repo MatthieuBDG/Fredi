@@ -1,5 +1,5 @@
 <?php
-include ("init.php");
+include ("../init.php");
 
 $dsn = 'mysql:host=localhost;dbname=fredi'; // contient le nom du serveur et de la base
     $user = 'root';
@@ -11,12 +11,13 @@ $dsn = 'mysql:host=localhost;dbname=fredi'; // contient le nom du serveur et de 
     } catch (PDOException $ex) {
     die("Erreur lors de la connexion SQL : " . $ex->getMessage());
     }
-    $sql= "DELETE FROM adherent WHERE lic_adh='".$_GET['lic_adh']."'";
+    $sql= "UPDATE utilisateur SET statut_util = 1 WHERE email_util='".$_GET['email_util']."'";
     try {
     $sth = $dbh->prepare($sql);
     $sth->execute();
     } catch (PDOException $ex) {
     die("Erreur lors de la requête SQL : " . $ex->getMessage());
      }
+     echo "<p>L'utilisateur a bien été désactivé</p>";
     header("location:gestion_utilisateur.php");
 ?>
