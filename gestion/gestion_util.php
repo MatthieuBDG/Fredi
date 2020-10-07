@@ -32,7 +32,7 @@ foreach ($utilisateurs as $utilisateur) {
     echo "<td>".$utilisateur->get_prenom_util()."</td>";
     echo "<td>".$utilisateur->get_id_type_util()."</td>";
     echo "<td>".$utilisateur->get_id_type_util()."</td>";
-    echo "<td><a href='modifier'>modifier</a></td>";
+    echo "<td><a href='../modifier'>modifier</a></td>";
     echo "<td><a href='supprimer'>supprimer</a></td>";
     echo "</tr>";
 }
