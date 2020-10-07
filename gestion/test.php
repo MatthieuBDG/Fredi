@@ -21,9 +21,9 @@ $dao = new utilisateurDAO();
 $utilisateurs = $dao->findAll(); 
 ?>
 
-<table> 
+<table>
 <tr><th>email</th><th>Nom</th><th>Prenom</th><th>id util</th>
-<th>lib util</th><th>Supprimer</th></tr>
+<th>lib util</th><th>Modifier</th><th>Supprimer</th></tr>
 <?php
 foreach ($utilisateurs as $utilisateur) {
     echo "<tr>";
@@ -31,8 +31,9 @@ foreach ($utilisateurs as $utilisateur) {
     echo "<td>".$utilisateur->get_nom_util()."</td>";
     echo "<td>".$utilisateur->get_prenom_util()."</td>";
     echo "<td>".$utilisateur->get_id_type_util()."</td>";
-    echo "<td>".$utilisateur->lib_type_util($id_type_util)."</td>";
-    echo "<td>supprimer</td>";
+    echo "<td>".$utilisateur->get_id_type_util()."</td>";
+    echo "<td><a href='modifier'>modifier</a></td>";
+    echo "<td><a href='supprimer'>supprimer</a></td>";
     echo "</tr>";
 }
 ?>

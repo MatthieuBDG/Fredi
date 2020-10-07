@@ -59,12 +59,6 @@ if(isset($_POST["submit"])){ // Debut de la inscription
     }
 
 }
-    $longueurKey = 15;
-    $key = "";
-    for($i=1;$i<$longueurKey;$i++) {
-       $key .= mt_rand(0,9);
-    }
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -92,18 +86,6 @@ if(isset($_POST["submit"])){ // Debut de la inscription
 </div> 
 </header>
 <body class="connexion">
-
-<?php
-if(isset($dejaconnexion))
-{
-echo "<center>";
-echo "$dejaconnexion";
-echo "<br><br>";
-echo '<a href="deconnexion" id="bouton">Se déconnecter</a>';
-echo "</center>";
-exit;
-}
-?>
 <div class="connexion">
     <center>
       <h1>Inscription</h1>

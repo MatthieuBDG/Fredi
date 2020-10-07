@@ -10,13 +10,13 @@ Class PeriodeDAO extends DAO {
 
     //Nouvelle periode
     public function createPeriode($anne_per, $forfait_km_per, $statut_per) {
-        $sql = "INSERT INTO periode (anne_per, forfait_km_per, statut_per) ";
-        $sql .= "VALUES (:anne_per, :forfait_km_per, :statut_per)";
+        $sql = "INSERT INTO periode (anne_pere, forfait_km_per, statut_per) ";
+        $sql .= "VALUES (:anne_pere, :forfait_km_per, :statut_per)";
 
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(
-                ':anne_per' => $anne_per,
+                ':anne_pere' => $anne_per,
                 ':forfait_km_per' => $forfait_km_per,
                 ':statut_per' => $statut_per
             ));
@@ -34,7 +34,7 @@ Class PeriodeDAO extends DAO {
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(
-                ':anne_per' => $anne_per,
+                ':anne_pere' => $anne_per,
                 ':forfait_km_per' => $forfait_km_per,
                 ':statut_per' => $statut_per
             ));
@@ -43,7 +43,7 @@ Class PeriodeDAO extends DAO {
         }
 
         // return 'La période a été modifié. Retourner à la <a href="liste_periode.php">liste</a>'; 
-        header('Location: '.$_SERVER['PHP_SELF'].'?anne_per='.$_GET['anne_per'].'&res=La période a été modifié.');
+        header('Location: '.$_SERVER['PHP_SELF'].'?anne_pere='.$_GET['anne_pere'].'&res=La période a été modifié.');
     }
 
     //Retourne toutes les periodes
@@ -70,12 +70,12 @@ Class PeriodeDAO extends DAO {
 
     //Retourne une période
     public function find($anne_per) {
-        $sql = "SELECT * FROM periode WHERE anne_per = :anne_per";
+        $sql = "SELECT * FROM periode WHERE anne_pere = :anne_pere";
 
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(
-                ':anne_per' => $anne_per
+                ':anne_pere' => $anne_per
             ));
             $row = $sth->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -100,6 +100,4 @@ Class PeriodeDAO extends DAO {
         }
 
         return "La période a été désactivé";
-
     }
-}    
