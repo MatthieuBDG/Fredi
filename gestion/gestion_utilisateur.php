@@ -35,6 +35,8 @@ foreach ($utilisateurs as $utilisateur) {
     echo "<td><a href='supprimer'>supprimer</a></td>";
     echo "</tr>";
 }
+}else{
+  header('location: profil?mail='.$_SESSION['email_util'].''); 
 }
 ?>
 </table>

@@ -54,7 +54,7 @@ header("location: index");
 <hr>
 <?php if($resultat['id_type_util'] == 1){ ?>
 <div class="div-lien">
-<p><a class='lien' href="gestion/test">Gestion utilisateur</a></p>
+<p><a class='lien' href="gestion/gestion_utilisateur">Gestion utilisateur</a></p>
 <p><a class='lien' href="gestion/gestion_motif_de_frais">Gestion motif de frais</a></p>
 <p><a class='lien' href="gestion/gestion_période">Gestion période</a> </p>
 <p><a class='lien' href="ajouter">Ajouter des utilisateurs</a> </p>
