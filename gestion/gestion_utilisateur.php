@@ -32,7 +32,7 @@ foreach ($utilisateurs as $utilisateur) {
     echo "<td>".$utilisateur->get_prenom_util()."</td>";
     echo "<td>".$utilisateur->get_id_type_util()."</td>";
     echo "<td><a href='modification_utilisateur?email=".$utilisateur->get_email_util()."'>modifier</a></td>";
-    echo "<td><a href='désactiver_utilisateur'>Désactiver</a></td>";
+    echo '<td><a href="gestion_utilisateur.php?email_util='.$utilisateur['email_util'].'"></td>';
     echo "</tr>";
 }
 }
