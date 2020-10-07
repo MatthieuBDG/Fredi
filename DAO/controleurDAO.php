@@ -9,7 +9,7 @@ Class controleurDAO extends DAO {
     }
 
     //Nouvelle controleur
-    public function createControleur($, $,) {
+    public function createControleur($id_utilisateur, $Matricule_CONT) {
         $sql = "INSERT INTO controleur (id_utilisateur,  Matricule_CONT) ";
         $sql .= "VALUES (:id_utilisateur,:Matricule_CONT)";
 
@@ -67,5 +67,5 @@ Class controleurDAO extends DAO {
         // Retourne un tableau
         return new Controleur($row);
 
-        public ducntion 
     }
+}

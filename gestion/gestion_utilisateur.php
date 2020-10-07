@@ -35,6 +35,8 @@ foreach ($utilisateurs as $utilisateur) {
     echo '<td><a href="gestion_utilisateur.php?email_util='.$utilisateur['email_util'].'"></td>';
     echo "</tr>";
 }
+}else{
+  header('location: profil?mail='.$_SESSION['email_util'].''); 
 }
 ?>
 </table>
