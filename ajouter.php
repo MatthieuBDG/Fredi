@@ -46,16 +46,20 @@ if(isset($_POST["submit"])){ // Debut de la inscription
         $req_inscription = $dbh->prepare("INSERT INTO utilisateur (email_util,password_util,nom_util,prenom_util,statut_util,matricule_cont,id_type_util)VALUES (?,?,?,?,?,?,?)");
         $req_inscription->execute(array($mailconnect,$hashPassword,$nom,$prenom,0,0,$type_user));   
         }
+<<<<<<< HEAD
         
         }else{
             $erreur = "<h5>Veuillez saisir un mot de passe valide</h5>";
         }
+=======
+        $inscription = "<h4>L’utilisateur $nom a été créé dans la FREDI</h4>"; //message inscription
+>>>>>>> 2bf68c9fdce6bab1ba18d36901b2befb954eb9af
         }else{
-            $erreur = "<h5>L'adresse email utilisée existe déja</h5>"; //message erreur
+            $erreur = "<h5>Cette adresse mail est déjà utilisée</h5>"; //message erreur
         }
     
     }else{
-        $erreur = "<h5>Tous les champs doivent être complétés !</h5>"; //message erreur
+        $erreur = "<h5>Une information obligatoire n’a pas été saisie</h5>"; //message erreur
     }
 
 }
@@ -131,7 +135,6 @@ exit;
             echo '<font color="green">'.$inscription."</font>";
             exit;
          }
-         
         ?>
         <input type="submit" name="submit" value="inscription" />
         </form>

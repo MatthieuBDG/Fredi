@@ -57,7 +57,7 @@ header("location: index");
 <p><a class='lien' href="gestion/test">Gestion utilisateur</a></p>
 <p><a class='lien' href="gestion/gestion_motif_de_frais">Gestion motif de frais</a></p>
 <p><a class='lien' href="gestion/gestion_période">Gestion période</a> </p>
-<p><a class='lien' href="ajouter">Ajout d'utilisateur</a> </p>
+<p><a class='lien' href="ajouter">Ajouter des utilisateurs</a> </p>
 </div>
 
 
