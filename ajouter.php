@@ -87,7 +87,6 @@ if(isset($_POST["submit"])){ // Debut de la inscription
 </div> 
 </header>
 <body class="connexion">
-<<<<<<< HEAD
  <?php
  /*
 if(isset($dejaconnexion))
@@ -102,8 +101,6 @@ exit;s
 */
 ?>
 
-=======
->>>>>>> a87241c4f2929ac1221db8b08d52db138802718a
 <div class="connexion">
     <center>
       <h1>Inscription</h1>
