@@ -12,6 +12,7 @@ if(isset($_POST["submit"])){ // Debut de la inscription
         $type_user = htmlspecialchars($_POST['type_user']);
         $prenom = htmlspecialchars($_POST['prenom']);
         $nom = htmlspecialchars($_POST['nom']);
+        //$matricule = htmlspecialchars($_POST['matricule']);
 
         if(!empty($mailconnect) AND !empty($mdpconnect) AND !empty($prenom) AND !empty($nom) AND isset($type_user)) { //Verifie si le champs adresse mail et mot de passe n'est pas vide sinon affiche message erreur
         
@@ -92,8 +93,8 @@ if(isset($_POST["submit"])){ // Debut de la inscription
 </div> 
 </header>
 <body class="connexion">
-
-<?php
+ <?php
+ /*
 if(isset($dejaconnexion))
 {
 echo "<center>";
@@ -101,9 +102,11 @@ echo "$dejaconnexion";
 echo "<br><br>";
 echo '<a href="deconnexion" id="bouton">Se déconnecter</a>';
 echo "</center>";
-exit;
+exit;s
 }
+*/
 ?>
+
 <div class="connexion">
     <center>
       <h1>Inscription</h1>
@@ -113,14 +116,16 @@ exit;
         <select name="type_user" id="type_user">
         <option value="2">Contoleur</option>
         <option value="3">Adherent</option>
-        <option value="1">Adminitrateur</option>
+        <option value="1">Administrateur</option>
         </select>
+    
          <p>Prénom <br><input type="text" name="prenom" placeholder="Prénom" value="<?php if(!empty($prenom)){ echo $prenom; } ?>"require/></p>
          <p>Nom <br><input type="text" name="nom" placeholder="Nom" value="<?php if(!empty($nom)){ echo $nom; } ?>"require/></p>
          <p>Adresse Mail <br><input type="email" name="mailconnect" placeholder="Adresse Mail" value="<?php if(!empty($mailconnect)){ echo $mailconnect; } ?>"require/></p>
          <p>Mot de passe <br><input type="password" name="mdpconnect" placeholder="Mot de passe" require/></p>
          <p>Confirmer le mot de passe <br><input type="password" name="mdpverif" placeholder="Confirmer le mot de passe" require/></p>
          <br>
+      
          <?php
          if(isset($erreur))
          {
@@ -142,11 +147,3 @@ header("location: connexion?erreur=1");
 } ?> 
 </body>
 </html>
-
-
-        
-
-      
-      
-
-
