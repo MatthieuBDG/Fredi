@@ -1,12 +1,8 @@
+
 <?php
 include '../connexion_dbh.php';
 include '../init.php';
-
 if(isset($_SESSION['id_type_util']) == 1){
-
-$file = fopen("../Design/licencies.csv", "r") or exit("<p>Impossible de lire le
-fichier</p>"); //ouverture du fichier csv
-$nb=0;
 ?>
 
 <!DOCTYPE html>
@@ -16,57 +12,32 @@ $nb=0;
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="../css/styles.css" type="text/css" />
-  <title>Gestion</title>
+  <title>Gestion utilisateurs</title>
 </head>
 
 <body>
 
 <?php
-$dao = new adherentDAO();
-$adherents = $dao->findAll(); 
+$dao = new utilisateurDAO();
+$utilisateurs = $dao->findAll(); 
 ?>
-
-<table> 
-<tr><th>email</th><th>Num licence</th><th>sexe</th><th>date de naissance</th>
-<th>adresse1</th><th>id_club</th><th>Supprimer</th></tr>
+<center>
+<table>
+<tr><th>email</th><th>Nom</th><th>Prenom</th><th>id util</th><th>Modifier</th><th>Supprimer</th></tr>
 <?php
-foreach ($adherents as $adherent) {
+foreach ($utilisateurs as $utilisateur) {
     echo "<tr>";
-    echo "<td>".$adherent->get_email_util()."</td>";
-    echo "<td>".$adherent->get_lic_adh()."</td>";
-    echo "<td>".$adherent->get_sexe_adh()."</td>";
-    echo "<td>".$adherent->get_date_naissance_adh()."</td>";
-    echo "<td>".$adherent->get_adr1_adh()."</td>";
-    echo "<td>".$adherent->get_id_club()."</td>";
-    echo '<td><a href="désactiver_utilisateur.php?id_type_utilisateur='.$row['lic_adh'].'">supprimer</a></td>';
+    echo "<td>".$utilisateur->get_email_util()."</td>";
+    echo "<td>".$utilisateur->get_nom_util()."</td>";
+    echo "<td>".$utilisateur->get_prenom_util()."</td>";
+    echo "<td>".$utilisateur->get_id_type_util()."</td>";
+    echo "<td><a href='modification_utilisateur?email=".$utilisateur->get_email_util()."'>modifier</a></td>";
+    echo "<td><a href='supprimer'>supprimer</a></td>";
     echo "</tr>";
+}
 }
 ?>
 </table>
-<?php
-    while (!feof($file)) {
-      echo "<tr>";
-      $row=fgetcsv($file, 0, ';');
-      $nb++;
-      echo "<tr>";
-      if(is_array($row)){
-        foreach ($row as $value) {
-          echo "<td>".$value."</td>";
-        }
-        echo "<td>Modifier</td>";
-        echo "<td>Désactiver</td>";
-      }
-      echo "</tr>";
-    }
-  echo "</table>";
-  fclose($file);
-  foreach ($row as $value) {
-    
-  }
-    ?>
+</center>
 </body>
 </html>
-<?php }else{
-  header("location: ../connexion");   
-  }
-?>
