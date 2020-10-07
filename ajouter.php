@@ -8,6 +8,7 @@ if(isset($_POST["submit"])){ // Debut de la inscription
 
         $mailconnect = htmlspecialchars($_POST["mailconnect"]);
         $mdpconnect = htmlspecialchars($_POST["mdpconnect"]);
+        $mdpverif = htmlspecialchars($_POST["mdpverif"]);
         $type_user = htmlspecialchars($_POST['type_user']);
         $prenom = htmlspecialchars($_POST['prenom']);
         $nom = htmlspecialchars($_POST['nom']);
@@ -38,6 +39,7 @@ if(isset($_POST["submit"])){ // Debut de la inscription
         }
         $req_inscription = $dbh->prepare("INSERT INTO utilisateur (email_util,password_util,nom_util,prenom_util,statut_util,matricule_cont,id_type_util)VALUES (?,?,?,?,?,?,?)");
         $req_inscription->execute(array($mailconnect,$hashPassword,$nom,$prenom,0,$genere_code,$type_user)); 
+        echo "<p>L'utilisateur $nom a été créé dans la FREDI</p>";
         
         }else{
         $req_inscription = $dbh->prepare("INSERT INTO utilisateur (email_util,password_util,nom_util,prenom_util,statut_util,matricule_cont,id_type_util)VALUES (?,?,?,?,?,?,?)");
@@ -113,6 +115,9 @@ exit;
          <p>Nom <br><input type="text" name="nom" placeholder="Nom" value="<?php if(!empty($nom)){ echo $nom; } ?>"require/></p>
          <p>Adresse Mail <br><input type="email" name="mailconnect" placeholder="Adresse Mail" value="<?php if(!empty($mailconnect)){ echo $mailconnect; } ?>"require/></p>
          <p>Mot de passe <br><input type="password" name="mdpconnect" placeholder="Mot de passe" require/></p>
+         <p>Confirmer le mot de passe <br><input type="password" name="mdpconnect" placeholder="Confirmer le mot de passe" require/></p>
+         if ($mdpverif != $mdpconnect){
+            echo "<p>Veuillez saisir un mot de passe valide</p>";
          <br>
         <?php
          if(isset($erreur))
