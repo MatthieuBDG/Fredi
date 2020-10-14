@@ -19,7 +19,7 @@ if($_SESSION['id_type_util'] == 1){
 <body>
 <div class="menu">
     <ul>
-    <li><a  href="../index">Accueil</a></li>
+    <li><a  href="index">Accueil</a></li>
     <?php if(!isset($_SESSION['email_util'])) { ?>
     <li><a class="active" href="../connexion">Connexion</a></li>
     <?php }else{ ?>
@@ -37,6 +37,7 @@ $dao = new utilisateurDAO();
 $utilisateurs = $dao->findAll(); 
 ?>
 <br><br><br><br><br>
+
 <center>
 <form method ='POST'>
 
