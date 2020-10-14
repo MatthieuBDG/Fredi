@@ -14,9 +14,9 @@ if(isset($_GET["email"])){
             $nom = htmlspecialchars($_POST['nom']);
             $id_type_util = htmlspecialchars($_POST['id_type_util']);
 
-            $req_update = $dbh->prepare("UPDATE utilisateur SET nom_util = ? , prenom_util = ? , statut_util = ? ,id_type_util VALUES (?,?,?,?)");
-            $req_update->execute(array($nom,$prenom,$statut,$id_type_util)); 
-            $modifier = "<h5>L'utilisateur $nom a été créé dans la FREDI</h5>";
+            $req_update = $dbh->prepare("UPDATE utilisateur SET nom_util = ? , prenom_util = ? , statut_util = ? ,	id_type_util = ?  WHERE email_util = ? ");
+            $req_update->execute(array($nom,$prenom,$statut,$id_type_util,$mail)); 
+            $modifier = "<h5>L’utilisateur $nom a été modifié dans la FREDI</h5>";
     }
     ?>
     <!DOCTYPE html>
@@ -32,14 +32,14 @@ if(isset($_GET["email"])){
     <ul>
     <li><a  href="index">Accueil</a></li>
     <?php if(!isset($_SESSION['email_util'])) { ?>
-    <li><a class="active" href="connexion">Connexion</a></li>
+    <li><a class="active" href="../connexion">Connexion</a></li>
     <?php }else{ ?>
-    <li><a href="deconnexion">Deconnexion</a></li>
+    <li><a href="../deconnexion">Deconnexion</a></li>
     <?php } ?>
-    <li><a href="#contact">Contact</a></li>
-    <li><a  href="#about">About</a></li>
+    <li><a href="../#contact">Contact</a></li>
+    <li><a  href="../#about">About</a></li>
     <?php if(isset($_SESSION['email_util'])) { ?>
-    <li><a href="profil?mail=<?php echo $_SESSION['email_util'] ?>"><?php echo $_SESSION['prenom_util']; ?></a></li>
+    <li><a href="../profil?mail=<?php echo $_SESSION['email_util'] ?>"><?php echo $_SESSION['prenom_util']; ?></a></li>
     <?php } ?>
     </ul>     
     </div> 
@@ -49,17 +49,12 @@ if(isset($_GET["email"])){
         <center>
           <h1>Modification d'utilisateur</h1>
             <br>
-             <form method="post">
-             <label for="user-select">Type utilisateur :</label>
-            <select name="type_user" id="type_user">
-            <option value="2">Contoleur</option>
-            <option value="3">Adherent</option>
-            <option value="1">Adminitrateur</option>
-            </select>
+            <form method="post">
              <p>Prénom <br><input type="text" name="prenom" placeholder="Prénom" value="<?php if(!empty($resultat_req['prenom_util'])){ echo $resultat_req['prenom_util']; } ?>"require/></p>
              <p>Nom <br><input type="text" name="nom" placeholder="Nom" value="<?php if(!empty($resultat_req['nom_util'])){ echo $resultat_req['nom_util']; } ?>"require/></p>
              <p>Statut <br><input type="text" name="statut" placeholder="Statut" value="<?php echo $resultat_req['statut_util']; ?>"require/></p>
              <p>id_type_util <br><input type="text" name="id_type_util" placeholder="id_type_util" value="<?php if(!empty($resultat_req['id_type_util'])){ echo $resultat_req['id_type_util']; } ?>"require/></p>
+             
              <br>
              <?php
              if(isset($erreur))
