@@ -37,8 +37,12 @@ $dao = new utilisateurDAO();
 $utilisateurs = $dao->findAll(); 
 ?>
 <br><br><br><br><br>
-
 <center>
+<div class="div-lien">
+<p><a class='lien' href="../ajouter">Ajouter un utilisateur</a> </p>
+</div>
+<br>
+
 
 
 <table>
