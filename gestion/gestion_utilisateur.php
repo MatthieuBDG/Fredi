@@ -47,7 +47,6 @@ $utilisateurs = $dao->findAll();
 
 <table>
 <tr><th>email</th><th>Nom</th><th>Prenom</th><th>id util</th><th>Modifier</th><th>Supprimer</th></tr>
-
 <?php 
 foreach ($utilisateurs as $utilisateur) {
   if($utilisateur->get_statut_util() == 0){
@@ -61,6 +60,7 @@ foreach ($utilisateurs as $utilisateur) {
     echo "</tr>";
   }
 }
+
 }else{
   header('location: ../profil?mail='.$_SESSION['email_util'].''); 
 }
