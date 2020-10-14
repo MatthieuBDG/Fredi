@@ -7,7 +7,7 @@ class Periode {
     //Constructeur
     public function __construct(array $row) {
         $this->annee_per = $row['annee_per'];
-        $this->forfait_km_per = $row['forfait_km'];
+        $this->forfait_km_per = $row['forfait_km_per'];
         $this->statut_per = $row['code_statut'];
     }
 
