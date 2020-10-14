@@ -4,10 +4,10 @@ require_once('../init.php');
 require_once('../DAO/PeriodeDAO.php');
 session_start();
 
-if(isset($_SESSION['user'])) {
-    $user = $_SESSION['user'];
+if(isset($_SESSION['id'])) {
+    $statut_util = $_SESSION['statut_util'];
     //Verifie si il s'agit d'un admin
-    if($user->getTypeUser() == 2 || $user->getTypeUser() == 3) {
+    if($statut_util->get_id_type_util() == 2 || $user->get_id_type_util() == 3) {
         header('Location: index.php');
     }
 
@@ -36,7 +36,7 @@ if($submit) {
 <tr><th>anne_per</th><th>forfait_hm_per</th><th>statut_per</th><th>Modifier</th><th>Supprimer</th></tr>
 <?php 
 foreach ($periodes as $periode) {
-  if($periode->get_statut_util() == 0){
+  if($periode->get_statut_per() == 0){
     echo "<tr>";
     echo "<td>".$periode->get_annee_per()."</td>";
     echo "<td>".$periode->get_Tarif()."</td>";
