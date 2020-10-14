@@ -5,6 +5,7 @@ class utilisateur {
     private $prenom_util;
 		private $id_type_util;
 		private $statut_util;
+		private $matricule_cont;
 
 
  //constructeur
@@ -14,6 +15,7 @@ class utilisateur {
         $this->prenom_util = $row['prenom_util'];
 				$this->id_type_util = $row['id_type_util'];
 				$this->statut_util = $row['statut_util'];
+				$this->matricule_cont = $row['matricule_cont'];
     }
     
 	
@@ -57,5 +59,16 @@ class utilisateur {
 		public function set_statut_util($statut_util)
 		{
 				$this->statut_util = $statut_util;
+		}
+
+	
+		public function getMatricule_cont()
+		{
+				return $this->matricule_cont;
+		}
+	
+		public function setMatricule_cont($matricule_cont)
+		{
+				$this->matricule_cont = $matricule_cont;
 		}
 }   
