@@ -75,7 +75,7 @@ On s'inscrit puis les frais peuvent être saissis par les adhérents . Cette sai
 - [X] Lot 0. Conception de la base de données
 - [x] Lot 1. Connexion (tous les rôles) 
 - [X] Lot 1. Cas d'utilisation 
-- [] Lot 2. Gestion des utilisateurs(CRUD / CSV)  
+- [X] Lot 2. Gestion des utilisateurs(CRUD / CSV)  
 - [] Lot 3. Gestion des périodes et motifs(CRUD / CSV)  
 - [] Lot 4. Gestion des clubs et ligues(CRUD/CSV)  
 - [] Lot 5. Gestion des lignes de frais (CRUD)
