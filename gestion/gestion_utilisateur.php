@@ -2,6 +2,7 @@
 <?php
 include '../connexion_dbh.php';
 include '../init.php';
+
 if($_SESSION['id_type_util'] == 1){
 ?>
 
