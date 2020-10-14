@@ -20,5 +20,5 @@ $dsn = 'mysql:host=localhost;dbname=fredi'; // contient le nom du serveur et de 
     } catch (PDOException $ex) {
     die("Erreur lors de la requête SQL : " . $ex->getMessage());
      }
-    echo "<p>L'utilisateur".$utilisateur->get_prenom_util()." ".$utilisateur->get_nom_util()."a bien été désactivé</p>";
+    echo "<p>L'utilisateur a bien été désactivé</p>";
 ?>
