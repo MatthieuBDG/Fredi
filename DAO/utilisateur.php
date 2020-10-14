@@ -3,7 +3,8 @@ class utilisateur {
     private $email_util;
     private $nom_util;
     private $prenom_util;
-	private $id_type_util;
+		private $id_type_util;
+		private $statut_util;
 
 
  //constructeur
@@ -11,8 +12,10 @@ class utilisateur {
         $this->email_util = $row['email_util'];
         $this->nom_util = $row['nom_util'];
         $this->prenom_util = $row['prenom_util'];
-		$this->id_type_util = $row['id_type_util'];
+				$this->id_type_util = $row['id_type_util'];
+				$this->statut_util = $row['statut_util'];
     }
+    
 	
     public function get_email_util(){
 		return $this->email_util;
@@ -46,4 +49,13 @@ class utilisateur {
 		$this->$id_type_util = $id_type_util;
 	}
 	
+		public function get_statut_util()
+		{
+				return $this->statut_util;
+		}
+
+		public function set_statut_util($statut_util)
+		{
+				$this->statut_util = $statut_util;
+		}
 }   

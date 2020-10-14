@@ -1,6 +1,8 @@
 <?php
 include ("../init.php");
 
+
+
 $dsn = 'mysql:host=localhost;dbname=fredi'; // contient le nom du serveur et de la base
     $user = 'root';
     $password = '';
@@ -18,6 +20,5 @@ $dsn = 'mysql:host=localhost;dbname=fredi'; // contient le nom du serveur et de 
     } catch (PDOException $ex) {
     die("Erreur lors de la requête SQL : " . $ex->getMessage());
      }
-    echo "<p>L'utilisateur a bien été désactivé</p>";
-    // header("location:gestion_utilisateur.php");
+    echo "<p>L'utilisateur".$utilisateur->get_prenom_util()." ".$utilisateur->get_nom_util()."a bien été désactivé</p>";
 ?>

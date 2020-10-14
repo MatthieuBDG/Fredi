@@ -23,17 +23,20 @@ $utilisateurs = $dao->findAll();
 ?>
 <center>
 <table>
-<tr><th>email</th><th>Nom</th><th>Prenom</th><th>id util</th><th>Modifier</th><th>Supprimer</th></tr>
+<tr><th>email</th><th>Nom</th><th>Prenom</th><th>id util</th><th>statut</th><th>Modifier</th><th>Supprimer</th></tr>
 <?php
 foreach ($utilisateurs as $utilisateur) {
+  if($utilisateur->get_statut_util() == 0){
     echo "<tr>";
     echo "<td>".$utilisateur->get_email_util()."</td>";
     echo "<td>".$utilisateur->get_nom_util()."</td>";
     echo "<td>".$utilisateur->get_prenom_util()."</td>";
     echo "<td>".$utilisateur->get_id_type_util()."</td>";
+    echo "<td>".$utilisateur->get_statut_util()."</td>";
     echo "<td><a href='modification_utilisateur?email=".$utilisateur->get_email_util()."'>modifier</a></td>";
-    echo '<td><a href="gestion_utilisateur.php?email_util='.$utilisateur['email_util'].'"></td>';
+    echo '<td><a href="désactiver_utilisateur.php?email_util='.$utilisateur->get_email_util().'onclick="return confirm">Supprimer</td>';
     echo "</tr>";
+  }
 }
 }else{
   header('location: profil?mail='.$_SESSION['email_util'].''); 
