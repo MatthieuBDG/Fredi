@@ -9,14 +9,14 @@ Class PeriodeDAO extends DAO {
     }
 
     //Nouvelle periode
-    public function createPeriode($anne_per, $forfait_km_per, $statut_per) {
-        $sql = "INSERT INTO periode (anne_pere, forfait_km_per, statut_per) ";
-        $sql .= "VALUES (:anne_pere, :forfait_km_per, :statut_per)";
+    public function createPeriode($annee_per, $forfait_km_per, $statut_per) {
+        $sql = "INSERT INTO periode (annee_per, forfait_km_per, statut_per) ";
+        $sql .= "VALUES (:annee_per, :forfait_km_per, :statut_per)";
 
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(
-                ':anne_pere' => $anne_per,
+                ':annee_per' => $annee_per,
                 ':forfait_km_per' => $forfait_km_per,
                 ':statut_per' => $statut_per
             ));
@@ -28,13 +28,13 @@ Class PeriodeDAO extends DAO {
     }
 
     //Mets à jour une période
-    public function updatePeriode($anne_pere, $forfait_km_per, $statut_per) {
-        $sql = "UPDATE periode SET forfait_km_per = :forfait_km_per, statut_per = :statut_per WHERE anne_pere = :anne_pere";
+    public function updatePeriode($annee_per, $forfait_km_per, $statut_per) {
+        $sql = "UPDATE periode SET forfait_km_per = :forfait_km_per, statut_per = :statut_per WHERE annee_per = :annee_per";
 
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(
-                ':anne_pere' => $anne_per,
+                ':annee_per' => $annee_per,
                 ':forfait_km_per' => $forfait_km_per,
                 ':statut_per' => $statut_per
             ));
@@ -43,7 +43,7 @@ Class PeriodeDAO extends DAO {
         }
 
         // return 'La période a été modifié. Retourner à la <a href="liste_periode.php">liste</a>'; 
-        header('Location: '.$_SERVER['PHP_SELF'].'?anne_pere='.$_GET['anne_pere'].'&res=La période a été modifié.');
+        header('Location: '.$_SERVER['PHP_SELF'].'?annee_per='.$_GET['annee_per'].'&res=La période a été modifié.');
     }
 
     //Retourne toutes les periodes
@@ -69,13 +69,13 @@ Class PeriodeDAO extends DAO {
     }
 
     //Retourne une période
-    public function find($anne_per) {
-        $sql = "SELECT * FROM periode WHERE anne_pere = :anne_pere";
+    public function find($annee_per) {
+        $sql = "SELECT * FROM periode WHERE annee_per = :annee_per";
 
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(
-                ':anne_pere' => $anne_per
+                ':annee_per' => $annee_per
             ));
             $row = $sth->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -87,13 +87,13 @@ Class PeriodeDAO extends DAO {
     }
 
     //Desactive une période
-    public function desactiverPeriode($anne_per) {
-        $sql = "UPDATE periode SET statut_per = 0 WHERE anne_per = :anne_per";
+    public function desactiverPeriode($annee_per) {
+        $sql = "UPDATE periode SET statut_per = 0 WHERE annee_per = :annee_per";
 
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(
-                ':anne_per' => $anne_per
+                ':annee_per' => $annee_per
             ));
         } catch (PDOException $e) {
             throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
