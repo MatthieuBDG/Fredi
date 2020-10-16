@@ -19,7 +19,7 @@ if($_SESSION['id_type_util'] == 1){
 <body>
 <div class="menu">
     <ul>
-    <li><a  href="../index">Accueil</a></li>
+    <li><a  href="index">Accueil</a></li>
     <?php if(!isset($_SESSION['email_util'])) { ?>
     <li><a class="active" href="../connexion">Connexion</a></li>
     <?php }else{ ?>
@@ -37,28 +37,40 @@ $dao = new utilisateurDAO();
 $utilisateurs = $dao->findAll(); 
 ?>
 <br><br><br><br><br>
+
 <center>
-<div class="div-lien">
-<p><a class='lien' href="../ajouter">Ajouter un utilisateur</a> </p>
-</div>
-<br>
+<form method ='POST'>
+
+<select name="choixutil" >
+  <option value="0">--Choissisez un type d'utilisateur--</option>
+  <option value="1">Administrateur</option>
+  <option value="2">Controleur</option>
+  <option value="3">Adhérent</option>
+</select>
+
+</form>
+
+<?php
 
 
-
-<table>
-<tr><th>email</th><th>Nom</th><th>Prenom</th><th>id util</th><th>Modifier</th><th>Supprimer</th></tr>
-<?php 
-foreach ($utilisateurs as $utilisateur) {
-  if($utilisateur->get_statut_util() == 0){
-    echo "<tr>";
-    echo "<td>".$utilisateur->get_email_util()."</td>";
-    echo "<td>".$utilisateur->get_nom_util()."</td>";
-    echo "<td>".$utilisateur->get_prenom_util()."</td>";
-    echo "<td>".$utilisateur->get_id_type_util()."</td>";
-    echo "<td><a href='modification_utilisateur?email=".$utilisateur->get_email_util()."'>modifier</a></td>";
-    echo "<td><a href='désactiver_utilisateur.php?email_util=".$utilisateur->get_email_util()."'>Supprimer</td>";
-    echo "</tr>";
+if ($_POST ["choixutil"] === '1') { ?>
+  <table>
+  <tr><th>email</th><th>Nom</th><th>Prenom</th><th>id util</th><th>Modifier</th><th>Supprimer</th></tr>
+  <?php
+    foreach ($utilisateurs as $utilisateur) {
+      if($utilisateur->get_statut_util() == 0){
+        echo "<tr>";
+        echo "<td>".$utilisateur->get_email_util()."</td>";
+        echo "<td>".$utilisateur->get_nom_util()."</td>";
+        echo "<td>".$utilisateur->get_prenom_util()."</td>";
+        echo "<td>".$utilisateur->get_id_type_util()."</td>";
+        echo "<td><a href='modification_utilisateur?email=".$utilisateur->get_email_util()."'>modifier</a></td>";
+        echo "<td><a href='désactiver_utilisateur.php?email_util=".$utilisateur->get_email_util()."'>Supprimer</td>";
+        echo "</tr>";
+      }
   }
+} else if ($_POST ['choixutil'] === '2'){
+  echo "<p>camarche</p>";
 }
 
 }else{

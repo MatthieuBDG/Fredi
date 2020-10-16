@@ -2,7 +2,10 @@
 require_once('../DAO/utilisateur.php');
 require_once('../init.php');
 require_once('../DAO/PeriodeDAO.php');
-session_start();
+include '../connexion_dbh.php';
+
+if(isset($_SESSION['id_type_util'])) {
+$id_type_util = $_SESSION['id_type_util'];
 
 if(isset($_SESSION['id'])) {
     $statut_util = $_SESSION['statut_util'];
