@@ -13,7 +13,7 @@ $id_type_util = $_SESSION['id_type_util'];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="../css/styles.css" type="text/css" />
-  <title>Gestion utilisateurs</title>
+  <title>Gestion périodes</title>
 </head>
 
 <body>
@@ -57,16 +57,17 @@ if($submit) {
 <?php   
 
 foreach ($periodes as $periode) {
-    if($periode->get_statut_per() == 0){
+    if($periode->get_statut_per() == 1){
     echo "<tr>";
     echo "<td>".$periode->get_annee_per()."</td>";
     echo "<td>".$periode->get_Tarif()."</td>";
     echo "<td>".$periode->get_statut_per()."</td>";
-    echo "<td><a href='modification_periode?annee_per=".$periode->get_annee_per()."'>modifier</a></td>";
-    echo "<td><a href='désactiver_periode.php?annee_per=".$periode->get_annee_per()."'>Supprimer</td>";
+    echo "<td><a href='modification_période?annee_per=".$periode->get_annee_per()."'>modifier</a></td>";
+    echo "<td><a href='désactiver_période.php?annee_per=".$periode->get_annee_per()."'>Supprimer</td>";
     echo "</tr>";
   }
 }
+
 ?>
 </table>
 <?php
