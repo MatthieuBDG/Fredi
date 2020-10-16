@@ -41,12 +41,12 @@ if(isset($_POST["submit"])){ // Debut de la inscription
         }
         $req_inscription = $dbh->prepare("INSERT INTO utilisateur (email_util,password_util,nom_util,prenom_util,statut_util,matricule_cont,id_type_util)VALUES (?,?,?,?,?,?,?)");
         $req_inscription->execute(array($mailconnect,$hashPassword,$nom,$prenom,0,$genere_code,$type_user)); 
-        $inscription = "<h5>L'utilisateur $nom a été créé dans la FREDI</h5>";
-        
+
         }else{
         $req_inscription = $dbh->prepare("INSERT INTO utilisateur (email_util,password_util,nom_util,prenom_util,statut_util,matricule_cont,id_type_util)VALUES (?,?,?,?,?,?,?)");
         $req_inscription->execute(array($mailconnect,$hashPassword,$nom,$prenom,0,0,$type_user));   
         }
+        $inscription = "<h5>L'utilisateur $nom a été créé dans la FREDI</h5>";
         
         }else{
             $erreur = "<h5>Veuillez saisir un mot de passe valide</h5>";

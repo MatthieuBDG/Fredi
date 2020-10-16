@@ -1,22 +1,46 @@
-<?php
-require_once('../DAO/utilisateur.php');
+<?php   
 require_once('../init.php');
-require_once('../DAO/PeriodeDAO.php');
 include '../connexion_dbh.php';
 
-if(isset($_SESSION['id_type_util'])) {
+if($_SESSION['id_type_util'] == 1) {
 $id_type_util = $_SESSION['id_type_util'];
 
+?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../css/styles.css" type="text/css" />
+  <title>Gestion utilisateurs</title>
+</head>
 
+<body>
+<div class="menu">
+    <ul>
+    <li><a  href="../index">Accueil</a></li>
+    <?php if(!isset($_SESSION['email_util'])) { ?>
+    <li><a class="active" href="../connexion">Connexion</a></li>
+    <?php }else{ ?>
+    <li><a href="../deconnexion">Deconnexion</a></li>
+    <?php } ?>
+    <li><a href="../#contact">Contact</a></li>
+    <li><a  href="../#about">About</a></li>
+    <?php if(isset($_SESSION['email_util'])) { ?>
+    <li><a href="../profil?mail=<?php echo $_SESSION['email_util'] ?>"><?php echo $_SESSION['prenom_util']; ?></a></li>
+    <?php } ?>
+    </ul>     
+    </div>
+<?php
 //Collection des periodes
-$periodes = new PeriodeDAO();
-$rows = $periodes->findAll();
+$dao = new PeriodeDAO();
+$periodes = $dao->findAll();
 
 //Permet de desactiver une periode
 $annee = isset($_POST['annee']) ? $_POST['annee'] : '';
 $submit = isset($_POST['desactiverPeriode']);
 
-$error = '';
 
 if($submit) {
     $periode = new PeriodeDAO();
@@ -28,12 +52,12 @@ if($submit) {
 
 <center>
 
-
 <table>
-<tr><th>anne_per</th><th>forfait_hm_per</th><th>statut_per</th><th>Modifier</th><th>Supprimer</th></tr>
-<?php 
+<tr><th>annee_per</th><th>forfait_hm_per</th><th>statut_per</th><th>Modifier</th><th>Supprimer</th></tr>
+<?php   
+
 foreach ($periodes as $periode) {
-  if($periode->get_statut_per() == 0){
+    if($periode->get_statut_per() == 0){
     echo "<tr>";
     echo "<td>".$periode->get_annee_per()."</td>";
     echo "<td>".$periode->get_Tarif()."</td>";
@@ -43,12 +67,15 @@ foreach ($periodes as $periode) {
     echo "</tr>";
   }
 }
+?>
+</table>
+<?php
 }else{
-  header('location: ../profil?annee_per='.$_SESSION['annee_per'].''); 
+    header('location: ../profil?mail='.$_SESSION['email_util'].'');  
 }
 ?>
 
-</table>
+
 </center>
 <script>
     function supprimerLigne() {
