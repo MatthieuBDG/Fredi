@@ -1,6 +1,8 @@
 <?php
 include '../connexion_dbh.php';
 
+//$id_type_util = htmlspecialchars($_POST['id_type_util']);
+
 if(isset($_GET["email"])){ 
     $mail = $_GET["email"];
     if($_SESSION['id_type_util'] == 1){
@@ -60,13 +62,26 @@ if(isset($_GET["email"])){
     <body class="connexion">
     <div class="connexion">
         <center>
-          <h1>Modification d'utilisateur</h1>
+        <?php
+        if($resultat_req['matricule_cont'] != 0 || !empty($resultat_req['matricule_cont'])){ 
+          echo "<h1>Modification de contrôleur</h1>";
+         }
+         else {
+            echo "<h1>Modification d'utilisateur</h1>";
+         }
+        ?>
             <br>
             <form method="post">
              <p>Prénom <br><input type="text" name="prenom" placeholder="Prénom" value="<?php if(!empty($resultat_req['prenom_util'])){ echo $resultat_req['prenom_util']; } ?>"require/></p>
              <p>Nom <br><input type="text" name="nom" placeholder="Nom" value="<?php if(!empty($resultat_req['nom_util'])){ echo $resultat_req['nom_util']; } ?>"require/></p>
              <p>Statut <br><input type="text" name="statut" placeholder="Statut" value="<?php echo $resultat_req['statut_util']; ?>"require/></p>
+
+             <?php if($resultat_req['matricule_cont'] != 0 || !empty($resultat_req['matricule_cont'])){ ?>
+
              <p>Matricule <br><input type="text" name="matricule" placeholder="Matricule" value="<?php echo $resultat_req['matricule_cont']; ?>"require/></p>
+
+             <?php  } ?>
+
              <p>Type Utilisateur<br><input type="text" name="id_type_util" placeholder="id_type_util" value="<?php if(!empty($resultat_req['id_type_util'])){ echo $resultat_req['id_type_util']; } ?>"require/></p>
              <br>
              <?php
@@ -80,6 +95,7 @@ if(isset($_GET["email"])){
                 <form method="post">
                 <input type="submit" name="back" value="Retour" />
                 </form>
+
                 <?php
                 exit;
             
@@ -87,6 +103,9 @@ if(isset($_GET["email"])){
             ?>
             <input type="submit" name="submit" value="Modifier" />
             </form>
+            <?php
+       // }
+        ?>
         </center>  
     </div>   
     <?php 
