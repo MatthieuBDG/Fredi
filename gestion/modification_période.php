@@ -1,6 +1,9 @@
 <?php
 include '../connexion_dbh.php';
 
+if(isset($_POST["back"])){
+    header('location: gestion_période'); 
+}
 if(isset($_GET["annee_per"])){ 
     $annee = $_GET["annee_per"];
     if($_SESSION['id_type_util'] == 1){
@@ -65,9 +68,8 @@ if(isset($_GET["annee_per"])){
             <br>
             <form method="post"> 
              <p>Année<br><input type="text" name="annee_per" placeholder="annee_per" value="<?php if(!empty($resultat_req['annee_per'])){ echo $resultat_req['annee_per']; } ?>"require/></p>
-             <p>forfait_km_per <br><input type="text" name="forfait_km_per" placeholder="forfait_km_per" value="<?php echo $resultat_req['forfait_km_per']; ?>"require/></p>
+             <p>Forfait<br><input type="text" name="forfait_km_per" placeholder="forfait_km_per" value="<?php echo $resultat_req['forfait_km_per']; ?>"require/></p>
             
-             
              <br>
              <?php
              if(isset($erreur))
