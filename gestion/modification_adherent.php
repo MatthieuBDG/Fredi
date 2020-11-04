@@ -9,20 +9,19 @@ if(isset($_GET["email"])){
         $resultat_req = $req_recup_info->fetch();
 
         if(isset($_POST["back"])){
-            header('location: gestion_utilisateur'); 
+            header('location: gestion_adherent'); 
         }
     if(isset($_POST["submit"])){ // Debut de la inscription
         $id_type_util = htmlspecialchars($_POST['id_type_util']);
         $statut = htmlspecialchars($_POST['statut']);
         $prenom = htmlspecialchars($_POST['prenom']);
         $nom = htmlspecialchars($_POST['nom']);
-        $matricule = htmlspecialchars($_POST['matricule']);
     if($id_type_util == 1 || $id_type_util == 2 || $id_type_util == 3){
     if(!empty($prenom) && !empty($nom)){
         
-            $req_update = $dbh->prepare("UPDATE utilisateur SET nom_util = ? , prenom_util = ? , statut_util = ? ,	id_type_util = ? , matricule_cont = ?  WHERE email_util = ? ");
-            $req_update->execute(array($nom,$prenom,$statut,$id_type_util,$matricule,$mail)); 
-            $modifier = "<h5>L’utilisateur $nom a été modifié dans la FREDI</h5>";
+            $req_update = $dbh->prepare("UPDATE adherent,utilisateur SET nom_util = ? , prenom_util = ? , statut_util = ? ,	id_type_util = ?  WHERE email_util = ? ");
+            $req_update->execute(array($nom,$prenom,$statut,$id_type_util,$mail)); 
+            $modifier = "<h5>L'adhérent $nom a été modifié dans la FREDI</h5>";
     }else{
         $erreur = "<h5>Une information obligatoire n’a pas été saisie</h5>";  
     }
@@ -37,7 +36,7 @@ if(isset($_GET["email"])){
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Modification d'utilisateur</title>
+        <title>Modification d'adhérent</title>
         <link rel="stylesheet" href="../css/styles.css" type="text/css" />
     </head>
     <header>
@@ -60,14 +59,14 @@ if(isset($_GET["email"])){
     <body class="connexion">
     <div class="connexion">
         <center>
-          <h1>Modification d'utilisateur</h1>
+          <h1>Modification d'adhérent</h1>
             <br>
             <form method="post">
              <p>Prénom <br><input type="text" name="prenom" placeholder="Prénom" value="<?php if(!empty($resultat_req['prenom_util'])){ echo $resultat_req['prenom_util']; } ?>"require/></p>
              <p>Nom <br><input type="text" name="nom" placeholder="Nom" value="<?php if(!empty($resultat_req['nom_util'])){ echo $resultat_req['nom_util']; } ?>"require/></p>
              <p>Statut <br><input type="text" name="statut" placeholder="Statut" value="<?php echo $resultat_req['statut_util']; ?>"require/></p>
-             <p>Matricule <br><input type="text" name="matricule" placeholder="Matricule" value="<?php echo $resultat_req['matricule_cont']; ?>"require/></p>
              <p>Type Utilisateur<br><input type="text" name="id_type_util" placeholder="id_type_util" value="<?php if(!empty($resultat_req['id_type_util'])){ echo $resultat_req['id_type_util']; } ?>"require/></p>
+             
              <br>
              <?php
              if(isset($erreur))
@@ -82,8 +81,7 @@ if(isset($_GET["email"])){
                 </form>
                 <?php
                 exit;
-            
-            }
+             }
             ?>
             <input type="submit" name="submit" value="Modifier" />
             </form>

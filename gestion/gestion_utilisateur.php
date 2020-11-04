@@ -44,19 +44,11 @@ $choixutil = isset($_GET['choixutil']) ? $_GET['choixutil']: null ;
 <br><br><br><br><br>
 
 <center>
-<form method ='GET'>
 
-<select name="choixutil" >
-  <option value="0">--Choissisez un type d'utilisateur--</option>
-  <option value="1"><a href="gestion_utilisateur.php?choixutil=1">Administrateur</a></option>
-  <option value="2">Controleur</option>
-  <option value="3">Adhérent</option>
-</select>
-
+<h1>--Choissisez un type d'utilisateur--</h1>
 <p><a href="gestion_utilisateur.php?choixutil=1">Administrateur</a></p>
 <p><a href="gestion_utilisateur.php?choixutil=2">Contrôleur</a></p>
 <p><a href="gestion_utilisateur.php?choixutil=3">Adhérent</a></p>
-</form>
 
 <?php
 
@@ -66,15 +58,17 @@ if ($choixutil === '1') { ?>
   <?php
     foreach ($utilisateurs as $utilisateur) {
       if($utilisateur->get_statut_util() == 0){
-        if($utilisateur->get_id_type_util() == 1){
-        echo "<tr>";
-        echo "<td>".$utilisateur->get_email_util()."</td>";
-        echo "<td>".$utilisateur->get_nom_util()."</td>";
-        echo "<td>".$utilisateur->get_prenom_util()."</td>";
-        echo "<td>".$utilisateur->get_id_type_util()."</td>";
-        echo "<td><a href='modification_utilisateur?email=".$utilisateur->get_email_util()."'>modifier</a></td>";
-        echo "<td><a href='désactiver_utilisateur.php?email_util=".$utilisateur->get_email_util()."'>Supprimer</td>";
-        echo "</tr>";
+        if($utilisateur->get_matricule_cont() == 0){
+          if($utilisateur->get_id_type_util() == 1){
+          echo "<tr>";
+          echo "<td>".$utilisateur->get_email_util()."</td>";
+          echo "<td>".$utilisateur->get_nom_util()."</td>";
+          echo "<td>".$utilisateur->get_prenom_util()."</td>";
+          echo "<td>".$utilisateur->get_id_type_util()."</td>";
+          echo "<td><a href='modification_utilisateur?email=".$utilisateur->get_email_util()."'>modifier</a></td>";
+          echo "<td><a href='désactiver_utilisateur.php?email_util=".$utilisateur->get_email_util()."'>Supprimer</td>";
+          echo "</tr>";
+          }
         }
       }
   }
@@ -85,15 +79,15 @@ if ($choixutil === '1') { ?>
     foreach ($utilisateurs as $utilisateur) {
       if($utilisateur->get_statut_util() == 0){
         if($utilisateur->get_matricule_cont() != 0){
-        echo "<tr>";
-        echo "<td>".$utilisateur->get_email_util()."</td>";
-        echo "<td>".$utilisateur->get_nom_util()."</td>";
-        echo "<td>".$utilisateur->get_prenom_util()."</td>";
-        echo "<td>".$utilisateur->get_id_type_util()."</td>";
-        echo "<td>".$utilisateur->get_matricule_cont()."</td>";
-        echo "<td><a href='modification_utilisateur?email=".$utilisateur->get_email_util()."'>modifier</a></td>";
-        echo "<td><a href='désactiver_utilisateur.php?email_util=".$utilisateur->get_email_util()."'>Supprimer</td>";
-        echo "</tr>";
+            echo "<tr>";
+            echo "<td>".$utilisateur->get_email_util()."</td>";
+            echo "<td>".$utilisateur->get_nom_util()."</td>";
+            echo "<td>".$utilisateur->get_prenom_util()."</td>";
+            echo "<td>".$utilisateur->get_id_type_util()."</td>";
+            echo "<td>".$utilisateur->get_matricule_cont()."</td>";
+            echo "<td><a href='modification_utilisateur?email=".$utilisateur->get_email_util()."'>modifier</a></td>";
+            echo "<td><a href='désactiver_utilisateur.php?email_util=".$utilisateur->get_email_util()."'>Supprimer</td>";
+            echo "</tr>";
         }
       }
     }
