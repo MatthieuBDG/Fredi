@@ -12,7 +12,7 @@ if(isset($_POST["back"])){
     } catch (PDOException $ex) {
     die("Erreur lors de la requête SQL : " . $ex->getMessage());
     }
-    $supprimer =  "<p>La période a bien été désactivé</p>";    
+    $supprimer =  "<p>La période ".$_GET['annee_per']." a été cloturé</p>";    
 
     }
     
@@ -20,7 +20,7 @@ if(isset($_POST["back"])){
  
 <center>
 <?php if(!isset($supprimer)) {?>
-<h4>Voulez vous vraiment supprimer la période ?</h4>
+<h4>Voulez vous vraiment cloturé la période ?</h4>
 <form method="post">
 <input type="submit" name="back" value="Non" />
 <input type="submit" name="submit" value="Oui" />
