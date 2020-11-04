@@ -22,12 +22,12 @@ class Periode {
     }
 
     //Get tarif
-    public function get_Tarif() {
+    public function get_tarif() {
         return $this->forfait_km_per;
     }
 
     //Set tarif
-    public function set_Tarif($forfait_km_per) {
+    public function set_tarif($forfait_km_per) {
         $this->forfait_km_per = $forfait_km_per;
     }
 
