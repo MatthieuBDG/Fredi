@@ -46,6 +46,7 @@ $choixutil = isset($_GET['choixutil']) ? $_GET['choixutil']: null ;
 <center>
 
 <h1>--Choissisez un type d'utilisateur--</h1>
+<p><a href="gestion_utilisateur.php">Liste de tout les utilisateurs</a></p>
 <p><a href="gestion_utilisateur.php?choixutil=1">Administrateur</a></p>
 <p><a href="gestion_utilisateur.php?choixutil=2">Contrôleur</a></p>
 <p><a href="gestion_utilisateur.php?choixutil=3">Adhérent</a></p>
@@ -115,8 +116,54 @@ if ($choixutil === '1') { ?>
           echo "</tr>";
           }
       }
+    } else { ?>
+    <table>
+    <tr><th>email</th><th>Nom</th><th>Prenom</th><th>Profil</th><th>Num licence</th><th>Matricule</th><th>Sexe</th><th>Date de naissance</th><th>Adresse 1</th><th>Adresse 2</th>
+    <th>Adresse 3</th><th>id club</th><th>Modifier</th><th>Supprimer</th></tr>
+    <?php
+      foreach ($adherents as $adherent) {
+        if($adherent->get_statut_util() == 0){
+          echo "<tr>";
+          echo "<td>".$adherent->get_email_util()."</td>";
+          echo "<td>".$adherent->get_nom_util()."</td>";
+          echo "<td>".$adherent->get_prenom_util()."</td>";
+          echo "<td>".$adherent->get_id_type_util()."</td>";
+          echo "<td>".$adherent->get_lic_adh()."</td>";
+          echo "<td></td>";
+          echo "<td>".$adherent->get_sexe_adh()."</td>";
+          echo "<td>".$adherent->get_date_naissance_adh()."</td>";
+          echo "<td>".$adherent->get_adr1_adh()."</td>";
+          echo "<td>".$adherent->get_adr2_adh()."</td>";
+          echo "<td>".$adherent->get_adr3_adh()."</td>";
+          echo "<td>".$adherent->get_id_club()."</td>";
+          echo "<td><a href='modification_adherent?email=".$adherent->get_email_util()."'>modifier</a></td>";
+          echo "<td><a href='désactiver_adherent.php?email_util=".$adherent->get_email_util()."'>Supprimer</td>";
+          echo "</tr>";
+          }
+      }
+      foreach ($utilisateurs as $utilisateur) {
+        if($utilisateur->get_statut_util() == 0){
+              echo "<tr>";
+              echo "<td>".$utilisateur->get_email_util()."</td>";
+              echo "<td>".$utilisateur->get_nom_util()."</td>";
+              echo "<td>".$utilisateur->get_prenom_util()."</td>";
+              echo "<td>".$utilisateur->get_id_type_util()."</td>";
+              echo "<td></td>";
+              echo "<td>".$utilisateur->get_matricule_cont()."</td>";
+              echo "<td></td>";
+              echo "<td></td>";
+              echo "<td></td>";
+              echo "<td></td>";
+              echo "<td></td>";
+              echo "<td></td>";
+              echo "<td><a href='modification_utilisateur?email=".$utilisateur->get_email_util()."'>modifier</a></td>";
+              echo "<td><a href='désactiver_utilisateur.php?email_util=".$utilisateur->get_email_util()."'>Supprimer</td>";
+              echo "</tr>";
+          }
+        }
+      }
     }
-}else{
+else{
   header('location: ../profil?mail='.$_SESSION['email_util'].''); 
 }
 ?>
