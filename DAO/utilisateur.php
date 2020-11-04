@@ -62,12 +62,12 @@ class utilisateur {
 		}
 
 	
-		public function getMatricule_cont()
+		public function get_matricule_cont()
 		{
 				return $this->matricule_cont;
 		}
 	
-		public function setMatricule_cont($matricule_cont)
+		public function set_matricule_cont($matricule_cont)
 		{
 				$this->matricule_cont = $matricule_cont;
 		}

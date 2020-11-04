@@ -31,7 +31,7 @@ Class AdherentDAO extends DAO {
 
   
     public function findAll() {
-        $sql = "SELECT * FROM adherent"; 
+        $sql = "SELECT * FROM adherent,utilisateur WHERE adherent.email_util = utilisateur.email_util"; 
 
         try {
             $sth = $this->pdo->prepare($sql);

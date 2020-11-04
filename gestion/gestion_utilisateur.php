@@ -35,30 +35,38 @@ if($_SESSION['id_type_util'] == 1){
 <?php
 $dao = new utilisateurDAO();
 $utilisateurs = $dao->findAll(); 
+
+$dao2 = new adherentDAO();
+$adherents = $dao2->findAll();
+
+$choixutil = isset($_GET['choixutil']) ? $_GET['choixutil']: null ;
 ?>
 <br><br><br><br><br>
 
 <center>
-<form method ='POST'>
+<form method ='GET'>
 
 <select name="choixutil" >
   <option value="0">--Choissisez un type d'utilisateur--</option>
-  <option value="1">Administrateur</option>
+  <option value="1"><a href="gestion_utilisateur.php?choixutil=1">Administrateur</a></option>
   <option value="2">Controleur</option>
   <option value="3">Adhérent</option>
 </select>
 
+<p><a href="gestion_utilisateur.php?choixutil=1">Administrateur</a></p>
+<p><a href="gestion_utilisateur.php?choixutil=2">Contrôleur</a></p>
+<p><a href="gestion_utilisateur.php?choixutil=3">Adhérent</a></p>
 </form>
 
 <?php
 
-
-if ($_POST ["choixutil"] === '1') { ?>
+if ($choixutil === '1') { ?>
   <table>
-  <tr><th>email</th><th>Nom</th><th>Prenom</th><th>id util</th><th>Modifier</th><th>Supprimer</th></tr>
+  <tr><th>email</th><th>Nom</th><th>Prenom</th><th>Profil</th><th>Modifier</th><th>Supprimer</th></tr>
   <?php
     foreach ($utilisateurs as $utilisateur) {
       if($utilisateur->get_statut_util() == 0){
+        if($utilisateur->get_id_type_util() == 1){
         echo "<tr>";
         echo "<td>".$utilisateur->get_email_util()."</td>";
         echo "<td>".$utilisateur->get_nom_util()."</td>";
@@ -67,12 +75,53 @@ if ($_POST ["choixutil"] === '1') { ?>
         echo "<td><a href='modification_utilisateur?email=".$utilisateur->get_email_util()."'>modifier</a></td>";
         echo "<td><a href='désactiver_utilisateur.php?email_util=".$utilisateur->get_email_util()."'>Supprimer</td>";
         echo "</tr>";
+        }
       }
   }
-} else if ($_POST ['choixutil'] === '2'){
-  echo "<p>camarche</p>";
-}
-
+} else if($choixutil === '2') { ?>
+  <table>
+  <tr><th>email</th><th>Nom</th><th>Prenom</th><th>Profil</th><th>Matricule</th><th>Modifier</th><th>Supprimer</th></tr>
+  <?php
+    foreach ($utilisateurs as $utilisateur) {
+      if($utilisateur->get_statut_util() == 0){
+        if($utilisateur->get_matricule_cont() != 0){
+        echo "<tr>";
+        echo "<td>".$utilisateur->get_email_util()."</td>";
+        echo "<td>".$utilisateur->get_nom_util()."</td>";
+        echo "<td>".$utilisateur->get_prenom_util()."</td>";
+        echo "<td>".$utilisateur->get_id_type_util()."</td>";
+        echo "<td>".$utilisateur->get_matricule_cont()."</td>";
+        echo "<td><a href='modification_utilisateur?email=".$utilisateur->get_email_util()."'>modifier</a></td>";
+        echo "<td><a href='désactiver_utilisateur.php?email_util=".$utilisateur->get_email_util()."'>Supprimer</td>";
+        echo "</tr>";
+        }
+      }
+    }
+  } else if($choixutil === '3') { ?>
+    <table>
+    <tr><th>email</th><th>Nom</th><th>Prenom</th><th>Profil</th><th>Num licence</th><th>Sexe</th><th>Date de naissance</th><th>Adresse 1</th><th>Adresse 2</th>
+    <th>Adresse 3</th><th>id club</th><th>Modifier</th><th>Supprimer</th></tr>
+    <?php
+      foreach ($adherents as $adherent) {
+        if($adherent->get_statut_util() == 0){
+          echo "<tr>";
+          echo "<td>".$adherent->get_email_util()."</td>";
+          echo "<td>".$adherent->get_nom_util()."</td>";
+          echo "<td>".$adherent->get_prenom_util()."</td>";
+          echo "<td>".$adherent->get_id_type_util()."</td>";
+          echo "<td>".$adherent->get_lic_adh()."</td>";
+          echo "<td>".$adherent->get_sexe_adh()."</td>";
+          echo "<td>".$adherent->get_date_naissance_adh()."</td>";
+          echo "<td>".$adherent->get_adr1_adh()."</td>";
+          echo "<td>".$adherent->get_adr2_adh()."</td>";
+          echo "<td>".$adherent->get_adr3_adh()."</td>";
+          echo "<td>".$adherent->get_id_club()."</td>";
+          echo "<td><a href='modification_adherent?email=".$adherent->get_email_util()."'>modifier</a></td>";
+          echo "<td><a href='désactiver_adherent.php?email_util=".$adherent->get_email_util()."'>Supprimer</td>";
+          echo "</tr>";
+          }
+      }
+    }
 }else{
   header('location: ../profil?mail='.$_SESSION['email_util'].''); 
 }
