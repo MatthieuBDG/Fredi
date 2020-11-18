@@ -50,7 +50,7 @@ $ligues = $dao->findAll();
           echo "<td>".$ligue->get_contact_ligue()."</td>";
           echo "<td>".$ligue->get_telephone_ligue()."</td>";
           echo "<td>".$ligue->get_email_util()."</td>";
-          echo "<td><a href='modification_ligue?email=".$ligue->get_email_util()."'>modifier</a></td>";
+          echo "<td><a href='modification_ligue?id_ligue=".$ligue->get_id_ligue()."'>modifier</a></td>";
           echo "<td><a href='désactiver_ligue.php?email_util=".$ligue->get_email_util()."'>Supprimer</td>";
           echo "</tr>";
     }
