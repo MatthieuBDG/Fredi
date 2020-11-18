@@ -47,7 +47,7 @@ header("location: index");
 <?php if($resultat['id_type_util'] == 1){ ?>
 <h3><?php echo $resultat['prenom_util'] ?> vous etes admin.</h3>
 <?php }elseif($resultat['id_type_util'] == 2){ ?>
-<h3><?php echo $resultat['prenom_util'] ?> vous etes controleur.</h3>
+<h3><?php echo $resultat['prenom_util'] ?> vous êtes controleur.</h3>
 <?php }else{ ?>
 <h3><?php echo $resultat['prenom_util'] ?> vous etes adherent.</h3>
 <?php } ?>
@@ -63,7 +63,11 @@ header("location: index");
 
 </ul>
 <?php }elseif($resultat['id_type_util'] == 2){ ?>
-
+<div class="div-lien">
+<p><a class='lien' href="gestion/gestion_ligue">Gérer des ligues</a></p>
+<p><a class='lien' href="gestion/gestion_club">Gérer des clubs</a></p>
+<p><a class='lien' href="gestion/gestion_">Editique</a> </p>  
+</div>
 <?php }else{ ?>
 
 <?php } ?>
