@@ -119,7 +119,7 @@ if ($choixutil === '1') { ?>
     } else { ?>
     <table>
     <tr><th>email</th><th>Nom</th><th>Prenom</th><th>Profil</th><th>Num licence</th><th>Matricule</th><th>Sexe</th><th>Date de naissance</th><th>Adresse 1</th><th>Adresse 2</th>
-    <th>Adresse 3</th><th>id club</th><th>Modifier</th><th>Supprimer</th></tr>
+    <th>Adresse 3</th><th>id club</th></tr>
     <?php
       foreach ($adherents as $adherent) {
         if($adherent->get_statut_util() == 0){
@@ -136,8 +136,6 @@ if ($choixutil === '1') { ?>
           echo "<td>".$adherent->get_adr2_adh()."</td>";
           echo "<td>".$adherent->get_adr3_adh()."</td>";
           echo "<td>".$adherent->get_id_club()."</td>";
-          echo "<td><a href='modification_adherent?email=".$adherent->get_email_util()."'>modifier</a></td>";
-          echo "<td><a href='désactiver_adherent.php?email_util=".$adherent->get_email_util()."'>Supprimer</td>";
           echo "</tr>";
           }
       }
@@ -156,8 +154,6 @@ if ($choixutil === '1') { ?>
               echo "<td></td>";
               echo "<td></td>";
               echo "<td></td>";
-              echo "<td><a href='modification_utilisateur?email=".$utilisateur->get_email_util()."'>modifier</a></td>";
-              echo "<td><a href='désactiver_utilisateur.php?email_util=".$utilisateur->get_email_util()."'>Supprimer</td>";
               echo "</tr>";
           }
         }
