@@ -51,7 +51,8 @@ if($submit) {
 <br><br><br><br><br>
 
 <center>
-
+<p><a class='lien' href="../ajouter_motif_de_frais">Ajout de motif de frais</a></p>
+<br>
 <table>
 <tr><th>id_mdf</th><th>lib_mdf</th><th>Modifier</th><th>Supprimer</th></tr>
 <?php   

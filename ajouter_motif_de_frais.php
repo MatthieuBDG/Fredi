@@ -6,27 +6,27 @@ include 'connexion_dbh.php';
 if(isset($_SESSION['id_type_util']) == 1){
 if(isset($_POST["submit"])){ // Debut de la inscription
 
-        $annee_per = htmlspecialchars($_POST["annee_per"]);
-        $forfait_km_per = htmlspecialchars($_POST["forfait_km_per"]);
+        $lib_mdf = htmlspecialchars($_POST["lib_mdf"]);
 
-        if(!empty($annee_per) AND !empty($forfait_km_per)) { //Verifie si le champs adresse mail et mot de passe n'est pas vide sinon affiche message erreur
+        if(!empty($lib_mdf)) { //Verifie si le champs adresse mail et mot de passe n'est pas vide sinon affiche message erreur
         
-        $req_verif_annee_inscription = $dbh->prepare("SELECT * FROM periode WHERE annee_per = ?");
-        $req_verif_annee_inscription->execute(array($annee_per));
-        $resultat_annee = $req_verif_annee_inscription->rowCount();
+        $req_verif_lib_mdf_inscription = $dbh->prepare("SELECT * FROM motif_de_frais WHERE lib_mdf = ?");
+        $req_verif_lib_mdf_inscription->execute(array($lib_mdf));
+        $resultat_lib_mdf = $req_verif_lib_mdf_inscription->rowCount();
 
-        if($resultat_annee == 0){
-        $req_ajout_periode = $dbh->prepare("INSERT INTO periode (annee_per,forfait_km_per,statut_per)VALUES (?,?,?)");
-        $req_ajout_periode->execute(array($annee_per,$forfait_km_per,1)); 
+        if($resultat_lib_mdf == 0){
+        $req_ajout_motif_de_frais = $dbh->prepare("INSERT INTO motif_de_frais (lib_mdf)VALUES (?)");
+        $req_ajout_motif_de_frais->execute(array($lib_mdf)); 
 
-        $inscription = "<h5>La période $annee_per a été créé dans la FREDI</h5>";
+        $inscription = "<h5>Le motif de frais $lib_mdf a été créé dans
+        l’application FREDI</h5>";
         
         }else{
-            $erreur = "<h5> Vous ne pouvez pas créer la période $annee_per car une
+            $erreur = "<h5> Vous ne pouvez pas créer la période $lib_mdf car une
             période active existe déjà </h5>"; //message erreur
         }
         }else{
-            $erreur = "<h5>Une information obligatoire n’a pas été saisie</h5>"; //message erreur
+            $erreur = "<h5>Saisie du libellé obligatoire pour créer le motif de frais</h5>"; //message erreur
         }
     }
 ?>
@@ -35,7 +35,7 @@ if(isset($_POST["submit"])){ // Debut de la inscription
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajout de période</title>
+    <title>Ajout de motif de frais</title>
     <link rel="stylesheet" href="css/styles.css" type="text/css" />
 </head>
 <header>
@@ -58,11 +58,10 @@ if(isset($_POST["submit"])){ // Debut de la inscription
 <body class="connexion">
 <div class="connexion">
     <center>
-      <h1>Ajout de période</h1>
+      <h1>Ajout de motif de frais</h1>
         <br>
          <form method="post">
-         <p>Annee <br><input type="text" name="annee_per" placeholder="Annee" value="<?php if(!empty($annee_per)){ echo $annee_per; } ?>"require/></p>
-         <p>Forfait <br><input type="text" name="forfait_km_per" placeholder="km" require/></p>
+         <p>Nom <br><input type="text" name="lib_mdf" placeholder="Nom" value="<?php if(!empty($lib_mdf)){ echo $lib_mdf; } ?>"require/></p>
          <br>
       
          <?php

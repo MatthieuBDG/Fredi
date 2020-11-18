@@ -27,7 +27,7 @@ if(isset($_GET["id_mdf"])){
             $modifier = "<h5>La période $lib_mdf a été modifié dans FREDI</h5>";
     
     }else{
-        $erreur = "<h5>Une information obligatoire n’a pas été saisie</h5>";  
+        $erreur = "<h5>Saisie du libellé obligatoire pour modifier le motif de frais</h5>";  
     }
     }else{
         $erreurlib_mdf = "<h5>$lib_mdf est dèja présent dans FREDI </h5>";  
