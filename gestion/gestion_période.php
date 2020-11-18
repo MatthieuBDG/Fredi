@@ -48,10 +48,11 @@ if($submit) {
 }
 ?>
 
-<br><br><br><br><br>
+<br><br><br><br>
 
 <center>
-
+<p><a class='lien' href="../ajouter_période">Ajout de période</a></p>
+<br>
 <table>
 <tr><th>annee_per</th><th>forfait_hm_per</th><th>statut_per</th><th>Modifier</th><th>Supprimer</th></tr>
 <?php   
