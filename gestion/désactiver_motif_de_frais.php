@@ -37,7 +37,7 @@ if(isset($_POST["back"])){
 ?>   
  
 <center>
-<?php if(!isset($supprimer) && !isset($erreur) ) {?>
+<?php if(!isset($supprimer) && !isset($erreur)) {?>
 <h4>Voulez vous vraiment cloturé le motif de frais ?</h4>
 <form method="post">
 <input type="submit" name="back" value="Non" />
