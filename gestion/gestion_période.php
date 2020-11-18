@@ -2,7 +2,13 @@
 require_once('../init.php');
 include '../connexion_dbh.php';
 
+
+
 if($_SESSION['id_type_util'] == 1) {
+if(isset($_GET["erreur"]) == "1"){ 
+$erreur  = "<h5>Vous ne pouvez pas créer une période car une période active existe déjà </h5></font>"; 
+} 
+
 $id_type_util = $_SESSION['id_type_util'];
 
 ?>
@@ -51,6 +57,13 @@ if($submit) {
 <br><br><br><br>
 
 <center>
+<?php
+if(isset($erreur))
+{
+   echo '<font color="red">'.$erreur."</font>";
+}
+?>
+<br>
 <p><a class='lien' href="../ajouter_période">Ajout de période</a></p>
 <br>
 <table>
@@ -58,7 +71,6 @@ if($submit) {
 <?php   
 
 foreach ($periodes as $periode) {
-    if($periode->get_statut_per() == 1){
     echo "<tr>";
     echo "<td>".$periode->get_annee_per()."</td>";
     echo "<td>".$periode->get_Tarif()."</td>";
@@ -66,7 +78,7 @@ foreach ($periodes as $periode) {
     echo "<td><a href='modification_période?annee_per=".$periode->get_annee_per()."'>modifier</a></td>";
     echo "<td><a href='désactiver_période.php?annee_per=".$periode->get_annee_per()."'>Supprimer</td>";
     echo "</tr>";
-  }
+
 }
 
 ?>
