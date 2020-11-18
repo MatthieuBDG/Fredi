@@ -44,8 +44,7 @@ $choixutil = isset($_GET['choixutil']) ? $_GET['choixutil']: null ;
 <br><br><br><br><br>
 
 <center>
-<p><a class='lien' href="../ajouter">Ajout d'utilisateurs'</a></p>
-<br>
+<p><a class='lien' href="../ajouter">Ajout d'utilisateurs</a></p>
 <h1>--Choissisez un type d'utilisateur--</h1>
 <p><a href="gestion_utilisateur.php">Liste de tous les utilisateurs</a></p>
 <p><a href="gestion_utilisateur.php?choixutil=1">Administrateur</a></p>
