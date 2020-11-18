@@ -38,6 +38,7 @@ $ligues = $dao->findAll();
 
 <br><br><br><br><br>
  <center>
+ <p><a class='lien' href="../ajouter_ligue">Ajout de ligue</a></p>
   <table>
   <tr><th>id ligue</th><th>lib ligue</th><th>url ligue</th><th>telephone ligue</th><th>contact util</th><th>email ligue</th><th>Modifier</th><th>Supprimer</th></tr>
   <?php
