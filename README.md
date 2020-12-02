@@ -76,11 +76,11 @@ On s'inscrit puis les frais peuvent être saissis par les adhérents . Cette sai
 - [x] Lot 1. Connexion (tous les rôles) 
 - [X] Lot 1. Cas d'utilisation 
 - [X] Lot 2. Gestion des utilisateurs(CRUD / CSV)  
-- [] Lot 3. Gestion des périodes et motifs(CRUD / CSV)  
+- [X] Lot 3. Gestion des périodes et motifs(CRUD / CSV)  
 - [] Lot 4. Gestion des clubs et ligues(CRUD/CSV)  
 - [] Lot 5. Gestion des lignes de frais (CRUD)
 - [] Lot 6. Edition bordereau et CERFA (PDF)
-- [] Lot 7 : Web service (REST/JSON pourandroid)
+- [] Lot 7 : Web service (REST/JSON pour android)
 
 
 --- 
@@ -90,10 +90,11 @@ On s'inscrit puis les frais peuvent être saissis par les adhérents . Cette sai
 ### V1.2 16/09/2020
 
 Base de données , Connexion et déconnexion 
-- 
 
-### V1.*** 20/03/2020
 
+### V1.3 18/11/2020
+
+Gestion de période,moti de frais,gestion des ligues,correction des bugs.
 
 
 ---
