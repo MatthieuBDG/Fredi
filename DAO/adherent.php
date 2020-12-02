@@ -15,11 +15,11 @@ class Adherent {
 
  //constructeur
     public function __construct(array $row) {
-				$this->email_util = $row['email_util'];
+		$this->email_util = $row['email_util'];
         $this->nom_util = $row['nom_util'];
         $this->prenom_util = $row['prenom_util'];
-				$this->id_type_util = $row['id_type_util'];
-				$this->statut_util = $row['statut_util'];
+		$this->id_type_util = $row['id_type_util'];
+		$this->statut_util = $row['statut_util'];
         $this->lic_adh = $row['lic_adh'];
         $this->sexe_adh = $row['sexe_adh'];
         $this->date_naissance_adh = $row['date_naissance_adh'];
@@ -71,68 +71,68 @@ class Adherent {
 					$this->statut_util = $statut_util;
 			}
 			
-	public function get_lic_adh(){
-		return $this->lic_adh;
-	}
-
-	public function set_lic_adh($lic_adh){
-		$this->lic_adh = $lic_adh;
-	}
-
-	public function get_sexe_adh(){
-		return $this->sexe_adh;
-	}
-
-	public function set_sexe_adh($sexe_adh){
-		$this->sexe_adh = $sexe_adh;
-	}
-
-	public function get_date_naissance_adh(){
-		return $this->date_naissance_adh;
-	}
-
-	public function set_date_naissance_adh($date_naissance_adh){
-		$this->date_naissance_adh = $date_naissance_adh;
-	}
-
-	public function get_adr1_adh(){
-		return $this->adr1_adh;
-	}
-
-	public function set_adr1_adh($adr1_adh){
-		$this->adr1_adh = $adr1_adh;
-	}
-
-	public function get_adr2_adh(){
-		return $this->adr2_adh;
-	}
-
-	public function set_adr2_adh($adr2_adh){
-		$this->adr2_adh = $adr2_adh;
-	}
-
-	public function get_adr3_adh(){
-		return $this->adr3_adh;
-	}
-
-	public function set_adr3_adh($adr3_adh){
-		$this->adr3_adh = $adr3_adh;
-    }
-    
-	public function get_Code_statut(){
-		return $this->code_statut;
-	}
-
-	public function set_Code_statut($code_statut){
-		$this->code_statut = $code_statut;
-    }
-    
-    public function get_id_club(){
-		return $this->id_club;
-	}
-
-	public function set_id_club($id_club){
-		$this->id_club = $id_club;
-	}
+		public function get_lic_adh(){
+			return $this->lic_adh;
+		}
+	
+		public function set_lic_adh($lic_adh){
+			$this->lic_adh = $lic_adh;
+		}
+	
+		public function get_sexe_adh(){
+			return $this->sexe_adh;
+		}
+	
+		public function set_sexe_adh($sexe_adh){
+			$this->sexe_adh = $sexe_adh;
+		}
+	
+		public function get_date_naissance_adh(){
+			return $this->date_naissance_adh;
+		}
+	
+		public function set_date_naissance_adh($date_naissance_adh){
+			$this->date_naissance_adh = $date_naissance_adh;
+		}
+	
+		public function get_adr1_adh(){
+			return $this->adr1_adh;
+		}
+	
+		public function set_adr1_adh($adr1_adh){
+			$this->adr1_adh = $adr1_adh;
+		}
+	
+		public function get_adr2_adh(){
+			return $this->adr2_adh;
+		}
+	
+		public function set_adr2_adh($adr2_adh){
+			$this->adr2_adh = $adr2_adh;
+		}
+	
+		public function get_adr3_adh(){
+			return $this->adr3_adh;
+		}
+	
+		public function set_adr3_adh($adr3_adh){
+			$this->adr3_adh = $adr3_adh;
+	    }
+	
+		public function get_Code_statut(){
+			return $this->code_statut;
+		}
+	
+		public function set_Code_statut($code_statut){
+			$this->code_statut = $code_statut;
+	    }
+	
+	    public function get_id_club(){
+			return $this->id_club;
+		}
+	
+		public function set_id_club($id_club){
+			$this->id_club = $id_club;
+		}
 
 }   
