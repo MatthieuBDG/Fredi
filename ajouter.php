@@ -3,6 +3,10 @@
 
 include 'connexion_dbh.php';
 
+if(isset($_POST["back"])){
+    header('location: gestion/gestion_utilisateur'); 
+}
+
 if(isset($_SESSION['id_type_util']) == 1){
 if(isset($_POST["submit"])){ // Debut de la inscription
 
@@ -87,19 +91,6 @@ if(isset($_POST["submit"])){ // Debut de la inscription
 </div> 
 </header>
 <body class="connexion">
- <?php
- /*
-if(isset($dejaconnexion))
-{
-echo "<center>";
-echo "$dejaconnexion";
-echo "<br><br>";
-echo '<a href="deconnexion" id="bouton">Se déconnecter</a>';
-echo "</center>";
-exit;s
-}
-*/
-?>
 
 <div class="connexion">
     <center>
@@ -127,7 +118,11 @@ exit;s
          }
          if(isset($inscription))
          {
-            echo '<font color="green">'.$inscription."</font>";
+            echo '<font color="green">'.$inscription."</font>"; ?>
+            <form method="post">
+            <input type="submit" name="back" value="Retour" />
+            </form>
+            <?php
             exit;
          }
         ?>

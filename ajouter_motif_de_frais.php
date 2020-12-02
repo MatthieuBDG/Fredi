@@ -3,6 +3,10 @@
 
 include 'connexion_dbh.php';
 
+if(isset($_POST["back"])){
+    header('location: gestion/gestion_motif_de_frais'); 
+}
+
 if(isset($_SESSION['id_type_util']) == 1){
 if(isset($_POST["submit"])){ // Debut de la inscription
 
@@ -71,7 +75,11 @@ if(isset($_POST["submit"])){ // Debut de la inscription
          }
          if(isset($inscription))
          {
-            echo '<font color="green">'.$inscription."</font>";
+            echo '<font color="green">'.$inscription."</font>"; ?>
+            <form method="post">
+            <input type="submit" name="back" value="Retour" />
+            </form>
+            <?php
             exit;
          }
         ?>

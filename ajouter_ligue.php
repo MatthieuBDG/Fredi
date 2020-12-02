@@ -5,6 +5,9 @@ include 'init.php';
 
 $dao = new utilisateurDAO();
 $utilisateur = $dao->findAll(); 
+if(isset($_POST["back"])){
+    header('location: gestion/gestion_ligue'); 
+}
 
 if(isset($_SESSION['id_type_util']) == 2){
 if(isset($_POST["submit"])){ // Debut de la inscription
@@ -99,7 +102,11 @@ if(isset($_POST["submit"])){ // Debut de la inscription
          }
          if(isset($inscription))
          {
-            echo '<font color="green">'.$inscription."</font>";
+            echo '<font color="green">'.$inscription."</font>"; ?>
+            <form method="post">
+            <input type="submit" name="back" value="Retour" />
+            </form>
+            <?php
             exit;
          }
         ?>

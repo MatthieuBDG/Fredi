@@ -3,6 +3,9 @@
 
 include 'connexion_dbh.php';
 
+if(isset($_POST["back"])){
+    header('location: gestion/gestion_période'); 
+}
 if(isset($_SESSION['id_type_util']) == 1){
 $req_recup_annee_existe = $dbh->prepare("SELECT * FROM periode where statut_per = 1");
 $req_recup_annee_existe->execute(array());
@@ -79,7 +82,11 @@ if(isset($_POST["submit"])){ // Debut de la inscription
          }
          if(isset($inscription))
          {
-            echo '<font color="green">'.$inscription."</font>";
+            echo '<font color="green">'.$inscription."</font>"; ?>
+            <form method="post">
+            <input type="submit" name="back" value="Retour" />
+            </form>
+            <?php
             exit;
          }
         ?>

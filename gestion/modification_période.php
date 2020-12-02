@@ -112,7 +112,6 @@ if(isset($_GET["annee_per"])){
                 echo '<font color="green">'.$modifier."</font>"; ?>
                 <form method="post">
                 <input type="submit" name="back" value="Retour" />
-
                 </form>
                 <?php
                 exit;
