@@ -12,6 +12,7 @@ Class ClubDAO extends DAO {
     public function find($id_club) {
         $sql = "SELECT * FROM club WHERE id_club=:id_club";
         try {
+            
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(
                 ':id_club' => $id_club

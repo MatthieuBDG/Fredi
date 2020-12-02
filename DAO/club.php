@@ -18,6 +18,7 @@ class Club {
         $this->id_ligue = $row['id_ligue'];
         $this->id_utilisateur = $row['id_utilisateur'];
     }
+    
 
  
     
