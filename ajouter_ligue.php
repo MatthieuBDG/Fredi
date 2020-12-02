@@ -83,8 +83,6 @@ if(isset($_POST["submit"])){ // Debut de la inscription
                     echo '<option value='.$utilisateur->get_email_util().'>'.$utilisateur->get_email_util().'</option>';
                 }
             }
-            //<input type="email" name="email_util" placeholder="email_util" value="<?php if(!empty($email_util)){ echo $email_util; } "require/>
-            //</p>
          ?>
         
          </select>
