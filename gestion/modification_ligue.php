@@ -76,6 +76,7 @@ if(isset($_GET["id_ligue"])){
             <p>telephone ligue <br><input type="text" name="telephone_ligue" placeholder="telephone_ligue" value="<?php echo $resultat_req['telephone_ligue']; ?>"require/></p>
             <p>email ligue <br><input type="email" name="email_util" placeholder="email_util" value="<?php echo $resultat_req['email_util']; ?>"require/></p>
             
+            
              <br>
              <?php
              if(isset($erreur))

@@ -1,6 +1,13 @@
 <?php
 include '../connexion_dbh.php';
+include '../init.php';
 
+$dao = new ligueDAO();
+$ligues = $dao->findAll(); 
+
+if(isset($_POST["back"])){
+    header('location: gestion_club'); 
+}
 if(isset($_GET["id_club"])){ 
     $id_club = $_GET["id_club"];
     if($_SESSION['id_type_util'] == 2){
@@ -10,12 +17,11 @@ if(isset($_GET["id_club"])){
 
     if(isset($_POST["submit"])){ 
     
-      $id_club = htmlspecialchars($_POST["id_club"]);
       $lib_club = htmlspecialchars($_POST["lib_club"]);
       $adr1_club = htmlspecialchars($_POST['adr1_club']);
       $adr2_club = htmlspecialchars($_POST['adr2_club']);
       $adr3_club = htmlspecialchars($_POST['adr3_club']);
-      $adr3_club = htmlspecialchars($_POST['id_ligue']);
+      $id_ligue = htmlspecialchars($_POST['id_ligue']);
       
 
     $req_recup_club = $dbh->prepare("SELECT lib_club FROM club where id_club = ?");
@@ -23,14 +29,14 @@ if(isset($_GET["id_club"])){
     $resultat_club = $req_recup_club->rowCount();
 
     if($resultat_club == 0){
-    if(!empty($lib_club) && !empty($id_club )&& !empty($adr1_club) && !empty($adr2_club) && !empty($adr3_club)&& !empty($id_ligue)){
+    if(!empty($lib_club) || !empty($adr1_club) || !empty($adr2_club) || !empty($adr3_club) || !empty($id_ligue)){
         
-            $req_update = $dbh->prepare("UPDATE club SET lib_club = ? , id_club = ? , adr1_club = ? , adr2_club = ? , adr3_club = ?, id_ligue = ? WHERE id_club = ".$id_club);
-            $req_update->execute(array($lib_club,$id_club,$adr1_club,$adr2_club,$adr3_club,$id_club,$id_ligue)); 
-            $modifier = "<h5>La période $lib_club a été modifié dans FREDI</h5>";
+            $req_update = $dbh->prepare("UPDATE club SET lib_club = ? , adr1_club = ? , adr2_club = ? , adr3_club = ?, id_ligue = ? WHERE id_club = ?");
+            $req_update->execute(array($lib_club,$adr1_club,$adr2_club,$adr3_club,$id_ligue,$id_club)); 
+            $modifier = "<h5>Le club $lib_club a été modifié</h5>";
     
     }else{
-        $erreur = "<h5>Vous ne pouvez pas modifier la club ".$lib_club." car une information n'a pas été saisie</h5>";  
+        $erreur = "<h5>Vous ne pouvez pas modifier le club $lib_club car une information n’a pas été saisie </h5>";  
     }
    }else{
        $erreur = "<h5>La club $lib_club est dèja présent dans FREDI </h5>";  
@@ -69,13 +75,18 @@ if(isset($_GET["id_club"])){
           <h1>Modification de club</h1>
             <br>
             <form method="post"> 
-            <p>id club<br><input type="text" name="id_club" placeholder="id_club" value="<?php if(!empty($id_club)){ echo $id_club; } ?>"require/></p>
-            <p>lib club <br><input type="text" name="lib_club" placeholder="Lib club" value="<?php if(!empty($lib_club)){ echo $lib_club; } ?>"require/></p>
-            <p>adrresse 1 <br><input type="text" name="adr1_club" placeholder="adr1_club" value="<?php if(!empty($adr1_club)){ echo $adr1_club; } ?>"require/></p>
-            <p>adresse 2  <br><input type="text" name="adr2_club" placeholder="adr2_club" value="<?php if(!empty($adr2_club)){ echo $adr2_club; } ?>"require/></p>
-            <p>adresse 3 <br><input type="text" name="adr3_club" placeholder="adr3_club" value="<?php if(!empty($adr3_club)){ echo $adr3_club; } ?>"require/></p>
-            <p>id ligue  <br><input type="text" name="id_ligue" placeholder="id_ligue" value="<?php if(!empty($id_ligue)){ echo $id_ligue; } ?>"require/></p>
-            
+            <p>lib club <br><input type="text" name="lib_club" placeholder="Lib club" value="<?php echo $resultat_req['lib_club']; ?>"require/></p>
+            <p>adrresse 1 <br><input type="text" name="adr1_club" placeholder="adr1_club" value="<?php echo $resultat_req['adr1_club']; ?>"require/></p>
+            <p>adresse 2  <br><input type="text" name="adr2_club" placeholder="adr2_club" value="<?php echo $resultat_req['adr2_club']; ?>"require/></p>
+            <p>adresse 3 <br><input type="text" name="adr3_club" placeholder="adr3_club" value="<?php echo $resultat_req['adr3_club']; ?>"require/></p>
+            <p>Ligues</p>
+            <select name="id_ligue">
+            <?php
+            foreach ($ligues as $ligue) {
+                echo '<option value='.$ligue->get_id_ligue().'>'.$ligue->get_lib_ligue().'</option>';  
+            }
+            ?>
+            </select>
             
              <br>
              <?php
