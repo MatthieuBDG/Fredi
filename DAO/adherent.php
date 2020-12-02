@@ -5,14 +5,13 @@ class Adherent {
 		private $prenom_util;
 		private $id_type_util;
 		private $statut_util;
-		private $matricule_cont;
-    private $lic_adh;
-    private $sexe_adh;
-    private $date_naissance_adh;
-    private $adr1_adh;
-    private $adr2_adh;
-    private $adr3_adh;
-    private $id_club;
+    	private $lic_adh;
+    	private $sexe_adh;
+    	private $date_naissance_adh;
+    	private $adr1_adh;
+    	private $adr2_adh;
+    	private $adr3_adh;
+    	private $id_club;
 
  //constructeur
     public function __construct(array $row) {
