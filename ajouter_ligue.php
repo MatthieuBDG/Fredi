@@ -1,7 +1,10 @@
 <?php
 
-
 include 'connexion_dbh.php';
+include 'init.php';
+
+$dao = new utilisateurDAO();
+$utilisateur = $dao->findAll(); 
 
 if(isset($_SESSION['id_type_util']) == 2){
 if(isset($_POST["submit"])){ // Debut de la inscription
@@ -14,13 +17,13 @@ if(isset($_POST["submit"])){ // Debut de la inscription
 
         if(!empty($lib_ligue) AND !empty($url_ligue) AND !empty($contact_ligue) AND !empty($telephone_ligue) AND !empty($email_util)) { //Verifie si le champs adresse mail et mot de passe n'est pas vide sinon affiche message erreur
         
-        $req_verif_lib_ligue_inscription = $dbh->prepare("SELECT * FROM ligue WHERE lib_ligue = ?");
+        $req_verif_lib_ligue_inscription = $dbh->prepare("SELECT lib_ligue FROM ligue WHERE lib_ligue = ?");
         $req_verif_lib_ligue_inscription->execute(array($lib_ligue));
         $resultat_lib_ligue = $req_verif_lib_ligue_inscription->rowCount();
 
         if($resultat_lib_ligue == 0){
-        $req_ajout_ligue = $dbh->prepare("INSERT INTO ligue (lib_ligue,url_ligue,contact_ligue,telephone_ligue,email_util) VALUES (?,?,?,?,?)");
-        $req_ajout_ligue->execute(array($lib_ligue,$url_ligue,$contact_ligue,$telephone_ligue,$email_util)); 
+        $req_ajout_ligue = $dbh->prepare("INSERT INTO ligue (id_ligue,lib_ligue,url_ligue,contact_ligue,telephone_ligue,email_util) VALUES (?,?,?,?,?,?)");
+        $req_ajout_ligue->execute(array($id_ligue,$lib_ligue,$url_ligue,$contact_ligue,$telephone_ligue,$email_util)); 
 
         $inscription = "<h5>La ligue $lib_ligue a été créé dans l’application FREDI</h5>";
         
@@ -28,9 +31,10 @@ if(isset($_POST["submit"])){ // Debut de la inscription
             $erreur = "<h5> Vous ne pouvez pas créer la ligue $lib_ligue car une ligue active existe déjà </h5>"; //message erreur
         }
         }else{
-            $erreur = "<h5>Saisie des information obligatoire pour créer la ligue</h5>"; //message erreur
+            $erreur = "<h5>Vous ne pouvez pas créer la ligue ".$lib_ligue." car une information n'a pas été saisie</h5>"; //message erreur
         }
     }
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -66,8 +70,26 @@ if(isset($_POST["submit"])){ // Debut de la inscription
          <p>lib ligue <br><input type="text" name="lib_ligue" placeholder="Lib ligue" value="<?php if(!empty($lib_ligue)){ echo $lib_ligue; } ?>"require/></p>
          <p>url ligue <br><input type="text" name="url_ligue" placeholder="url_ligue" value="<?php if(!empty($url_ligue)){ echo $url_ligue; } ?>"require/></p>
          <p>contact ligue <br><input type="text" name="contact_ligue" placeholder="contact_ligue" value="<?php if(!empty($contact_ligue)){ echo $contact_ligue; } ?>"require/></p>
-         <p>telephone ligue <br><input type="text" name="telephone_ligue" placeholder="telephone_ligue" value="<?php if(!empty($telephone_ligue)){ echo $telephone_ligue; } ?>"require/></p>
-         <p>email ligue <br><input type="email" name="email_util" placeholder="email_util" value="<?php if(!empty($email_util)){ echo $email_util; } ?>"require/></p>
+         <p>téléphone ligue <br><input type="text" name="telephone_ligue" placeholder="telephone_ligue" value="<?php if(!empty($telephone_ligue)){ echo $telephone_ligue; } ?>"require/></p>
+         
+
+         <form>
+         <select name="emailutilisateur">
+
+         <?php
+            foreach ($utilisateur as $utilisateur) {
+                if ($utilisateur->get_matricule_cont() != 0){
+                    echo '<option value='.$utilisateur->get_email_util().'>'.$utilisateur->get_email_util().'</option>';
+                }
+            }
+         ?>
+
+         </select>
+         </form>
+        
+         <p>email ligue<br>
+         <input type="email" name="email_util" placeholder="email_util" value="<?php if(!empty($email_util)){ echo $email_util; } ?>"require/>
+         </p>
          <br>
       
          <?php

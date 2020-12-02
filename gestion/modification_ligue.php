@@ -8,31 +8,31 @@ if(isset($_GET["id_ligue"])){
         $req_recup_info->execute(array($id_ligue));
         $resultat_req = $req_recup_info->fetch();
 
-    if(isset($_POST["submit"])){ // Debut de la inscription
+    if(isset($_POST["submit"])){ 
 
-      $id_ligue = htmlspecialchars($_POST["id_ligue"]);
       $lib_ligue = htmlspecialchars($_POST["lib_ligue"]);
       $url_ligue = htmlspecialchars($_POST["url_ligue"]);
       $contact_ligue = htmlspecialchars($_POST['contact_ligue']);
       $telephone_ligue = htmlspecialchars($_POST['telephone_ligue']);
       $email_util = htmlspecialchars($_POST['email_util']);
 
-        $req_recup_ligue = $dbh->prepare("SELECT id_ligue FROM ligue where id_ligue = ?");
-        $req_recup_ligue->execute(array($id_ligue));
-        $resultat_ligue = $req_recup_ligue->fetch();
+    $req_recup_ligue = $dbh->prepare("SELECT lib_ligue FROM ligue where id_ligue = ?");
+    $req_recup_ligue->execute(array($lib_ligue));
+    $resultat_ligue = $req_recup_ligue->rowCount();
+
     if($resultat_ligue == 0){
     if(!empty($lib_ligue) && !empty($url_ligue )&& !empty($contact_ligue) && !empty($telephone_ligue) && !empty($email_util)){
         
-            $req_update = $dbh->prepare("UPDATE ligue SET lib_ligue = ? , url_ligue = ? , contact_ligue = ? , telephone_ligue = ? , email_util = ? WHERE id_ligue = ? ");
+            $req_update = $dbh->prepare("UPDATE ligue SET lib_ligue = ? , url_ligue = ? , contact_ligue = ? , telephone_ligue = ? , email_util = ? WHERE id_ligue = ".$id_ligue);
             $req_update->execute(array($lib_ligue,$url_ligue,$contact_ligue,$telephone_ligue,$email_util)); 
             $modifier = "<h5>La période $lib_ligue a été modifié dans FREDI</h5>";
     
     }else{
-        $erreur = "<h5>Une information obligatoire n’a pas été saisie</h5>";  
+        $erreur = "<h5>Vous ne pouvez pas modifier la ligue ".$lib_ligue." car une information n'a pas été saisie</h5>";  
     }
-    }else{
-        $erreur = "<h5>L'année $lib_ligue est dèja présent dans FREDI </h5>";  
-    }
+   }else{
+       $erreur = "<h5>La ligue $lib_ligue est dèja présent dans FREDI </h5>";  
+   }
 
 }
     ?>
