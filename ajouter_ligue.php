@@ -9,7 +9,6 @@ $utilisateur = $dao->findAll();
 if(isset($_SESSION['id_type_util']) == 2){
 if(isset($_POST["submit"])){ // Debut de la inscription
 
-  $id_ligue = htmlspecialchars($_POST["id_ligue"]);
   $lib_ligue = htmlspecialchars($_POST["lib_ligue"]);
   $url_ligue = htmlspecialchars($_POST["url_ligue"]);
   $contact_ligue = htmlspecialchars($_POST['contact_ligue']);
@@ -68,7 +67,6 @@ if(isset($_POST["submit"])){ // Debut de la inscription
       <h1>Ajout d'une ligue</h1>
         <br>
          <form method="post">
-         <p>id ligue <br><input type="text" name="id_ligue" placeholder="id ligue" value="<?php if(!empty($id_ligue)){ echo $id_ligue; } ?>"require/></p>
          <p>lib ligue <br><input type="text" name="lib_ligue" placeholder="Lib ligue" value="<?php if(!empty($lib_ligue)){ echo $lib_ligue; } ?>"require/></p>
          <p>url ligue <br><input type="text" name="url_ligue" placeholder="url_ligue" value="<?php if(!empty($url_ligue)){ echo $url_ligue; } ?>"require/></p>
          <p>contact ligue <br><input type="text" name="contact_ligue" placeholder="contact_ligue" value="<?php if(!empty($contact_ligue)){ echo $contact_ligue; } ?>"require/></p>

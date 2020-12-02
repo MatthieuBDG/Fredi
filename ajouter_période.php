@@ -4,14 +4,18 @@
 include 'connexion_dbh.php';
 
 if(isset($_SESSION['id_type_util']) == 1){
+$req_recup_annee_existe = $dbh->prepare("SELECT * FROM periode where statut_per = 1");
+$req_recup_annee_existe->execute(array());
+$resultat_annee = $req_recup_annee_existe->rowCount();
+if($resultat_annee == 0){
 if(isset($_POST["submit"])){ // Debut de la inscription
 
         $annee_per = htmlspecialchars($_POST["annee_per"]);
         $forfait_km_per = htmlspecialchars($_POST["forfait_km_per"]);
-
-        if(!empty($annee_per) AND !empty($forfait_km_per)) { //Verifie si le champs adresse mail et mot de passe n'est pas vide sinon affiche message erreur
         
-        $req_verif_annee_inscription = $dbh->prepare("SELECT * FROM periode WHERE annee_per = ?");
+        if(!empty($annee_per) AND !empty($forfait_km_per)) { //Verifie si le champs adresse mail et mot de passe n'est pas vide sinon affiche message erreur
+        if($forfait_km_per > 0){
+        $req_verif_annee_inscription = $dbh->prepare("SELECT * FROM periode where annee_per = ?");
         $req_verif_annee_inscription->execute(array($annee_per));
         $resultat_annee = $req_verif_annee_inscription->rowCount();
 
@@ -22,13 +26,16 @@ if(isset($_POST["submit"])){ // Debut de la inscription
         $inscription = "<h5>La période $annee_per a été créé dans la FREDI</h5>";
         
         }else{
-            $erreur = "<h5> Vous ne pouvez pas créer la période $annee_per car une
-            période active existe déjà </h5>"; //message erreur
+            $erreur = "<h5> Vous ne pouvez pas créer la période $annee_per car une période active existe déjà </h5>"; //message erreur
+        }
+        }else{
+            $erreur = "<h5> Vous ne pouvez pas créer la période $annee_per car la valeur des frais kilométriques n’est pas correcte</h5>"; //message erreur
         }
         }else{
             $erreur = "<h5>Une information obligatoire n’a pas été saisie</h5>"; //message erreur
         }
-    }
+    
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -62,7 +69,7 @@ if(isset($_POST["submit"])){ // Debut de la inscription
         <br>
          <form method="post">
          <p>Annee <br><input type="text" name="annee_per" placeholder="Annee" value="<?php if(!empty($annee_per)){ echo $annee_per; } ?>"require/></p>
-         <p>Forfait <br><input type="text" name="forfait_km_per" placeholder="km" require/></p>
+         <p>Forfait <br><input type="text" name="forfait_km_per" placeholder="km" value="<?php if(!empty($forfait_km_per)){ echo $forfait_km_per; } ?>" require/></p>
          <br>
       
          <?php
@@ -82,7 +89,12 @@ if(isset($_POST["submit"])){ // Debut de la inscription
 </div>   
 <?php 
 }else{
+header("location: gestion/gestion_période?erreur=1"); 
+}
+}else{
 header("location: connexion?erreur=1");
-} ?> 
+} 
+
+?> 
 </body>
 </html>
