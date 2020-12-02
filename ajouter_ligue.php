@@ -13,9 +13,9 @@ if(isset($_POST["submit"])){ // Debut de la inscription
   $url_ligue = htmlspecialchars($_POST["url_ligue"]);
   $contact_ligue = htmlspecialchars($_POST['contact_ligue']);
   $telephone_ligue = htmlspecialchars($_POST['telephone_ligue']);
-  $email_util = htmlspecialchars($_POST['email_util']);
+  $emailutilisateur = htmlspecialchars($_POST['emailutilisateur']);
 
-        if(!empty($lib_ligue) AND !empty($url_ligue) AND !empty($contact_ligue) AND !empty($telephone_ligue) AND !empty($email_util)) { //Verifie si le champs adresse mail et mot de passe n'est pas vide sinon affiche message erreur
+        if(!empty($lib_ligue) AND !empty($url_ligue) AND !empty($contact_ligue) AND !empty($telephone_ligue) AND !empty($emailutilisateur)) { //Verifie si le champs adresse mail et mot de passe n'est pas vide sinon affiche message erreur
         
         $req_verif_lib_ligue_inscription = $dbh->prepare("SELECT lib_ligue FROM ligue WHERE lib_ligue = ?");
         $req_verif_lib_ligue_inscription->execute(array($lib_ligue));
@@ -23,7 +23,7 @@ if(isset($_POST["submit"])){ // Debut de la inscription
 
         if($resultat_lib_ligue == 0){
         $req_ajout_ligue = $dbh->prepare("INSERT INTO ligue (id_ligue,lib_ligue,url_ligue,contact_ligue,telephone_ligue,email_util) VALUES (?,?,?,?,?,?)");
-        $req_ajout_ligue->execute(array($id_ligue,$lib_ligue,$url_ligue,$contact_ligue,$telephone_ligue,$email_util)); 
+        $req_ajout_ligue->execute(array($id_ligue,$lib_ligue,$url_ligue,$contact_ligue,$telephone_ligue,$emailutilisateur)); 
 
         $inscription = "<h5>La ligue $lib_ligue a été créé dans l’application FREDI</h5>";
         
@@ -73,9 +73,10 @@ if(isset($_POST["submit"])){ // Debut de la inscription
          <p>téléphone ligue <br><input type="text" name="telephone_ligue" placeholder="telephone_ligue" value="<?php if(!empty($telephone_ligue)){ echo $telephone_ligue; } ?>"require/></p>
          
 
-         <form>
+         
+         <p>Email utilisateur</p>
          <select name="emailutilisateur">
-
+         <option disable selected> Email du controleur :</option>
          <?php
             foreach ($utilisateur as $utilisateur) {
                 if ($utilisateur->get_matricule_cont() != 0){
@@ -83,15 +84,10 @@ if(isset($_POST["submit"])){ // Debut de la inscription
                 }
             }
          ?>
-
-         </select>
-         </form>
         
-         <p>email ligue<br>
-         <input type="email" name="email_util" placeholder="email_util" value="<?php if(!empty($email_util)){ echo $email_util; } ?>"require/>
-         </p>
-         <br>
-      
+         </select>
+         
+        
          <?php
          if(isset($erreur))
          {
