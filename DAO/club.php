@@ -6,8 +6,6 @@ class Club {
     private $adr2_club;
     private $adr3_club;
     private $id_ligue;
-    private $id_utilisateur;
-
  //constructeur
     public function __construct(array $row) {
         $this->id_club = $row['id_club'];
@@ -16,7 +14,6 @@ class Club {
         $this->adr2_club = $row['adr2_club'];
         $this->adr3_club = $row['adr3_club'];
         $this->id_ligue = $row['id_ligue'];
-        $this->id_utilisateur = $row['id_utilisateur'];
     }
 
  
@@ -105,7 +102,7 @@ class Club {
     /**
      * Get the value of adr1_club
      */ 
-    public function get_idr1_club()
+    public function get_adr1_club()
     {
         return $this->adr1_club;
     }
@@ -115,7 +112,7 @@ class Club {
      *
      * @return  self
      */ 
-    public function set_idr1_club($adr1_club)
+    public function set_adr1_club($adr1_club)
     {
         $this->adr1_club = $adr1_club;
 
@@ -141,24 +138,5 @@ class Club {
 
         return $this;
     }
-
-    /**
-     * Get the value of id_utilisateur
-     */ 
-    public function get_id_utilisateur()
-    {
-        return $this->id_utilisateur;
-    }
-
-    /**
-     * Set the value of id_utilisateur
-     *
-     * @return  self
-     */ 
-    public function set_id_utilisateur($id_utilisateur)
-    {
-        $this->id_utilisateur = $id_utilisateur;
-
-        return $this;
-    }
+    
 }
