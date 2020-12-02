@@ -18,7 +18,8 @@ if(isset($_POST["submit"])){ // Debut de la inscription
         if($resultat_annee == 0){
         $req_ajout_periode = $dbh->prepare("INSERT INTO periode (annee_per,forfait_km_per,statut_per)VALUES (?,?,?)");
         $req_ajout_periode->execute(array($annee_per,$forfait_km_per,1)); 
-
+        
+        }
         $inscription = "<h5>La période $annee_per a été créé dans la FREDI</h5>";
         
         }else{
@@ -29,6 +30,10 @@ if(isset($_POST["submit"])){ // Debut de la inscription
             $erreur = "<h5>Une information obligatoire n’a pas été saisie</h5>"; //message erreur
         }
     }
+    
+
+
+   
 ?>
 <!DOCTYPE html>
 <html lang="fr">
