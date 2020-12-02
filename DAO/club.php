@@ -15,6 +15,7 @@ class Club {
         $this->adr3_club = $row['adr3_club'];
         $this->id_ligue = $row['id_ligue'];
     }
+    
 
  
     
