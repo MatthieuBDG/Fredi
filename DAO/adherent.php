@@ -5,7 +5,6 @@ class Adherent {
 		private $prenom_util;
 		private $id_type_util;
 		private $statut_util;
-		private $matricule_cont;
     private $lic_adh;
     private $sexe_adh;
     private $date_naissance_adh;

@@ -47,11 +47,11 @@ $ligues = $dao->findAll();
           echo "<td>".$ligue->get_id_ligue()."</td>";
           echo "<td>".$ligue->get_lib_ligue()."</td>";
           echo "<td>".$ligue->get_url_ligue()."</td>";
-          echo "<td>".$ligue->get_contact_ligue()."</td>";
           echo "<td>".$ligue->get_telephone_ligue()."</td>";
+          echo "<td>".$ligue->get_contact_ligue()."</td>";
           echo "<td>".$ligue->get_email_util()."</td>";
           echo "<td><a href='modification_ligue?id_ligue=".$ligue->get_id_ligue()."'>modifier</a></td>";
-          echo "<td><a href='désactiver_ligue.php?email_util=".$ligue->get_email_util()."'>Supprimer</td>";
+          echo "<td><a href='désactiver_ligue.php?id_ligue=".$ligue->get_id_ligue()."'>Supprimer</a></td>";
           echo "</tr>";
     }
 }
