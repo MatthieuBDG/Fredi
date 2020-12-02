@@ -39,8 +39,7 @@ if(isset($_GET["annee_per"])){
         $erreur = "<h5>Une information obligatoire n’a pas été saisie</h5>";  
     }
     }else{
-        $erreur = "<h5>Vous ne pouvez pas modifier la période $annee_per car l’année
-        n’est pas valide </h5>"; 
+        $erreur = "<h5>Vous ne pouvez pas modifier la période $annee_per car l’année n’est pas valide </h5>"; 
     }
     }else{
         echo $resultat_annee_active['annee_per'];
