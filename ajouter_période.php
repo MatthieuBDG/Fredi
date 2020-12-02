@@ -4,11 +4,21 @@
 include 'connexion_dbh.php';
 
 if(isset($_SESSION['id_type_util']) == 1){
+$req_recup_annee_existe = $dbh->prepare("SELECT statut_per FROM periode ");
+$req_recup_annee_existe->execute(array());
+$resultat_annee = $req_recup_annee_existe->rowCount();
+if($resultat_annee == 0){
 if(isset($_POST["submit"])){ // Debut de la inscription
 
         $annee_per = htmlspecialchars($_POST["annee_per"]);
         $forfait_km_per = htmlspecialchars($_POST["forfait_km_per"]);
 
+        $req_verif_annee_per_periode = $dbh->prepare("SELECT * FROM periode");
+        $req_verif_annee_per_periode->execute(array());
+        $resultat_annee_per = $req_verif_annee_per_periode->rowCount();
+    
+        if($resultat_annee_per['statut_per'] == 0){
+        
         if(!empty($annee_per) AND !empty($forfait_km_per)) { //Verifie si le champs adresse mail et mot de passe n'est pas vide sinon affiche message erreur
         
         $req_verif_annee_inscription = $dbh->prepare("SELECT * FROM periode WHERE annee_per = ?");
@@ -29,11 +39,10 @@ if(isset($_POST["submit"])){ // Debut de la inscription
         }else{
             $erreur = "<h5>Une information obligatoire n’a pas été saisie</h5>"; //message erreur
         }
+    }else{
+        echo salut;
     }
-    
-
-
-   
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -87,7 +96,12 @@ if(isset($_POST["submit"])){ // Debut de la inscription
 </div>   
 <?php 
 }else{
+header("location: gestion/gestion_période?erreur=1"); 
+}
+}else{
 header("location: connexion?erreur=1");
-} ?> 
+} 
+
+?> 
 </body>
 </html>

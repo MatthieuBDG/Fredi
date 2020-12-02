@@ -86,19 +86,5 @@ Class PeriodeDAO extends DAO {
         return new Periode($row);
     }
 
-    //Desactive une période
-    public function desactiverPeriode($annee_per) {
-        $sql = "UPDATE periode SET statut_per = 0 WHERE annee_per = :annee_per";
-
-        try {
-            $sth = $this->pdo->prepare($sql);
-            $sth->execute(array(
-                ':annee_per' => $annee_per
-            ));
-        } catch (PDOException $e) {
-            throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
-        }
-
-        return "La période a été désactivé";
-    }
+ 
 }
