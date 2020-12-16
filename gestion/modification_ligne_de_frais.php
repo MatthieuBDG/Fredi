@@ -37,22 +37,22 @@ if(isset($_GET["id_ldf"])){
         $id_mdf = htmlspecialchars($_POST['id_mdf']);
         $annee_per = htmlspecialchars($_POST['annee_per']);
         $email_util = htmlspecialchars($_POST['email_util']);
-        $req_recup_lib_existe = $dbh->prepare("SELECT lib_mdf FROM ligne_de_frais where lib_mdf = ?");
-        $req_recup_lib_existe->execute(array($lib_mdf));
+        $req_recup_lib_existe = $dbh->prepare("SELECT lib_trajet_ldf FROM ligne_de_frais where lib_trajet_ldf = ?");
+        $req_recup_lib_existe->execute(array($lib_trajet_ldf));
         $resultat_lib = $req_recup_lib_existe->fetch();
         
     if($resultat_lib == 0){
-    if(!empty($lib_mdf)){
+    if(!empty($lib_trajet_ldf)){
         
-            $req_update = $dbh->prepare("UPDATE ligne_de_frais SET lib_mdf = ? WHERE id_ldf = ? ");
-            $req_update->execute(array($lib_mdf,$id_ldf)); 
-            $modifier = "<h5>La période $lib_mdf a été modifié dans FREDI</h5>";
+            $req_update = $dbh->prepare("UPDATE ligne_de_frais SET lib_trajet_ldf = ? WHERE id_ldf = ? ");
+            $req_update->execute(array($llib_trajet_ldff,$id_ldf)); 
+            $modifier = "<h5>La période $lib_trajet_ldf a été modifié dans FREDI</h5>";
     
     }else{
         $erreur = "<h5>Saisie du libellé obligatoire pour modifier le motif de frais</h5>";  
     }
     }else{
-        $erreurlib_mdf = "<h5>$lib_mdf est dèja présent dans FREDI </h5>";  
+        $erreurlib_trajet_ldf = "<h5>$lib_trajet_ldf est dèja présent dans FREDI </h5>";  
         
     }
 
