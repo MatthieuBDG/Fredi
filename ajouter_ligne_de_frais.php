@@ -30,6 +30,9 @@ if(isset($_POST["submit"])){ // Debut de la inscription
         $annee_per = htmlspecialchars($_POST["annee_per"]);
         $email_util = htmlspecialchars($_POST["email_util"]);
 
+        $date_year = explode('-', $date_ldf);
+        $date_year = $date_year[0];
+
         $tarif_km = $dbh->prepare("SELECT forfait_km_per FROM periode WHERE annee_per = ?");
         $tarif_km->execute(array($annee_per)); 
         $tarif_km = $tarif_km->fetch();
@@ -40,7 +43,8 @@ if(isset($_POST["submit"])){ // Debut de la inscription
         if(!empty($date_ldf) && !empty($lib_trajet_ldf) && !empty($cout_peage_ldf) && !empty($cout_repas_ldf) && !empty($cout_hebergement_ldf)
         && !empty($nb_km_ldf) && !empty($total_km_ldf) && !empty($total_ldf) && !empty($id_mdf) 
         && !empty($annee_per) && !empty($email_util)) { //Verifie si les champs ne sont pas vide sinon affiche message erreur
-        
+        if($cout_peage_ldf >= 0 && $cout_repas_ldf >= 0 &&  $cout_hebergement_ldf >= 0 && $nb_km_ldf >= 0){
+        if($annee_per == $date_year){
 
         $req_ajout_ligue_de_frais = $dbh->prepare("INSERT INTO ligne_de_frais (date_ldf,lib_trajet_ldf,
         cout_peage_ldf,cout_repas_ldf,cout_hebergement_ldf,nb_km_ldf,total_km_ldf,total_ldf,id_mdf,annee_per,email_util)
@@ -50,7 +54,12 @@ if(isset($_POST["submit"])){ // Debut de la inscription
 
         $inscription = "<h5>Le motif de frais $lib_trajet_ldf a été créé dans
         l’application FREDI</h5>";
-
+        }else{
+        $erreur = "<h5>La ligne de frais ne peut être créée : la date de frais est invalide </h5>";     
+        }
+        }else{
+            $erreur = "<h5>La ligne de frais ne peut être créée : des informations sont invalides </h5>"; //message erreur
+        }
         }else{
             $erreur = "<h5>Saisie du libellé obligatoire pour créer le motif de frais</h5>"; //message erreur
         }
