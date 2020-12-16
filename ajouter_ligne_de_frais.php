@@ -38,9 +38,9 @@ if(isset($_POST["submit"])){ // Debut de la inscription
         $total_km_ldf = $nb_km_ldf*2;
         $total_ldf = ($total_km_ldf * $tarif_km['forfait_km_per']) + $cout_hebergement_ldf + $cout_repas_ldf + $cout_peage_ldf;
 
-        if(!empty($date_ldf) || !empty($lib_trajet_ldf) || !empty($cout_peage_ldf) || !empty($cout_repas_ldf) || !empty($cout_hebergement_ldf)
-        || !empty($nb_km_ldf) || !empty($total_km_ldf) || !empty($total_ldf) || !empty($id_mdf) 
-        || !empty($annee_per) || !empty($email_util)) { //Verifie si les champs ne sont pas vide sinon affiche message erreur
+        if(!empty($date_ldf) && !empty($lib_trajet_ldf) && !empty($cout_peage_ldf) && !empty($cout_repas_ldf) && !empty($cout_hebergement_ldf)
+        && !empty($nb_km_ldf) && !empty($total_km_ldf) && !empty($total_ldf) && !empty($id_mdf) 
+        && !empty($annee_per) && !empty($email_util)) { //Verifie si les champs ne sont pas vide sinon affiche message erreur
         
 
         $req_ajout_ligue_de_frais = $dbh->prepare("INSERT INTO ligne_de_frais (date_ldf,lib_trajet_ldf,
