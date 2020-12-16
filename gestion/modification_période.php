@@ -44,6 +44,20 @@ if(isset($_GET["annee_per"])){
         
             $req_update = $dbh->prepare("UPDATE periode SET annee_per = ? , forfait_km_per = ?,statut_per = ? WHERE annee_per = ? ");
             $req_update->execute(array($annee_per,$forfait_km_per,$statut_per,$annee)); 
+
+            $req_tarif_ldf_requete = $dbh->prepare("SELECT * FROM ligne_de_frais WHERE annee_per = ?");
+            $req_tarif_ldf_requete->execute(array($annee_per)); 
+            $req_tarif_ldf = $req_tarif_ldf_requete->fetch();
+            $resultat_req_tarif_ldf = $req_tarif_ldf_requete->rowCount();
+            
+            if($resultat_req_tarif_ldf > 0){
+            $req_tarif_ldf['total_km_ldf'] = $req_tarif_ldf['nb_km_ldf']*2;
+            $total_ldf = ($req_tarif_ldf['total_km_ldf']* $forfait_km_per) + $req_tarif_ldf['cout_hebergement_ldf'] + $req_tarif_ldf['cout_repas_ldf'] + $req_tarif_ldf['cout_peage_ldf'];
+
+            $req_update = $dbh->prepare("UPDATE ligne_de_frais SET total_ldf = ? WHERE annee_per = ? ");
+            $req_update->execute(array($total_ldf,$annee_per)); 
+            }
+            
             $modifier = "<h5>La période $annee_per a été modifié dans FREDI</h5>";
     }else{
         $erreur =  "<h5>Il y a dèja une année active</h5>";
