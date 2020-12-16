@@ -14,12 +14,11 @@ $dao2 = new adherentDAO();
 $adherent = $dao2->findAll(); 
 
 if(isset($_POST["back"])){
-    header('location: gestion/gestion_ligue_de_frais'); 
+    header('location: gestion/gestion_ligne_de_frais'); 
 }
 
 if(isset($_SESSION['id_type_util']) == 3){
 if(isset($_POST["submit"])){ // Debut de la inscription
-
         
         $tarif_km = $dbh->prepare("SELECT forfait_per_km FROM periode WHERE annee_per = ?");
         $tarif_km->execute(array($resultat_rec_ldf['annee_per']));
@@ -32,11 +31,16 @@ if(isset($_POST["submit"])){ // Debut de la inscription
         $cout_repas_ldf = htmlspecialchars($_POST["cout_repas_ldf"]);
         $cout_hebergement_ldf = htmlspecialchars($_POST["cout_hebergement_ldf"]);
         $nb_km_ldf = htmlspecialchars($_POST["nb_km_ldf" ]);
-        $total_km_ldf = $nb_km_ldf*2;
-        $total_ldf = $total_km_ldf * $resultat_tarif_km + $cout_hebergement_ldf + $cout_repas_ldf + $cout_peage_ldf;
         $id_mdf = htmlspecialchars($_POST["id_mdf"]);
         $annee_per = htmlspecialchars($_POST["annee_per"]);
         $email_util = htmlspecialchars($_POST["email_util"]);
+
+        $tarif_km = $dbh->prepare("SELECT forfait_km_per FROM periode WHERE annee_per = ?");
+        $tarif_km->execute(array($annee_per)); 
+        $tarif_km = $tarif_km->fetch();
+
+        $total_km_ldf = $nb_km_ldf*2;
+        $total_ldf = ($total_km_ldf * $tarif_km['forfait_km_per']) + $cout_hebergement_ldf + $cout_repas_ldf + $cout_peage_ldf;
 
         if(!empty($date_ldf) || !empty($lib_trajet_ldf) || !empty($cout_peage_ldf) || !empty($cout_repas_ldf) || !empty($cout_hebergement_ldf)
         || !empty($nb_km_ldf) || !empty($total_km_ldf) || !empty($total_ldf) || !empty($id_mdf) 
