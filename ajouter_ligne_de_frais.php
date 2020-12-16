@@ -20,14 +20,20 @@ if(isset($_POST["back"])){
 if(isset($_SESSION['id_type_util']) == 3){
 if(isset($_POST["submit"])){ // Debut de la inscription
 
+        
+        $tarif_km = $dbh->prepare("SELECT forfait_per_km FROM periode WHERE annee_per = ?");
+        $tarif_km->execute(array( $resultat_rec_ldf['annee_per']));
+        $tarif_km = $tarif_km->fetch();
+        $resultat_tarif_km = $tarif_km['statut_per'];
+
         $date_ldf = htmlspecialchars($_POST["date_ldf"]);
         $lib_trajet_ldf = htmlspecialchars($_POST["lib_trajet_ldf"]);
         $cout_peage_ldf = htmlspecialchars($_POST["cout_peage_ldf"]);
         $cout_repas_ldf = htmlspecialchars($_POST["cout_repas_ldf"]);
         $cout_hebergement_ldf = htmlspecialchars($_POST["cout_hebergement_ldf"]);
-        $nb_km_ldf = htmlspecialchars($_POST["nb_km_ldf"]);
-        $total_km_ldf = htmlspecialchars($_POST["total_km_ldf"]);
-        $total_ldf = htmlspecialchars($_POST["total_ldf"]);
+        $nb_km_ldf = htmlspecialchars($_POST["nb_km_ldf" ]);
+        $total_km_ldf = $nb_km_ldf*2;
+        $total_ldf = $total_km_ldf * $resultat_tarif_km + $cout_hebergement_ldf + $cout_repas_ldf + $cout_peage_ldf;
         $id_mdf = htmlspecialchars($_POST["id_mdf"]);
         $annee_per = htmlspecialchars($_POST["annee_per"]);
         $email_util = htmlspecialchars($_POST["email_util"]);
@@ -45,6 +51,7 @@ if(isset($_POST["submit"])){ // Debut de la inscription
 
         $inscription = "<h5>Le motif de frais $lib_trajet_ldf a été créé dans
         l’application FREDI</h5>";
+
         }else{
             $erreur = "<h5>Saisie du libellé obligatoire pour créer le motif de frais</h5>"; //message erreur
         }
@@ -87,8 +94,6 @@ if(isset($_POST["submit"])){ // Debut de la inscription
          <p>Cout repas<br><input type="text" name="cout_repas_ldf" placeholder="Cout" value="<?php if(!empty($cout_repas_ldf)){ echo $cout_repas_ldf; } ?>"require/></p>
          <p>Cout hebergement<br><input type="text" name="cout_hebergement_ldf" placeholder="Cout" value="<?php if(!empty($cout_hebergement_ldf)){ echo $cout_hebergement_ldf; } ?>"require/></p>
          <p>Nombre km<br><input type="text" name="nb_km_ldf" placeholder="Nombre km" value="<?php if(!empty($nb_km_ldf)){ echo $nb_km_ldf; } ?>"require/></p>
-         <p>Nombre totales km<br><input type="text" name="total_km_ldf" placeholder="Nombre totales km" value="<?php if(!empty($total_km_ldf)){ echo $total_km_ldf; } ?>"require/></p>
-         <p>Total<br><input type="text" name="total_ldf" placeholder="Total" value="<?php if(!empty($total_ldf)){ echo $total_ldf; } ?>"require/></p>
          <p>Motif de frais</p>
          <select name="id_mdf">
          <?php
