@@ -7,6 +7,7 @@ if(isset($_POST["back"])){
 if(isset($_GET["annee_per"])){ 
     $annee = $_GET["annee_per"];
     if($_SESSION['id_type_util'] == 1){
+        
         $req_recup_info = $dbh->prepare("SELECT * FROM periode WHERE annee_per = ?");
         $req_recup_info->execute(array($annee));
         $resultat_req = $req_recup_info->fetch();
@@ -17,7 +18,8 @@ if(isset($_GET["annee_per"])){
         }
     if(isset($_POST["submit"])){ // Debut de la inscription
         $annee_per = htmlspecialchars($_POST['annee_per']);
-        $forfait_km_per = htmlspecialchars($_POST['forfait_km_per']);
+        $forfait_km_per = htmlspecialchars($_POST['forfait_km_per']);    
+        if($forfait_km_per > 0){
         if($resultat_req['statut_per'] == 0){
         $statut_per = htmlspecialchars($_POST['statut_per']);
         }else{
@@ -28,7 +30,7 @@ if(isset($_GET["annee_per"])){
         $req_recup_annee_active->execute(array(1,$annee));
         $resultat_annee_active = $req_recup_annee_active->rowCount();
         
-        if($statut_per == 1){
+        if($resultat_req['statut_per'] == 0 && $statut_per == 1){
         $req_recup_statut_per = $dbh->prepare("SELECT * FROM periode WHERE statut_per = 1");
         $req_recup_statut_per->execute(array());
         $req_recup_statut_per = $req_recup_statut_per->rowCount();
@@ -36,7 +38,7 @@ if(isset($_GET["annee_per"])){
     
     
     if(!empty($annee_per) && !empty($forfait_km_per)){
-    if($resultat_annee_active == 0){ 
+    if($resultat_annee_active == 0){
     if($annee_per >= 0){ 
     if(empty($req_recup_statut_per) || $req_recup_statut_per == 0 && $statut_per == 1){
         
@@ -49,16 +51,20 @@ if(isset($_GET["annee_per"])){
     }else{
         $erreur = "<h5>Vous ne pouvez pas modifier la période $annee_per car l’année n’est pas valide </h5>"; 
     }
+    }elseif($resultat_req['forfait_km_per'] !== $forfait_km_per ){
+        $req_update = $dbh->prepare("UPDATE periode SET forfait_km_per = ? WHERE annee_per = ? ");
+        $req_update->execute(array($forfait_km_per,$annee)); 
+        $modifier = "<h5>La période $annee_per a été modifié dans FREDI</h5>";
     }else{
         $erreur =  "<h5>Il n’est pas possible de modifier l’année d’une période active</h5>";
-
     } 
     }else{
         $erreur = "<h5>Une information obligatoire n’a pas été saisie</h5>";  
     }
-       
-
-    
+    }else{
+        $erreur = "<h5>Vous ne pouvez pas créer la période $annee_per car la valeur des frais kilométriques n’est pas correcte </h5>";  
+        
+    }
     
     
 }
