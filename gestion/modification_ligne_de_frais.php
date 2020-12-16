@@ -26,8 +26,9 @@ if(isset($_GET["id_ldf"])){
             header('location: gestion_ligne_de_frais'); 
         }
     if(isset($_POST["submit"])){ // Debut de la inscription
+
+        $date_ldf = htmlspecialchars($_POST['date_ldf']);        
         $lib_trajet_ldf = htmlspecialchars($_POST['lib_trajet_ldf']);
-        $date_ldf = htmlspecialchars($_POST['date_ldf']);
         $cout_peage_ldf = htmlspecialchars($_POST['cout_peage_ldf']);
         $cout_repas_ldf = htmlspecialchars($_POST['cout_repas_ldf']);
         $cout_hebergement_ldf =  htmlspecialchars($_POST['cout_hebergement_ldf']);
@@ -37,24 +38,25 @@ if(isset($_GET["id_ldf"])){
         $id_mdf = htmlspecialchars($_POST['id_mdf']);
         $annee_per = htmlspecialchars($_POST['annee_per']);
         $email_util = htmlspecialchars($_POST['email_util']);
-        $req_recup_lib_existe = $dbh->prepare("SELECT lib_mdf FROM ligne_de_frais where lib_mdf = ?");
-        $req_recup_lib_existe->execute(array($lib_mdf));
-        $resultat_lib = $req_recup_lib_existe->fetch();
+
+
+    if(!empty($lib_trajet_ldf) && !empty($date_ldf) && !empty($cout_peage_ldf) && !empty($cout_repas_ldf) && !empty($cout_hebergement_ldf) && !empty($nb_km_ldf) &&
+     !empty($total_km_ldf) && !empty($total_ldf) && !empty($id_mdf) && !empty($annee_per) && !empty($email_util)){
+        if($cout_peage_ldf >= 0 && $cout_repas_ldf >= 0 &&  $cout_hebergement_ldf >= 0 && $nb_km_ldf >= 0){
         
-    if($resultat_lib == 0){
-    if(!empty($lib_mdf)){
-        
-            $req_update = $dbh->prepare("UPDATE ligne_de_frais SET lib_mdf = ? WHERE id_ldf = ? ");
-            $req_update->execute(array($lib_mdf,$id_ldf)); 
-            $modifier = "<h5>La période $lib_mdf a été modifié dans FREDI</h5>";
-    
+            $req_update = $dbh->prepare("UPDATE ligne_de_frais SET date_ldf = ?,lib_trajet_ldf = ?,cout_peage_ldf = ?,cout_repas_ldf = ?,
+            cout_hebergement_ldf = ?,nb_km_ldf = ?,total_km_ldf = ?,total_ldf = ?,id_mdf = ?,annee_per = ?,email_util = ? WHERE id_ldf = ? ");
+            $req_update->execute(array($date_ldf,$lib_trajet_ldf,$cout_peage_ldf,$cout_repas_ldf,$cout_hebergement_ldf,$nb_km_ldf,$total_km_ldf,
+            $total_ldf,$id_mdf,$annee_per,$email_util,$id_ldf)); 
+
+            $modifier = "<h5>Le trajet $lib_trajet_ldf a été modifié dans FREDI</h5>";
     }else{
-        $erreur = "<h5>Saisie du libellé obligatoire pour modifier le motif de frais</h5>";  
+        $erreur = "<h5> La ligne de frais ne peut être modifiée : des informations sont invalides</h5>";  
     }
     }else{
-        $erreurlib_mdf = "<h5>$lib_mdf est dèja présent dans FREDI </h5>";  
-        
+        $erreur = "<h5>La ligne de frais ne peut être modifiée : des informations sont invalides</h5>";  
     }
+
 
 }
     ?>

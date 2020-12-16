@@ -14,7 +14,7 @@ $dao2 = new adherentDAO();
 $adherent = $dao2->findAll(); 
 
 if(isset($_POST["back"])){
-    header('location: gestion/gestion_motif_de_frais'); 
+    header('location: gestion/gestion_ligue_de_frais'); 
 }
 
 if(isset($_SESSION['id_type_util']) == 3){

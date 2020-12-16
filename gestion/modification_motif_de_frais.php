@@ -16,10 +16,6 @@ if(isset($_GET["id_mdf"])){
         }
     if(isset($_POST["submit"])){ // Debut de la inscription
         $lib_mdf = htmlspecialchars($_POST['lib_mdf']);
-        $req_recup_lib_existe = $dbh->prepare("SELECT lib_mdf FROM motif_de_frais where lib_mdf = ?");
-        $req_recup_lib_existe->execute(array($lib_mdf));
-        $resultat_lib = $req_recup_lib_existe->fetch();
-    if($resultat_lib == 0){
     if(!empty($lib_mdf)){
         
             $req_update = $dbh->prepare("UPDATE motif_de_frais SET lib_mdf = ? WHERE id_mdf = ? ");
@@ -29,10 +25,7 @@ if(isset($_GET["id_mdf"])){
     }else{
         $erreur = "<h5>Saisie du libellé obligatoire pour modifier le motif de frais</h5>";  
     }
-    }else{
-        $erreurlib_mdf = "<h5>$lib_mdf est dèja présent dans FREDI </h5>";  
-        
-    }
+
 
 }
     ?>
