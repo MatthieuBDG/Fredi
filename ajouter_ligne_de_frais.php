@@ -19,12 +19,8 @@ if(isset($_POST["back"])){
 
 if(isset($_SESSION['id_type_util']) == 3){
 if(isset($_POST["submit"])){ // Debut de la inscription
-
         
         $tarif_km = $dbh->prepare("SELECT forfait_per_km FROM periode WHERE annee_per = ?");
-        $tarif_km->execute(array( $resultat_rec_ldf['annee_per']));
-        $tarif_km = $tarif_km->fetch();
-        $resultat_tarif_km = $tarif_km['statut_per'];
 
         $date_ldf = htmlspecialchars($_POST["date_ldf"]);
         $lib_trajet_ldf = htmlspecialchars($_POST["lib_trajet_ldf"]);
@@ -33,7 +29,7 @@ if(isset($_POST["submit"])){ // Debut de la inscription
         $cout_hebergement_ldf = htmlspecialchars($_POST["cout_hebergement_ldf"]);
         $nb_km_ldf = htmlspecialchars($_POST["nb_km_ldf" ]);
         $total_km_ldf = $nb_km_ldf*2;
-        $total_ldf = $total_km_ldf * $resultat_tarif_km + $cout_hebergement_ldf + $cout_repas_ldf + $cout_peage_ldf;
+        $total_ldf = ($total_km_ldf * $tarif_km) + $cout_hebergement_ldf + $cout_repas_ldf + $cout_peage_ldf;
         $id_mdf = htmlspecialchars($_POST["id_mdf"]);
         $annee_per = htmlspecialchars($_POST["annee_per"]);
         $email_util = htmlspecialchars($_POST["email_util"]);
