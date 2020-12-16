@@ -56,8 +56,6 @@ if(isset($_GET["id_ldf"])){
     }else{
         $erreur = "<h5>La ligne de frais ne peut être modifiée : des informations sont invalides</h5>";  
     }
-
-
 }
     ?>
     <!DOCTYPE html>

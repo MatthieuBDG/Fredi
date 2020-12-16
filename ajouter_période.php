@@ -14,7 +14,7 @@ $resultat_annee = $req_recup_annee_existe->rowCount();
 
 
 if($resultat_annee == 0){
-$req_recup_annee_all = $dbh->prepare("SELECT MIN(annee_per) AS annee_per FROM periode");
+$req_recup_annee_all = $dbh->prepare("SELECT MAX(annee_per) AS annee_per FROM periode");
 $req_recup_annee_all->execute(array());
 $req_recup_annee_all = $req_recup_annee_all->fetch();
 if(isset($_POST["submit"])){ // Debut de la inscription
