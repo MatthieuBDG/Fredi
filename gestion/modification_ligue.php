@@ -1,5 +1,9 @@
 <?php
 include '../connexion_dbh.php';
+include '../init.php';
+
+$dao = new utilisateurDAO();
+$utilisateur = $dao->findAll(); 
 
 if(isset($_GET["id_ligue"])){ 
     $id_ligue = $_GET["id_ligue"];
