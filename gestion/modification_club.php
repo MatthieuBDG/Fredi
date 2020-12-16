@@ -75,10 +75,10 @@ if(isset($_GET["id_club"])){
           <h1>Modification de club</h1>
             <br>
             <form method="post"> 
-            <p>lib club <br><input type="text" name="lib_club" placeholder="Lib club" value="<?php echo $resultat_req['lib_club']; ?>"require/></p>
-            <p>adrresse 1 <br><input type="text" name="adr1_club" placeholder="adr1_club" value="<?php echo $resultat_req['adr1_club']; ?>"require/></p>
-            <p>adresse 2  <br><input type="text" name="adr2_club" placeholder="adr2_club" value="<?php echo $resultat_req['adr2_club']; ?>"require/></p>
-            <p>adresse 3 <br><input type="text" name="adr3_club" placeholder="adr3_club" value="<?php echo $resultat_req['adr3_club']; ?>"require/></p>
+            <p>lib club <br><input type="text" name="lib_club" placeholder="Lib club" value="<?php echo $resultat_req['lib_club']; ?>"required/></p>
+            <p>adrresse 1 <br><input type="text" name="adr1_club" placeholder="adr1_club" value="<?php echo $resultat_req['adr1_club']; ?>"required/></p>
+            <p>adresse 2  <br><input type="text" name="adr2_club" placeholder="adr2_club" value="<?php echo $resultat_req['adr2_club']; ?>"required/></p>
+            <p>adresse 3 <br><input type="text" name="adr3_club" placeholder="adr3_club" value="<?php echo $resultat_req['adr3_club']; ?>"required/></p>
             <p>Ligues</p>
             <select name="id_ligue">
             <?php
