@@ -39,6 +39,7 @@ if(isset($_GET["id_ldf"])){
         $annee_per = htmlspecialchars($_POST['annee_per']);
         $email_util = htmlspecialchars($_POST['email_util']);
 
+        echo $date_ldf;
 
     if(!empty($lib_trajet_ldf) && !empty($date_ldf) && !empty($cout_peage_ldf) && !empty($cout_repas_ldf) && !empty($cout_hebergement_ldf) && !empty($nb_km_ldf) &&
      !empty($total_km_ldf) && !empty($total_ldf) && !empty($id_mdf) && !empty($annee_per) && !empty($email_util)){

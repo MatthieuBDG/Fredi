@@ -22,7 +22,7 @@ if(isset($_POST["submit"])){ // Debut de la inscription
 
         
         $tarif_km = $dbh->prepare("SELECT forfait_per_km FROM periode WHERE annee_per = ?");
-        $tarif_km->execute(array( $resultat_rec_ldf['annee_per']));
+        $tarif_km->execute(array($resultat_rec_ldf['annee_per']));
         $tarif_km = $tarif_km->fetch();
         $resultat_tarif_km = $tarif_km['statut_per'];
 

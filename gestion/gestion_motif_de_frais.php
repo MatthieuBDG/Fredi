@@ -15,7 +15,6 @@ $id_type_util = $_SESSION['id_type_util'];
   <link rel="stylesheet" href="../css/styles.css" type="text/css" />
   <title>Gestion motif de frais</title>
 </head>
-
 <body>
 <div class="menu">
     <ul>
