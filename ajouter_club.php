@@ -71,10 +71,10 @@ if(isset($_POST["submit"])){ // Debut de la inscription
       <h1>Ajout de club</h1>
         <br>
          <form method="post">
-         <p>Nom du club <br><input type="text" name="lib_club" placeholder="Nom" value="<?php if(!empty($lib_club)){ echo $lib_club; } ?>"require/></p>
-         <p>Adresse 1 <br><input type="text" name="adr1_club" placeholder="adresse 1" value="<?php if(!empty($adr1_club)){ echo $adr1_club; } ?>"require/></p>
-         <p>Adresse 2 <br><input type="text" name="adr2_club" placeholder="adresse 2" value="<?php if(!empty($adr2_club)){ echo $adr2_club; } ?>"require/></p>
-         <p>Adresse 3 <br><input type="text" name="adr3_club" placeholder="adresse 3" value="<?php if(!empty($adr3_club)){ echo $adr3_club; } ?>"require/></p>
+         <p>Nom du club <br><input type="text" name="lib_club" placeholder="Nom" value="<?php if(!empty($lib_club)){ echo $lib_club; } ?>"required/></p>
+         <p>Adresse 1 <br><input type="text" name="adr1_club" placeholder="adresse 1" value="<?php if(!empty($adr1_club)){ echo $adr1_club; } ?>"required/></p>
+         <p>Adresse 2 <br><input type="text" name="adr2_club" placeholder="adresse 2" value="<?php if(!empty($adr2_club)){ echo $adr2_club; } ?>"required/></p>
+         <p>Adresse 3 <br><input type="text" name="adr3_club" placeholder="adresse 3" value="<?php if(!empty($adr3_club)){ echo $adr3_club; } ?>"required/></p>
          <p>Ligues</p>
          <select name="id_ligue">
          <?php
