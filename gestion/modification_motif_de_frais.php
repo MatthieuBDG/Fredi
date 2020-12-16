@@ -64,7 +64,7 @@ if(isset($_GET["id_mdf"])){
     <body class="connexion">
     <div class="connexion">
         <center>
-          <h1>Modification de période</h1>
+          <h1>Modification de motif de frais</h1>
             <br>
             <form method="post"> 
              <p>Motif<br><input type="text" name="lib_mdf" placeholder="lib_mdf" value="<?php echo $resultat_req['lib_mdf']; ?>"require/></p>

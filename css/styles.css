@@ -27,7 +27,7 @@ body{
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-.connexion input[type=email], input[type=password],input[type=text] {
+.connexion input[type=email], input[type=password],input[type=text],input[type=date],select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;

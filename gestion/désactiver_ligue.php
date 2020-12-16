@@ -8,16 +8,17 @@ if(isset($_POST["back"])){
     if(isset($_POST["submit"])){    
     
     $id_ligue = $_GET["id_ligue"];
-    
+
     $req_rec_ligue = $dbh->prepare("SELECT * FROM ligue WHERE id_ligue = ?");
     $req_rec_ligue->execute(array($id_ligue));
     $resultat_rec_ligue = $req_rec_ligue->fetch();
-    
-    $req_verif_id_ligue = $dbh->prepare("SELECT * FROM ligue WHERE id_ligue = ?");
-    $req_verif_id_ligue->execute(array($id_ligue));
-    $resultat_id_ligue = $req_verif_id_ligue->rowCount();
 
-    //if($resultat_id_ligue == 0){
+    $req_verif_ligue_club = $dbh->prepare("SELECT * FROM club WHERE id_ligue = ?");
+    $req_verif_ligue_club->execute(array($id_ligue));
+    $resultat_ligue = $req_verif_ligue_club->rowCount();
+
+    if($resultat_ligue == 0){
+
 
     $sql= "DELETE FROM ligue WHERE id_ligue = $id_ligue";
     try {
@@ -26,13 +27,13 @@ if(isset($_POST["back"])){
     } catch (PDOException $ex) {
     die("Erreur lors de la requête SQL : " . $ex->getMessage());
     }
-    $supprimer =  "<p>Le motif de frais ".$resultat_rec_ligue['lib_ligue']." a été supprimé</p>";  
-          
-    //}else{
-    // $erreur =  "<p>Vous ne pouvez pas supprimer la ligue ".$resultat_rec_ligue['lib_ligue']." car un (ou plusieurs) club(s) l'utilise. </p>";  
-    //}
+    $supprimer =  "<p>La ligue ".$resultat_rec_ligue['lib_ligue']." a été supprimé</p>";  
+    }else{
+     $erreur =  "<p>La ligue ".$resultat_rec_ligue['lib_ligue']." ne peut pas être supprimée car au moins un club y est affilié </p>";  
+
     }
-    
+
+}  
 ?>   
  
 <center>

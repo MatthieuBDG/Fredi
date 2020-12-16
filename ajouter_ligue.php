@@ -5,6 +5,9 @@ include 'init.php';
 
 $dao = new utilisateurDAO();
 $utilisateur = $dao->findAll(); 
+if(isset($_POST["back"])){
+    header('location: gestion/gestion_ligue'); 
+}
 
 if(isset($_SESSION['id_type_util']) == 2){
 if(isset($_POST["submit"])){ // Debut de la inscription
@@ -22,8 +25,8 @@ if(isset($_POST["submit"])){ // Debut de la inscription
         $resultat_lib_ligue = $req_verif_lib_ligue_inscription->rowCount();
 
         if($resultat_lib_ligue == 0){
-        $req_ajout_ligue = $dbh->prepare("INSERT INTO ligue (id_ligue,lib_ligue,url_ligue,contact_ligue,telephone_ligue,email_util) VALUES (?,?,?,?,?,?)");
-        $req_ajout_ligue->execute(array($id_ligue,$lib_ligue,$url_ligue,$contact_ligue,$telephone_ligue,$emailutilisateur)); 
+        $req_ajout_ligue = $dbh->prepare("INSERT INTO ligue (lib_ligue,url_ligue,contact_ligue,telephone_ligue,email_util) VALUES (?,?,?,?,?)");
+        $req_ajout_ligue->execute(array($lib_ligue,$url_ligue,$contact_ligue,$telephone_ligue,$emailutilisateur)); 
 
         $inscription = "<h5>La ligue $lib_ligue a été créé dans l’application FREDI</h5>";
         
@@ -76,7 +79,6 @@ if(isset($_POST["submit"])){ // Debut de la inscription
          
          <p>Email utilisateur</p>
          <select name="emailutilisateur">
-         <option disable selected> Email du controleur :</option>
          <?php
             foreach ($utilisateur as $utilisateur) {
                 if ($utilisateur->get_matricule_cont() != 0){
@@ -95,7 +97,11 @@ if(isset($_POST["submit"])){ // Debut de la inscription
          }
          if(isset($inscription))
          {
-            echo '<font color="green">'.$inscription."</font>";
+            echo '<font color="green">'.$inscription."</font>"; ?>
+            <form method="post">
+            <input type="submit" name="back" value="Retour" />
+            </form>
+            <?php
             exit;
          }
         ?>

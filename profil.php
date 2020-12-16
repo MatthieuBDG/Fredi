@@ -69,7 +69,9 @@ header("location: index");
 <p><a class='lien' href="gestion/gestion_">Editique</a> </p>  
 </div>
 <?php }else{ ?>
-
+<div class="div-lien">
+<p><a class='lien' href="gestion/gestion_ligne_de_frais">Gérer les lignes de frais</a></p>
+</div>
 <?php } ?>
 
 </center>
