@@ -20,8 +20,7 @@ if(isset($_POST["back"])){
 if(isset($_SESSION['id_type_util']) == 3){
 if(isset($_POST["submit"])){ // Debut de la inscription
         
-        
-
+    
         $date_ldf = htmlspecialchars($_POST["date_ldf"]);
         $lib_trajet_ldf = htmlspecialchars($_POST["lib_trajet_ldf"]);
         $cout_peage_ldf = htmlspecialchars($_POST["cout_peage_ldf"]);
