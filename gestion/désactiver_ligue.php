@@ -27,7 +27,7 @@ if(isset($_POST["back"])){
     } catch (PDOException $ex) {
     die("Erreur lors de la requête SQL : " . $ex->getMessage());
     }
-    $supprimer =  "<p>La ligue ".$resultat_rec_ligue['lib_ligue']." a été supprimé</p>";  
+    $supprimer =  "<p>La ligue ".$resultat_rec_ligue['lib_ligue']." a été supprimée</p>";  
     }else{
      $erreur =  "<p>La ligue ".$resultat_rec_ligue['lib_ligue']." ne peut pas être supprimée car au moins un club y est affilié </p>";  
 
