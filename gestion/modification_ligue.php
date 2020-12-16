@@ -1,5 +1,9 @@
 <?php
 include '../connexion_dbh.php';
+include '../init.php';
+
+$dao = new utilisateurDAO();
+$utilisateur = $dao->findAll(); 
 
 if(isset($_GET["id_ligue"])){ 
     $id_ligue = $_GET["id_ligue"];
@@ -71,7 +75,18 @@ if(isset($_GET["id_ligue"])){
             <p>url ligue <br><input type="text" name="url_ligue" placeholder="url_ligue" value="<?php if(!empty($url_ligue)){ echo $url_ligue; } ?>"require/></p>
             <p>contact ligue <br><input type="text" name="contact_ligue" placeholder="contact_ligue" value="<?php if(!empty($contact_ligue)){ echo $contact_ligue; } ?>"require/></p>
             <p>telephone ligue <br><input type="text" name="telephone_ligue" placeholder="telephone_ligue" value="<?php if(!empty($telephone_ligue)){ echo $telephone_ligue; } ?>"require/></p>
-            <p>email ligue <br><input type="email" name="email_util" placeholder="email_util" value="<?php if(!empty($email_util)){ echo $email_util; } ?>"require/></p>
+            <p>Email utilisateur</p>
+          <select name="email_util">
+         <option disable selected> Email du controleur :</option>
+         <?php
+            foreach ($utilisateur as $utilisateur) {
+                if ($utilisateur->get_matricule_cont() != 0){
+                    echo '<option value='.$utilisateur->get_email_util().'>'.$utilisateur->get_email_util().'</option>';
+                }
+            }
+         ?>
+        
+         </select>
             
              <br>
              <?php
