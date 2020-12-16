@@ -1,15 +1,22 @@
 <?php
 include 'connexion_dbh.php';
-
+if(isset($_SESSION['id_type_util'])){
 if(isset($_GET['mail'])){
 $mail = $_GET['mail'];
 $req_user = $dbh->prepare("SELECT * FROM utilisateur WHERE email_util = ?");
 $req_user->execute(array($mail));
 $resultat = $req_user->fetch();
-
+$count= $req_user->rowCount();
+if($count<0){
+header("location: index");  
+}
 }else{
 header("location: index");   
+}    
+}else{
+header("location: index");    
 }
+
 
 
 
@@ -44,15 +51,15 @@ header("location: index");
 <div class="container">
 <center>
 <img class="avatar" src="images/avatar-icon.png" alt="avatar-icon" >
-<?php if($resultat['id_type_util'] == 1){ ?>
-<h3><?php echo $resultat['prenom_util'] ?> vous etes admin.</h3>
-<?php }elseif($resultat['id_type_util'] == 2){ ?>
-<h3><?php echo $resultat['prenom_util'] ?> vous êtes controleur.</h3>
+<?php if($_SESSION['id_type_util'] == 1){ ?>
+<h3><?php echo $_SESSION['prenom_util'] ?> vous etes admin.</h3>
+<?php }elseif($_SESSION['id_type_util'] == 2){ ?>
+<h3><?php echo $_SESSION['prenom_util'] ?> vous êtes controleur.</h3>
 <?php }else{ ?>
-<h3><?php echo $resultat['prenom_util'] ?> vous etes adherent.</h3>
+<h3><?php echo $_SESSION['prenom_util'] ?> vous etes adherent.</h3>
 <?php } ?>
 <hr>
-<?php if($resultat['id_type_util'] == 1){ ?>
+<?php if($_SESSION['id_type_util'] == 1){ ?>
 <div class="div-lien">
 <p><a class='lien' href="gestion/gestion_utilisateur">Gestion utilisateur</a></p>
 <p><a class='lien' href="gestion/gestion_motif_de_frais">Gestion motif de frais</a></p>
