@@ -78,6 +78,7 @@ header("location: index");
 <?php }else{ ?>
 <div class="div-lien">
 <p><a class='lien' href="gestion/gestion_ligne_de_frais">Gérer les lignes de frais</a></p>
+<p><a class='lien' href="gestion/bordereau_de_frais_generation">Génération bordereau de frais</a></p>
 </div>
 <?php } ?>
 
