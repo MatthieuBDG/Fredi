@@ -1,3 +1,19 @@
+td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even){background-color: #f2f2f2;}
+  
+  tr:hover {background-color: #ddd;}
+  
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
 body {margin:0;}
 
 body{
@@ -161,22 +177,6 @@ a:link:hover{
         width:100px
     }
 
-  th,td {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size : 14px;
-    padding: 5px;
-    text-align:center;
-  }
-  
-  th {
-     background-color: grey;
-     color: white; 
-  }
-  
-  td {
-     background-color: white;
-     color: black;
-  }
   .div-lien p{
     margin-top: 35px;
   }
