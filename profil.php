@@ -73,7 +73,7 @@ header("location: index");
 <div class="div-lien">
 <p><a class='lien' href="gestion/gestion_ligue">Gérer des ligues</a></p>
 <p><a class='lien' href="gestion/gestion_club">Gérer des clubs</a></p>
-<p><a class='lien' href="gestion/gestion_">Editique</a> </p>  
+<p><a class='lien' href="gestion/gestion_editique">Editique</a> </p>  
 </div>
 <?php }else{ ?>
 <div class="div-lien">
