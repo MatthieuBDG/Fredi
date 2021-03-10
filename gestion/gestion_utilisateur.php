@@ -160,12 +160,7 @@ if ($choixutil === '1') { ?>
       }
     }
 else{ 
-?>
-//header('location: ../profil?mail='.$_SESSION['email_util'].''); 
-<script>
-window.location.replace("../profil?mail=<?php echo $_SESSION['email_util']; ?>");
-</script>
-<?php
+header('location: ../profil?mail='.$_SESSION['email_util'].''); 
 }
 ?>
 </table>

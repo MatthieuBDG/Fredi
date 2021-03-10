@@ -81,5 +81,47 @@ Class ligueDAO extends DAO {
         // Retourne un tableau d'objets
         return $ligues;
     }
+    function find($id){ //retourne contenu de la ligue avec l'id
+        $sql = "select * from ligue where id_ligue= :id";
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute(array(
+                ":id" => $id
+            ));
+            $row = $sth->fetch(PDO::FETCH_ASSOC);
+          } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+          }
+          $ligue = null;
+          if ($row) { //hydrateur
+            $ligue = new Ligue($row);
+          } 
+          return $ligue;
+        } 
+        public function cumulFrais($idligue, $annee)
+        {
+            $sql = "SELECT `lib_club`,`motif_de_frais`.`lib_mdf`, SUM(`total_ldf`) AS 'total'
+            FROM `ligue`,`club`,`adherent`,`ligne_de_frais`,`motif_de_frais`,`periode`
+            WHERE`ligue`.`id_ligue`=`club`.`id_ligue`
+            AND `club`.`id_club`=`adherent`.`id_club`
+            AND `adherent`.`email_util`=`ligne_de_frais`.`email_util`
+            AND`ligne_de_frais`.`id_mdf`=`motif_de_frais`.`id_mdf`
+            AND `ligne_de_frais`.`annee_per`=`periode`.`annee_per`
+            AND `ligue`.`id_ligue`= :ligue
+            AND `periode`.`annee_per`= :annee
+            GROUP BY  `motif_de_frais`.`id_mdf`,`club`.`id_club`
+            ORDER BY `club`.`lib_club`,`motif_de_frais`.`lib_mdf`";
+            try {
+                $sth = $this->pdo->prepare($sql);
+                $sth->execute(array(
+                ":ligue" => $idligue,
+                ":annee" => $annee
+            ));
+            $rows=$sth->fetchALL(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+            }
+            return $rows;
+        }
 
 }
