@@ -19,7 +19,7 @@ if(isset($_GET["email"])){
     if($id_type_util == 1 || $id_type_util == 2 || $id_type_util == 3){
     if(!empty($prenom) && !empty($nom)){
         
-            $req_update = $dbh->prepare("UPDATE adherent,utilisateur SET nom_util = ? , prenom_util = ? , statut_util = ? ,	id_type_util = ?  WHERE email_util = ? ");
+            $req_update = $dbh->prepare("UPDATE adherent SET nom_util = ? , prenom_util = ? , statut_util = ? ,	id_type_util = ?  WHERE email_util = ? ");
             $req_update->execute(array($nom,$prenom,$statut,$id_type_util,$mail)); 
             $modifier = "<h5>L'adhérent $nom a été modifié dans la FREDI</h5>";
     }else{

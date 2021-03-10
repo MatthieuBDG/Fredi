@@ -75,7 +75,7 @@ foreach ($ligne_de_frais as $ligne_de_frais) {
     $resultat_annee_per = $req_verif_annee_per_note_de_frais->rowCount();
     echo "<td><a href='modification_ligne_de_frais?id_ldf=".$ligne_de_frais->get_id_ldf()."'>modifier</a></td>";
     if($resultat_annee_per == 1){
-    echo "<td><a href='note_de_frais_pdf?id_ldf=".$ligne_de_frais->get_id_ldf()."&per=".$ligne_de_frais->get_annee_per()."'>Imprimer</td>";
+    echo "<td><a href='note_de_frais_pdf?email=".$ligne_de_frais->get_email_util()."&id_mdf=".$ligne_de_frais->get_id_mdf()."'>Imprimer</td>";
     }else{
     echo "<td>Impression impossible</td>";    
     }

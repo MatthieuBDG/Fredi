@@ -8,12 +8,12 @@ Class AdherentDAO extends DAO {
         parent::__construct();
     }
 
-    public function find($id_adherent) {
-        $sql = "SELECT * FROM adherent WHERE id_utilisateur= :id_adherent";
+    public function find($mail) {
+        $sql = "SELECT * FROM adherent WHERE email_util= :mail";
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute(array(
-                ':id_adherent' => $id_adherent
+                ':mail' => $mail
             ));
             $row = $sth->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
