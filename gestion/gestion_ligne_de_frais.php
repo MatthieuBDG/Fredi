@@ -72,6 +72,14 @@ $sql = "SELECT count(*) FROM ligne_de_frais,periode WHERE periode.annee_per = li
     }
 
     
+$sql = "SELECT count(*) FROM ligne_de_frais,motif_de_frais , adherent WHERE ligne_de_frais.id_mdf = motif_de_frais.id_mdf AND adherent.email_util = ligne_de_frais.email_util 
+And statut_per = 3";
+
+if($sql==0){
+    echo "<p>La note de frais ne peut être imprimée : aucun frais n’a été
+        associé à l’adhérent « ADHERENT » pour la période active</p>";
+}
+
 
 ?>
 
