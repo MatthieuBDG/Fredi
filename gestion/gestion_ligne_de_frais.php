@@ -66,7 +66,7 @@ foreach ($periodes as $periode) {
 }
 
 if($valeur==0){
-     echo "<p>La note de frais ne peut être imprimée : aucun frais n’a été créé pour cette période</p>";
+     echo "<p>La note de frais ne peut être imprimée : aucun frais n’a été créé pour cette période.</p>";
 } 
 ?>
 
