@@ -55,22 +55,21 @@ $submit = isset($_POST['desactiverPeriode']);
 
 <?php
 
-// $sql = "SELECT annee_per FROM periode WHERE statut_per = 1";
 
 foreach ($periodes as $periode) {
     if ($periode->get_statut_per()==1){
-    echo "<tr>";
-    echo "<td>La période active est : ".$periode->get_annee_per()."</td>";
-    echo "</tr>";
-
-    if ($periode->get_annee_per()!=$sql){
+        echo "<tr>";
+        echo "<td>La période active est : ".$periode->get_annee_per()."</td>";
+        echo "</tr>";
         echo "<p></p>";
-     } else {
-        echo "<p>La note de frais ne peut être imprimée : aucun frais n’a été créé pour cette période</p>";
-     }
-    }
-}      
+    }    
+}
 
+$sql = "SELECT count(*) FROM ligne_de_frais,periode WHERE periode.annee_per = ligne_de_frais.annee_per AND statut_per = 1";
+
+    if($sql==0){
+        echo "<p>La note de frais ne peut être imprimée : aucun frais n’a été créé pour cette période</p>";
+    }
 
 ?>
 
