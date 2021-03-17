@@ -71,6 +71,8 @@ $sql = "SELECT count(*) FROM ligne_de_frais,periode WHERE periode.annee_per = li
         echo "<p>La note de frais ne peut être imprimée : aucun frais n’a été créé pour cette période</p>";
     }
 
+    
+
 ?>
 
 <table>
