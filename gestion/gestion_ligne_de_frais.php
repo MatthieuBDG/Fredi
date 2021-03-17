@@ -76,7 +76,7 @@ $sql = "SELECT count(*) FROM ligne_de_frais,periode WHERE periode.annee_per = li
 <table>
 <tr><th>id_ldf</th><th>date_ldf</th><th>lib_trajet_ldf</th><th>cout_peage_ldf</th><th>cout_repas_ldf</th>
 <th>cout_hebergement_ldf</th><th>nb_km_ldf</th><th>total_km_ldf</th><th>total_ldf</th>
-<th>id_mdf</th><th>annee_per</th><th>email_util</th><th>Modifier</th><th>Imprimer</th><th>Supprimer</th></tr>
+<th>id_mdf</th><th>annee_per</th><th>email_util</th><th>Modifier</th><th>Note de frais</th><th>Cerfa</th><th>Cumul de frais</th><th>Supprimer</th></tr>
 <?php   
 
 foreach ($ligne_de_frais as $ligne_de_frais) {
@@ -102,6 +102,8 @@ foreach ($ligne_de_frais as $ligne_de_frais) {
     }else{
     echo "<td>Impression impossible</td>";    
     }
+    echo "<td><a href='cerfa_pdf?email=".$ligne_de_frais->get_email_util()."&id_mdf=".$ligne_de_frais->get_id_mdf()."'>Imprimer</td>";
+    echo "<td><a href='cumul_de_frais_pdf?id=".$ligne_de_frais->get_id_mdf()."&per=".$ligne_de_frais->get_annee_per()."'>Imprimer</td>";
     echo "<td><a href='désactiver_ligne_de_frais?id_ldf=".$ligne_de_frais->get_id_ldf()."'>Supprimer</td>";
     
     echo "</tr>";
