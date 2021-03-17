@@ -51,6 +51,7 @@ $ligues = $dao->findAll();
           echo "<td>".$ligue->get_telephone_ligue()."</td>";
           echo "<td>".$ligue->get_contact_ligue()."</td>";
           echo "<td>".$ligue->get_email_util()."</td>";
+          echo "<td><a href='cumul_de_frais_pdf?id=".$ligue->get_id_ligue()."&per=".$ligue->get_email_util()."'>Imprimer</td>";
           echo "<td><a href='modification_ligue?id_ligue=".$ligue->get_id_ligue()."'>modifier</a></td>";
           echo "<td><a href='désactiver_ligue.php?id_ligue=".$ligue->get_id_ligue()."'>Supprimer</a></td>";
           echo "</tr>";
