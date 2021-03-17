@@ -37,11 +37,13 @@ $id_type_util = $_SESSION['id_type_util'];
 $dao = new Ligne_de_fraisDAO();
 $ligne_de_frais = $dao->findAll();
 
+//Collection des periodes
+$dao = new PeriodeDAO();
+$periodes = $dao->findAll();
+
 //Permet de desactiver une motif_frais
 $annee = isset($_POST['annee']) ? $_POST['annee'] : '';
 $submit = isset($_POST['desactiverPeriode']);
-
-
 
 ?>
 
@@ -50,6 +52,28 @@ $submit = isset($_POST['desactiverPeriode']);
 <center>
 <p><a class='lien' href="../ajouter_ligne_de_frais">Ajout de ligne de frais</a></p>
 <br>
+
+<?php
+
+// $sql = "SELECT annee_per FROM periode WHERE statut_per = 1";
+
+foreach ($periodes as $periode) {
+    if ($periode->get_statut_per()==1){
+    echo "<tr>";
+    echo "<td>La période active est : ".$periode->get_annee_per()."</td>";
+    echo "</tr>";
+
+    if ($periode->get_annee_per()!=$sql){
+        echo "<p></p>";
+     } else {
+        echo "<p>La note de frais ne peut être imprimée : aucun frais n’a été créé pour cette période</p>";
+     }
+    }
+}      
+
+
+?>
+
 <table>
 <tr><th>id_ldf</th><th>date_ldf</th><th>lib_trajet_ldf</th><th>cout_peage_ldf</th><th>cout_repas_ldf</th>
 <th>cout_hebergement_ldf</th><th>nb_km_ldf</th><th>total_km_ldf</th><th>total_ldf</th>

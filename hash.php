@@ -1,7 +1,7 @@
 <?php
 
 include 'connexion_dbh.php';
-
+// permet le hashage du mdp des utilisateurs
 $sql = 'SELECT password_util,email_util FROM utilisateur';
 foreach  ($dbh->query($sql) as $row) {
 $passwordhash = password_hash($row['password_util'],PASSWORD_DEFAULT);  
