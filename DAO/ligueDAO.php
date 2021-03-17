@@ -123,5 +123,39 @@ Class ligueDAO extends DAO {
             }
             return $rows;
         }
+        public function getLigueAct()
+        {
+            $sql = "SELECT DISTINCT L.id_ligue, lib_ligue
+            FROM ligne_de_frais Ldf, adherent A, club C, ligue L
+            WHERE Ldf.email_util=A.email_util
+            AND A.id_club=C.id_club
+            AND C.id_ligue=L.id_ligue";
+            try {
+                $sth = $this->pdo->prepare($sql);
+                $sth->execute();
+            $rows=$sth->fetchALL(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+            }
+            return $rows;
+        }
+        public function getPeriodesActByLigue($idligue)
+        {
+            $sql = "SELECT DISTINCT annee_per
+            FROM ligne_de_frais L, adherent A, club C
+            WHERE L.email_util=A.email_util
+            AND A.id_club=C.id_club
+            AND C.id_ligue = :idligue";
+            try {
+                $sth = $this->pdo->prepare($sql);
+                $sth->execute(array(
+                ":idligue" => $idligue
+            ));
+            $rows=$sth->fetchALL(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+            }
+            return $rows;
+        }
 
 }

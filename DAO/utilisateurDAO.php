@@ -49,5 +49,24 @@ Class utilisateurDAO extends DAO {
         return $utilisateurs;
     }
 
-
+    public function findUtilisateursAvecLdfPerActive()
+    { //retourne les utilisateurs avec au moins une ldf sur la période active
+        $sql = "SELECT * from utilisateur 
+        WHERE email_util IN (SELECT DISTINCT 
+                             email_util 
+                             from ligne_de_frais 
+                             WHERE annee_per = (SELECT annee_per from periode WHERE statut_per = 1))";
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute();
+            $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+        }
+        $utilisateurs = array();
+        foreach ($rows as $row) { //hydrateur
+            $utilisateurs[] = new Utilisateur($row);
+        }
+        return $utilisateurs;
+    }
 }

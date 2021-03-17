@@ -1,11 +1,3 @@
-<?php   
-require_once('../init.php');
-include '../connexion_dbh.php';
-
-if($_SESSION['id_type_util'] == 2) {
-$id_type_util = $_SESSION['id_type_util'];
-
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,10 +5,16 @@ $id_type_util = $_SESSION['id_type_util'];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="../css/styles.css" type="text/css" />
-  <title>Gestion éditique</title>
+  <title>Éditique</title>
 </head>
-
 <body>
+</div>
+<?php
+require_once('../init.php');
+include '../connexion_dbh.php';
+  $userDAO= new UtilisateurDAO;
+  $usersPerAct = $userDAO->findUtilisateursAvecLdfPerActive(); // renvoie les utilisateurs qui ont au moins une ligne de frais sur la periode active
+?>
 <div class="menu">
     <ul>
     <li><a  href="../index">Accueil</a></li>
@@ -32,47 +30,42 @@ $id_type_util = $_SESSION['id_type_util'];
     <?php } ?>
     </ul>     
     </div>
-<?php
-//Collection des périodes
-$dao = new PeriodeDAO();
-$periodes = $dao->findAll();
-
-//Collection des adhérents
-$dao1 = new adherentDAO();
-$adherents = $dao1->findAll();
-
-?>
-
-<br><br><br><br><br>
-
+    <br><br><br><br><br>
 <center>
-<br>
+    
 
-         <p>Choississez la période</p>
-         <select name="periode">
-         <?php
-            foreach ($periodes as $periode) {
-                    echo '<option value='.$periode->get_annee_per().'>'.$periode->get_annee_per().'</option>';
-            }
-            ?>
+<h2>Liste des utilisateurs avec des lignes de frais sur la période active </h2>
+<table><tr><th>Mail</th><th>Nom</th><th colspan='2'>Actions</th></tr>
 
-            <br><br><br><br><br><br>
-            </select>
-        <p>Choississez l'adhérent</p>
-         <select name="adherent">
-         <?php
-            foreach ($adherents as $adherent) {
-                    echo '<option value='.$adherent->get_email_util().'>'.$adherent->get_email_util().'</option>';
-            }
-            ?>
-        </select>
-    <?php     
-}else{
-    header('location: ../profil?mail='.$_SESSION['email_util'].'');  
-}
+<?php
+  foreach ($usersPerAct as $user) {
+    echo "<tr><td>".$user->get_email_util()."</td>";
+    echo "<td>".$user->get_nom_util()." ".$user->get_prenom_util()."</td>";
+    echo "<td><a href=cerfaPDF.php?id=".$user->get_email_util().">CERFA</a></td>";
+    echo "<td><a href=noteDeFraisPDF.php?id=".$user->get_email_util().">Note de Frais</a></td></tr>";
+  }
+?>
+</table>
+
+<?php 
+  $ligueDAO = new LigueDAO;
+  $liguesAct = $ligueDAO->getLigueAct();
 ?>
 
+<h2> Liste des ligues avec des lignes de frais</h2>
+<table><tr><th>Ligue</th><th>Période</th><th>Actions</th></tr>
+<?php
+  foreach ($liguesAct as $ligueAct){
+    $periodes = $ligueDAO->getPeriodesActByLigue($ligueAct['id_ligue']);
+    foreach ($periodes as $periode) {
+        echo '<tr><td>'.$ligueAct['lib_ligue'].'</td>';
+        echo '<td>'.$periode['annee_per'].'</td>';
+        echo "<td><a href=cumulfraisPDF.php?id=".$ligueAct['id_ligue']."&per=".$periode['annee_per'].">Note de Frais</a></td></tr>";
 
+    }
+
+  }
+?>
 </center>
 </body>
 </html>

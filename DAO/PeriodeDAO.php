@@ -105,16 +105,16 @@ Class PeriodeDAO extends DAO {
 
     public function test(){
 
-        $sql = "SELECT count(*) AS valeur FROM ligne_de_frais,periode WHERE periode.annee_per = ligne_de_frais.annee_per AND statut_per = 1";
+        $sql = "SELECT * FROM ligne_de_frais,periode WHERE periode.annee_per = ligne_de_frais.annee_per AND statut_per = 1";
         
         try {
             $sth = $this->pdo->prepare($sql);
             $sth->execute();
-            $row = $sth->fetch(PDO::FETCH_ASSOC);
+            $count = $sth->rowCount(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
         }
         
-        return $valeur;
+        return $count;
     }
 }

@@ -40,8 +40,7 @@ $ligne_de_frais = $dao->findAll();
 //Collection des periodes
 $dao1 = new PeriodeDAO();
 $periodes = $dao1->findAll();
-$dao1->test();
-echo $valeur['valeur'];
+$valeur = $dao1->test();
 
 //Permet de desactiver une motif_frais
 $annee = isset($_POST['annee']) ? $_POST['annee'] : '';
@@ -66,11 +65,9 @@ foreach ($periodes as $periode) {
     }    
 }
 
-
 if($valeur==0){
      echo "<p>La note de frais ne peut être imprimée : aucun frais n’a été créé pour cette période</p>";
 } 
-echo "<p>".$valeur."</p>";
 ?>
 
 <table>
