@@ -159,8 +159,8 @@ if ($choixutil === '1') { ?>
         }
       }
     }
-else{
-  header('location: ../profil?mail='.$_SESSION['email_util'].''); 
+else{ 
+header('location: ../profil?mail='.$_SESSION['email_util'].''); 
 }
 ?>
 </table>

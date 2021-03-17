@@ -3,6 +3,7 @@ class Periode {
     private $annee_per;
     private $forfait_km_per;
     private $statut_per;
+    
 
     //Constructeur
     public function __construct(array $row) {

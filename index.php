@@ -27,7 +27,8 @@ include 'connexion_dbh.php';
 </div>   
 </header>
 <body class="index">
-
-
+<div class="connexion">
+<p>Bienvenue <?php if(isset($_SESSION['email_util'])) { echo $_SESSION['prenom_util']; } ?> sur Fredi</p>
+</div>
 </body>
 </html>

@@ -48,5 +48,20 @@ Class Ligne_de_fraisDAO extends DAO {
         return new Ligne_de_frais($row);
     }
 
-   
+    public function findMailPeriode($mail,$annee)
+    { //retourne les ligne de frais d'un seul utilisateur en parametres
+        $sql = "select * from ligne_de_frais where email_util='".$mail."' AND annee_per=".$annee.";";
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute();
+            $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+        }
+        $ldfs = array();
+        foreach ($rows as $row) { //hydrateur
+            $ldfs[] = new ligne_de_frais($row);
+        }
+        return $ldfs;
+    }
 }

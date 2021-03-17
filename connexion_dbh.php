@@ -4,6 +4,7 @@
 //
 session_start();
 
+
 $db = 'mysql:dbname=fredi;host=localhost';
 $db_user = 'root';
 $db_password = '';
@@ -13,6 +14,17 @@ try {
 } catch (PDOException $ex) {
     die ($ex->getMessage());
 }
+/*
+$host_name = 'localhost';
+$database = 'apsixpac_2siog2';
+$user_name = 'apsixpac';
+$password = 'afmNWCytYQ2K3v';
+$dbh = null;
 
-
+try {
+  $dbh = new PDO("mysql:host=$host_name; dbname=$database;", $user_name, $password);
+} catch (PDOException $e) {
+  echo "Erreur!: " . $e->getMessage() . "<br/>";
+  die();
+}*/
 ?>

@@ -86,5 +86,20 @@ Class PeriodeDAO extends DAO {
         return new Periode($row);
     }
 
- 
+    public function findPeriodeActive()
+    { //retourne ka periode active
+        $sql = "select * from periode where statut_per = 1";
+        try {
+            $sth = $this->pdo->prepare($sql);
+            $sth->execute();
+            $row = $sth->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new Exception("Erreur lors de la requête SQL : " . $e->getMessage());
+        }
+        $periode = null;
+        if ($row) { 
+            $periode = new Periode($row);
+        }
+        return $periode;
+    }
 }
