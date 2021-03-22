@@ -1,25 +1,35 @@
 <?php
 class Adherent {
-    private $email_util;
+  private $email_util;
 	private $lic_adh;
 	private $sexe_adh;
 	private $date_naissance_adh;
 	private $adr1_adh;
-    private $adr2_adh;
-    private $adr3_adh;
-    private $id_club;
+  private $adr2_adh;
+  private $adr3_adh;
+	private $id_club;
+	
+	private $nom_util;
+	private $prenom_util;
+	private $id_type_util;
+	private $statut_util;
 
  //constructeur
     public function __construct(array $row) {
-		$this->email_util = $row['email_util'];
-        $this->lic_adh = $row['lic_adh'];
-        $this->sexe_adh = $row['sexe_adh'];
-		$this->date_naissance_adh = $row['date_naissance_adh'];
-        $this->adr1_adh = $row['adr1_adh'];
-        $this->adr2_adh = $row['adr2_adh'];
-        $this->adr3_adh = $row['adr3_adh'];
-        $this->id_club = $row['id_club'];
-    }
+			$this->email_util = $row['email_util'];
+			$this->nom_util = $row['nom_util'];
+			$this->prenom_util = $row['prenom_util'];
+			$this->id_type_util = $row['id_type_util'];
+			$this->statut_util = $row['statut_util'];
+
+    	$this->lic_adh = $row['lic_adh'];
+      $this->sexe_adh = $row['sexe_adh'];
+			$this->date_naissance_adh = $row['date_naissance_adh'];
+      $this->adr1_adh = $row['adr1_adh'];
+      $this->adr2_adh = $row['adr2_adh'];
+      $this->adr3_adh = $row['adr3_adh'];
+      $this->id_club = $row['id_club'];	
+		}
 
 		public function get_email_util(){
 			return $this->email_util;
@@ -95,5 +105,40 @@ class Adherent {
 		public function set_id_club($id_club){
 			$this->id_club = $id_club;
 		}
+
+		public function get_nom_util(){
+			return $this->nom_util;
+		}
+	
+		public function set_nom_util($nom_util){
+			$this->nom_util = $nom_util;
+		}
+	
+		
+		public function get_prenom_util(){
+			return $this->prenom_util;
+		}
+	
+		public function set_prenom_util($prenom_util){
+			$this->prenom_util = $prenom_util;
+		}
+	
+		public function get_id_type_util(){
+			return $this->id_type_util;
+		}
+	
+		public function set_id_type_util($id_type_util){
+			$this->$id_type_util = $id_type_util;
+		}
+		
+			public function get_statut_util()
+			{
+					return $this->statut_util;
+			}
+	
+			public function set_statut_util($statut_util)
+			{
+					$this->statut_util = $statut_util;
+			}
 
 }   
