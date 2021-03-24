@@ -1,7 +1,7 @@
 <?php
 session_start();
 /**
- * Liste des pays en PDF
+ * Cumul de frais PDF 
  */
 require_once "../init.php";
 require_once "../fpdf/fpdf.php";

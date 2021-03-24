@@ -3,6 +3,7 @@ class Periode {
     private $annee_per;
     private $forfait_km_per;
     private $statut_per;
+    private $valeur;
     
 
     //Constructeur
