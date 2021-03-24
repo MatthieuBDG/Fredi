@@ -31,7 +31,7 @@ class DAO {
   * @param array Paramètres de la requête
   * @return PDOStatement Résultat de la requête
   */
-  protected function executer($sql, $params = null) {
+  public function executer($sql, $params = null) {
     try {
       if ($params == null) {
         $sth = $this->pdo->query($sql);   // exécution directe
