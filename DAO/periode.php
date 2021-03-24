@@ -22,7 +22,16 @@ class Periode {
     public function set_annee_per($annee_per) {
         $this->annee_per = $annee_per;
     }
-
+	public function get_forfait_km_per()
+	{
+	  return $this->forfait_km_per;
+	}
+	public function set_forfait_km_per($forfait_km_per)
+	{
+	  $this->forfait_km_per = $forfait_km_per;
+  
+	  return $this;
+	}
     //Get tarif
     public function get_tarif() {
         return $this->forfait_km_per;

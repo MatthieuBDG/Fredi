@@ -1,29 +1,33 @@
 <?php
 session_start();
-
-
+/**
+ * Liste des pays en PDF
+ */
 require_once "../init.php";
 require_once "../fpdf/fpdf.php";
-$id_mdf = isset($_GET['id_mdf']) ? $_GET['id_mdf']: 0;
-$id = isset($_GET['email']) ? $_GET['email']: 0;
-$userDAO = new utilisateurDAO;
+
+$id = isset($_GET['id']) ? $_GET['id']: 0;
+$userDAO = new UtilisateurDAO;
 $user = $userDAO->find($id); //renvoie l'utilisateur concerné
-$adhDAO = new adherentDAO;
+$adhDAO = new AdherentDAO;
 $adh = $adhDAO->find($id);
 $clubDAO = new ClubDAO;
 $club = $clubDAO->find($adh->get_id_club());
-$ldfDAO = new ligne_de_fraisDAO;
+$ldfDAO = new Ligne_de_fraisDAO;
 $periodeDAO = new PeriodeDAO;
 $per = $periodeDAO->findPeriodeActive();
 $ldfs=array();
-$ldfs = $ldfDAO->findMailPeriode($id, $per->get_annee_per()); // renvoi les lignes de frais de l'utilisateur sur la période active
+$ldfs = $ldfDAO->findMailPeriode($id, $per->get_annee_per()); // renvoi les lignes de frais de l'utilisateur sur la périuode active
 $motifDAO = new Motif_fraisDAO;
-$motif = $motifDAO->find($id_mdf);
+
 
 $date = date('d/m/Y');
 define('EURO'," ".utf8_encode(chr(128))); // créé la constante pour le symbole ascii euro (sinon probleme d'affichage)
 
 // Crée le tableau d'objets métier 
+
+
+
 
 // Instanciation de l'objet dérivé
 $pdf = new Mon_pdf();   // Paysage
@@ -70,7 +74,7 @@ $pdf->Ln(2);
 $pdf->SetX(20);
 $pdf->Cell(20, 5, utf8_decode("Frais de déplacement"), 0,0,"C",false);
 $pdf->SetX(150);
-$pdf->Cell(20, 5, utf8_decode("Tarif kilométrique appliqué pour le remboursement : ".$per->get_tarif()), 0,1,"C",false);
+$pdf->Cell(20, 5, utf8_decode("Tarif kilométrique appliqué pour le remboursement : ".$per->get_forfait_km_per()), 0,1,"C",false);
 
 
 // Entête
@@ -93,7 +97,8 @@ $total = 0;
 foreach ($ldfs as $ldf) {
     $pdf->SetX(5);
     $pdf->Cell(20, 10, utf8_decode($ldf->get_date_ldf()),1,0,"C");
-    $pdf->Cell(35, 10, utf8_decode($motif->get_lib_mdf(/*$ldf->get_id_mdf()*/)),1,0,"C");
+    $pdf->Cell(35, 10, utf8_decode('Ca marche pas'),1,0,"C");
+    //$pdf->Cell(35, 10, utf8_decode($motifDAO->get_lib_mdf($ldf->get_id_mdf())),1,0,"C");
     $pdf->Cell(30, 10, utf8_decode($ldf->get_lib_trajet_ldf()),1,0,"C");
     $pdf->Cell(20, 10, utf8_decode($ldf->get_nb_km_ldf()),1,0,"C");
     $pdf->Cell(20, 10, utf8_decode($ldf->get_total_km_ldf()),1,0,"C");
@@ -150,3 +155,4 @@ header('Location: ../outfiles/'.$pdf->mon_fichier);
 
 //$pdf->Output('D', $user->get_nom_util()."-".$per->get_annee_per()."-".$pdf->mon_fichier);
 //header('Location: index.php');
+?>

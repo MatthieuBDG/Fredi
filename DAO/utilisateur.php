@@ -18,7 +18,16 @@ class utilisateur {
 				$this->matricule_cont = $row['matricule_cont'];
     }
     
-	
+	public function get_forfait_km_per()
+	{
+	  return $this->forfait_km_per;
+	}
+	public function set_forfait_km_per($forfait_km_per)
+	{
+	  $this->forfait_km_per = $forfait_km_per;
+  
+	  return $this;
+	}
     public function get_email_util(){
 		return $this->email_util;
 	}

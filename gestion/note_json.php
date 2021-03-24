@@ -48,7 +48,7 @@ $tab_periode= array(
 
 );
 //tableau ligne 
-$info_lignes = "SELECT id_ldf ,date_ldf ,lib_trajet_ldf ,cout_peage_ldf , cout_repas_ldf , cout_hebergement_ldf , nb_km_ldf , 	total_km_ldf , 	total_ldf FROM ligne_de_frai WHERE " ; 
+$info_lignes = "SELECT id_ldf ,date_ldf ,lib_trajet_ldf ,cout_peage_ldf , cout_repas_ldf , cout_hebergement_ldf , nb_km_ldf , 	Stotal_km_ldf , 	total_ldf FROM ligne_de_frai WHERE " ; 
 $tableau_lignes= array();
 foreach ($tab_lignes as $lignes){
 $lignes_array = array (

@@ -12,6 +12,7 @@
 <?php
 require_once('../init.php');
 include '../connexion_dbh.php';
+
   $userDAO= new UtilisateurDAO;
   $usersPerAct = $userDAO->findUtilisateursAvecLdfPerActive(); // renvoie les utilisateurs qui ont au moins une ligne de frais sur la periode active
 ?>
@@ -41,8 +42,8 @@ include '../connexion_dbh.php';
   foreach ($usersPerAct as $user) {
     echo "<tr><td>".$user->get_email_util()."</td>";
     echo "<td>".$user->get_nom_util()." ".$user->get_prenom_util()."</td>";
-    echo "<td><a href=cerfaPDF.php?id=".$user->get_email_util().">CERFA</a></td>";
-    echo "<td><a href=noteDeFraisPDF.php?id=".$user->get_email_util().">Note de Frais</a></td></tr>";
+    echo "<td><a href='cerfa_pdf?email=".$user->get_email_util()."&id_mdf='>CERFA</td>";
+    echo "<td><a href=note_de_frais_pdf.php?id=".$user->get_email_util().">Note de Frais</a></td></tr>";
   }
 ?>
 </table>
@@ -60,7 +61,7 @@ include '../connexion_dbh.php';
     foreach ($periodes as $periode) {
         echo '<tr><td>'.$ligueAct['lib_ligue'].'</td>';
         echo '<td>'.$periode['annee_per'].'</td>';
-        echo "<td><a href=cumulfraisPDF.php?id=".$ligueAct['id_ligue']."&per=".$periode['annee_per'].">Note de Frais</a></td></tr>";
+        echo "<td><a href=cumul_de_frais_pdf.php?id=".$ligueAct['id_ligue']."&per=".$periode['annee_per'].">Note de Frais</a></td></tr>";
 
     }
 
