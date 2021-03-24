@@ -1,14 +1,13 @@
 <?php
 class Adherent {
-  private $email_util;
+  	private $email_util;
 	private $lic_adh;
 	private $sexe_adh;
 	private $date_naissance_adh;
 	private $adr1_adh;
-  private $adr2_adh;
-  private $adr3_adh;
+    private $adr2_adh;
+  	private $adr3_adh;
 	private $id_club;
-	
 	private $nom_util;
 	private $prenom_util;
 	private $id_type_util;
@@ -16,19 +15,18 @@ class Adherent {
 
  //constructeur
     public function __construct(array $row) {
-			$this->email_util = $row['email_util'];
-			$this->nom_util = $row['nom_util'];
-			$this->prenom_util = $row['prenom_util'];
-			$this->id_type_util = $row['id_type_util'];
-			$this->statut_util = $row['statut_util'];
-
-    	$this->lic_adh = $row['lic_adh'];
-      $this->sexe_adh = $row['sexe_adh'];
-			$this->date_naissance_adh = $row['date_naissance_adh'];
-      $this->adr1_adh = $row['adr1_adh'];
-      $this->adr2_adh = $row['adr2_adh'];
-      $this->adr3_adh = $row['adr3_adh'];
-      $this->id_club = $row['id_club'];	
+	$this->email_util = $row['email_util'];
+	$this->nom_util = $row['nom_util'];
+	$this->prenom_util = $row['prenom_util'];
+	$this->id_type_util = $row['id_type_util'];
+	$this->statut_util = $row['statut_util'];
+    $this->lic_adh = $row['lic_adh'];
+    $this->sexe_adh = $row['sexe_adh'];
+	$this->date_naissance_adh = $row['date_naissance_adh'];
+    $this->adr1_adh = $row['adr1_adh'];
+    $this->adr2_adh = $row['adr2_adh'];
+    $this->adr3_adh = $row['adr3_adh'];
+    $this->id_club = $row['id_club'];	
 		}
 
 		public function get_email_util(){

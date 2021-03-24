@@ -65,7 +65,6 @@ foreach ($periodes as $periode) {
     }    
 }
 
-<<<<<<< HEAD
 $sql = "SELECT count(*) FROM ligne_de_frais,periode WHERE periode.annee_per = ligne_de_frais.annee_per AND statut_per = 1";
 
     if($sql==0){
@@ -82,17 +81,12 @@ if($sql==0){
 }
 
 
-=======
-if($valeur==0){
-     echo "<p>La note de frais ne peut être imprimée : aucun frais n’a été créé pour cette période.</p>";
-} 
->>>>>>> 3278bfb00f19d55bdc3efd5f73debd96d18a5fd8
 ?>
 
 <table>
 <tr><th>id_ldf</th><th>date_ldf</th><th>lib_trajet_ldf</th><th>cout_peage_ldf</th><th>cout_repas_ldf</th>
 <th>cout_hebergement_ldf</th><th>nb_km_ldf</th><th>total_km_ldf</th><th>total_ldf</th>
-<th>id_mdf</th><th>annee_per</th><th>email_util</th><th>Modifier</th><th>Note de frais</th><th>Cerfa</th><th>Cumul de frais</th><th>Supprimer</th></tr>
+<th>id_mdf</th><th>annee_per</th><th>email_util</th><th>Modifier</th><th>Supprimer</th></tr>
 <?php   
 
 foreach ($ligne_de_frais as $ligne_de_frais) {
@@ -109,17 +103,7 @@ foreach ($ligne_de_frais as $ligne_de_frais) {
     echo "<td>".$ligne_de_frais->get_id_mdf()."</td>";
     echo "<td>".$ligne_de_frais->get_annee_per()."</td>";
     echo "<td>".$ligne_de_frais->get_email_util()."</td>";
-    $req_verif_annee_per_note_de_frais = $dbh->prepare("SELECT * FROM periode WHERE annee_per = ? AND statut_per = ?");
-    $req_verif_annee_per_note_de_frais->execute(array($ligne_de_frais->get_annee_per(),1));
-    $resultat_annee_per = $req_verif_annee_per_note_de_frais->rowCount();
     echo "<td><a href='modification_ligne_de_frais?id_ldf=".$ligne_de_frais->get_id_ldf()."'>modifier</a></td>";
-    if($resultat_annee_per == 1){
-    echo "<td><a href='note_de_frais_pdf?email=".$ligne_de_frais->get_email_util()."&id_mdf=".$ligne_de_frais->get_id_mdf()."'>Imprimer</td>";
-    }else{
-    echo "<td>Impression impossible</td>";    
-    }
-    echo "<td><a href='cerfa_pdf?email=".$ligne_de_frais->get_email_util()."&id_mdf=".$ligne_de_frais->get_id_mdf()."'>Imprimer</td>";
-    echo "<td><a href='cumul_de_frais_pdf?id=".$ligne_de_frais->get_id_mdf()."&per=".$ligne_de_frais->get_annee_per()."'>Imprimer</td>";
     echo "<td><a href='désactiver_ligne_de_frais?id_ldf=".$ligne_de_frais->get_id_ldf()."'>Supprimer</td>";
     
     echo "</tr>";
