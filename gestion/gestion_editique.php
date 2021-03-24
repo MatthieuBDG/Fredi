@@ -61,7 +61,6 @@ include '../connexion_dbh.php';
         echo '<tr><td>'.$ligueAct['lib_ligue'].'</td>';
         echo '<td>'.$periode['annee_per'].'</td>';
         echo "<td><a href=cumul_de_frais_pdf.php?id=".$ligueAct['id_ligue']."&per=".$periode['annee_per'].">Note de Frais</a></td></tr>";
-
     }
 
   }
