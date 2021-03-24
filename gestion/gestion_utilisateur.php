@@ -98,7 +98,6 @@ if ($choixutil === '1') { ?>
     <th>Adresse 3</th><th>id club</th><th>Modifier</th><th>Supprimer</th></tr>
     <?php
       foreach ($adherents as $adherent) {
-        if($adherent->get_statut_util() == 0){
           echo "<tr>";
           echo "<td>".$adherent->get_email_util()."</td>";
           echo "<td>".$adherent->get_nom_util()."</td>";
@@ -114,7 +113,6 @@ if ($choixutil === '1') { ?>
           echo "<td><a href='modification_adherent?email=".$adherent->get_email_util()."'>modifier</a></td>";
           echo "<td><a href='désactiver_adherent.php?email_util=".$adherent->get_email_util()."'>Supprimer</td>";
           echo "</tr>";
-          }
       }
     } else { ?>
     <table>
@@ -122,7 +120,6 @@ if ($choixutil === '1') { ?>
     <th>Adresse 3</th><th>id club</th></tr>
     <?php
       foreach ($adherents as $adherent) {
-        if($adherent->get_statut_util() == 0){
           echo "<tr>";
           echo "<td>".$adherent->get_email_util()."</td>";
           echo "<td>".$adherent->get_nom_util()."</td>";
@@ -137,7 +134,6 @@ if ($choixutil === '1') { ?>
           echo "<td>".$adherent->get_adr3_adh()."</td>";
           echo "<td>".$adherent->get_id_club()."</td>";
           echo "</tr>";
-          }
       }
       foreach ($utilisateurs as $utilisateur) {
         if($utilisateur->get_statut_util() == 0){
