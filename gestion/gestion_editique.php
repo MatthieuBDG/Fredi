@@ -60,7 +60,7 @@ include '../connexion_dbh.php';
     foreach ($periodes as $periode) {
         echo '<tr><td>'.$ligueAct['lib_ligue'].'</td>';
         echo '<td>'.$periode['annee_per'].'</td>';
-        echo "<td><a href=cumulfraisPDF.php?id=".$ligueAct['id_ligue']."&per=".$periode['annee_per'].">Note de Frais</a></td></tr>";
+        echo "<td><a href=cumul_de_frais_pdf.php?id=".$ligueAct['id_ligue']."&per=".$periode['annee_per'].">Note de Frais</a></td></tr>";
 
     }
 
