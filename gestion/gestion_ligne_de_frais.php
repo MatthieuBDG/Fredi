@@ -65,28 +65,9 @@ foreach ($periodes as $periode) {
     }    
 }
 
-<<<<<<< HEAD
-$sql = "SELECT count(*) FROM ligne_de_frais,periode WHERE periode.annee_per = ligne_de_frais.annee_per AND statut_per = 1";
-
-    if($sql==0){
-        echo "<p>La note de frais ne peut être imprimée : aucun frais n’a été créé pour cette période</p>";
-    }
-
-    
-$sql = "SELECT count(*) FROM ligne_de_frais,motif_de_frais , adherent WHERE ligne_de_frais.id_mdf = motif_de_frais.id_mdf AND adherent.email_util = ligne_de_frais.email_util 
-And statut_per = 3";
-
-if($sql==0){
-    echo "<p>La note de frais ne peut être imprimée : aucun frais n’a été
-        associé à l’adhérent « ADHERENT » pour la période active</p>";
-}
-
-
-=======
 if($valeur==0){
      echo "<p>La note de frais ne peut être imprimée : aucun frais n’a été créé pour cette période.</p>";
 } 
->>>>>>> 3278bfb00f19d55bdc3efd5f73debd96d18a5fd8
 ?>
 
 <table>
