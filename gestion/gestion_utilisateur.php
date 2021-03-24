@@ -123,7 +123,7 @@ if ($choixutil === '1') { ?>
           echo "<tr>";
           echo "<td>".$adherent->get_email_util()."</td>";
           echo "<td>".$adherent->get_nom_util()."</td>";
-          echo "<td>".$adherent->get_prenom_util()."</td>";
+          echo "<td>".$adherent->get_prenom_util()."</td>";   
           echo "<td>".$adherent->get_id_type_util()."</td>";
           echo "<td>".$adherent->get_lic_adh()."</td>";
           echo "<td></td>";
