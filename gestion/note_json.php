@@ -1,76 +1,115 @@
+
 <?php
-include '../connexion_dbh.php';
-include '../init.php';
 
-if($_SESSION['id_type_util'] == 1){
+include_once "../init.php";
 
- 
-?>
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="../css/styles.css" type="text/css" />
-  <title>note json </title>
-
-</head>
-
-<body>
-  <h1>JSON</h1>
-  <?php
-
-/*L’utilisateur appelle une URL en fournissant son email et son mot de passe et en retour, 
-le webservice renvoie :*/
-
-
-
-
-//tableau d'utilisateur 
-$info_utilisateur = "SELECT email_util,nom_util, prenom_util,statut_util ,  id_type_util FROM utilisateur where email_util   ";
-$tab_utilisateur= array(
-  "email" => $info_utilisateur[0],
-  "nom" => $info_utilisateur[1],
-  "prenom" => $info_utilisateur[2],
-  "type" => $info_utilisateur[3],
- );
-
-
-// tableau de periode 
-
-$info_periode = "SELECT annee_per,forfait_km_per,statut_per from periode where statut_per " ;
-$tab_periode= array( 
-  "date" => $info_periode[0],
-  "forfait" => $info_periode[1],
-  "statut" => $info_periode[2]
-
-);
-//tableau ligne 
-$info_lignes = "SELECT id_ldf ,date_ldf ,lib_trajet_ldf ,cout_peage_ldf , cout_repas_ldf , cout_hebergement_ldf , nb_km_ldf , 	total_km_ldf , 	total_ldf FROM ligne_de_frai WHERE " ; 
-$tableau_lignes= array();
-foreach ($tab_lignes as $lignes){
-$lignes_array = array (
-  "id "=> $lignes[0],
-"date"=> $lignes[1],
-"libelle"=> $lignes[2],
-"cout_peage"=> $lignes[3],
-"cout_repas"=> $lignes[4],
-"cout_hebergement"=> $lignes[5],
-"nb_km"=> $lignes[6],
-"cout_km"=> $lignes[7],
-"total_ligne"=> $lignes[8],
-"motif"=> $lignes[9],
-
-);
-$tableau_lignes [] = $lignes_array();
+function envoi_json($erreur) {
+    $json = json_encode($erreur, JSON_PRETTY_PRINT);
+    header("Content-type: application/json; charset=utf-8");
+    echo $json;
 }
-echo "<pre>";
-print_r($periode);
-echo "</pre>";
 
-?>
-<p><a href="?????.php">Page 2 : envoi du fichier JSON au navigateur</a></p>
-</body>
-</html>
+
+if (!isset($_GET['email']) || !isset($_GET['password'])) {
+    $json = array(
+        "message" => "Message « KO : erreur email et/ou mot de passe non fourni(s)»"
+    );
+    envoi_json($json);
+} elseif (isset($_GET['email']) && isset($_GET['password'])) {
+
+    $DAO = new DAO();
+
+    $email = $_GET['email'];
+    $mdp = $_GET['password'];
+
+    //Verification de l'email
+    $connexion = "SELECT count(*) FROM utilisateur WHERE email_util = '" . $email . "';";
+    $temp_req = $DAO->executer($connexion);
+    $r_connexion = $temp_req->fetch();
+
+    //verification si email existant
+    If ($r_connexion[0] == 0) {
+        $erreur = array("message" => "Message « KO : erreur utilisateur inconnu »");
+        envoi_json($erreur);
+    } else {
+
+        
+        $r_connexion2 = "SELECT email_util, password_util FROM utilisateur WHERE email_util = '" . $email . "';"; //Recuperation de l'utilisateur
+        $temp_req = $DAO->executer($r_connexion2);
+        $resultat_connexion_2 = $temp_req->fetch();
+
+        //verification du hash
+        $mdp_resultat = password_verify($mdp, $resultat_connexion_2[1]);
+
+        //Si le mdp est faux
+        if ($mdp_resultat == false) {
+            $erreur = array("message" => "Message « KO : erreur utilisateur inconnu »");
+            envoi_json($erreur);
+        } else {
+
+            //utilisateur ---------------------------------------
+            $req_1 = "SELECT email_util,  nom_util, prenom_util, id_type_util FROM utilisateur WHERE email_util = '" . $email . "';";
+            $temp_req = $DAO->executer($req_1);
+            $info_util = $temp_req->fetch();
+
+            $tableau_util = array(
+                "email" => $info_util[0],
+                "nom" => $info_util[1],
+                "prenom" => $info_util[2],
+                "type" => $info_util[3]
+            );
+
+
+            //periode ---------------------------------
+            $req_1 = "SELECT annee_per, forfait_km_per FROM periode WHERE statut_per = 1";
+            $temp_req = $DAO->executer($req_1);
+            $info_periode = $temp_req->fetch();
+
+            $tableau_periode = array(
+                "date" => $info_periode[0],
+                "forfait" => $info_periode[1],
+                "statut" => "activé"
+            );
+
+
+            //lignes ---------------------------------------
+            $req_1 = "SELECT id_ldf, date_ldf, lib_trajet_ldf, cout_peage_ldf, cout_repas_ldf, cout_hebergement_ldf, nb_km_ldf, total_km_ldf, total_ldf, lib_mdf  FROM ligne_de_frais, motif_de_frais WHERE email_util = '" . $email . "' AND annee_per = '" . $info_periode[0] . "' AND ligne_de_frais.id_mdf = motif_de_frais.id_mdf";
+            $temp_req = $DAO->executer($req_1);
+            $info_lignes = $temp_req->fetchAll();
+
+
+            if (count($info_lignes) == 0) {
+                $json = array(
+                    "message" => "Message « KO : pas de note »"
+                );
+                envoi_json($json);
+            } else {
+                $tableau_lignes = array();
+                foreach ($info_lignes as $ligne) {
+                    $ligne_array = array(
+                        "id" => $ligne[0],
+                        "date" => $ligne[1],
+                        "libelle" => $ligne[2],
+                        "cout_peage" => $ligne[3],
+                        "cout_repas" => $ligne[4],
+                        "cout_hebergement" => $ligne[5],
+                        "nb_km" => $ligne[6],
+                        "cout_km" => $ligne[7],
+                        "total_ligne" => $ligne[8],
+                        "motif" => $ligne[9]
+                    );
+                    $tableau_lignes[] = $ligne_array;
+                }
+
+                $json_final = array(
+                    "message" => "Message « OK : note générée »",
+                    "utilisateur" => $tableau_util,
+                    "periode" => $tableau_periode,
+                    "lignes" => $tableau_lignes
+                );
+
+                envoi_json($json_final);
+            }
+        }
+    }
+}
