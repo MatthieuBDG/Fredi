@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 16 déc. 2020 à 11:11
+-- Généré le : mer. 31 mars 2021 à 10:40
 -- Version du serveur :  10.4.14-MariaDB
 -- Version de PHP : 7.4.9
 
@@ -43,6 +43,7 @@ CREATE TABLE `adherent` (
 --
 
 INSERT INTO `adherent` (`email_util`, `lic_adh`, `sexe_adh`, `date_naissance_adh`, `adr1_adh`, `adr2_adh`, `adr3_adh`, `id_club`) VALUES
+('adhe@adhe.com', ' 05 40 01 50', 'M', '2001-01-01', '', '', '', 9),
 ('jeffadherent@jeff.com', '17 05 40 01', 'M', '2001-01-01', '', '', '', 5);
 
 -- --------------------------------------------------------
@@ -74,7 +75,8 @@ INSERT INTO `club` (`id_club`, `lib_club`, `adr1_club`, `adr2_club`, `adr3_club`
 (7, 'Judo Club Ornex', '8 rue des Pralets', '1210', 'ORNEX', 6),
 (8, 'Dojo Gessien Valserine', 'Avenue des Voirons', '1220', 'DIVONNE LES BAINS', 6),
 (9, 'Dojo La Vallière', 'Complexe Sportif', '1250', '', 1),
-(10, 'yyyy', '', '', '', 1);
+(10, 'yyyy', '', '', '', 1),
+(11, 'test', 'adr', 'adré', 'adr\'', 1);
 
 -- --------------------------------------------------------
 
@@ -102,13 +104,8 @@ CREATE TABLE `ligne_de_frais` (
 --
 
 INSERT INTO `ligne_de_frais` (`id_ldf`, `date_ldf`, `lib_trajet_ldf`, `cout_peage_ldf`, `cout_repas_ldf`, `cout_hebergement_ldf`, `nb_km_ldf`, `total_km_ldf`, `total_ldf`, `id_mdf`, `annee_per`, `email_util`) VALUES
-(11, '2020-12-26', 'Trajet de test', '15', '10', '10', 100, '200', '35', 4, 2017, 'jeffadherent@jeff.com'),
-(12, '2020-12-18', 'Trajet de test', '15', '10', '5', 20, '40', '70', 1, 2017, 'jeffadherent@jeff.com'),
-(13, '0000-00-00', '0', '0', '0', '0', 1, '2', '2', 1, 2010, 'jeffadherent@jeff.com'),
-(14, '2020-12-12', 'Trajet de test', '10', '10', '10', 10, '20', '1030', 1, 2010, 'jeffadherent@jeff.com'),
-(15, '2020-12-17', 'Trajet de test', '10', '10', '10', 10, '20', '1030', 2, 2010, 'jeffadherent@jeff.com'),
-(16, '2020-12-18', 'Trajet de test', '20', '25', '30', 50, '100', '5075', 1, 2010, 'jeffadherent@jeff.com'),
-(17, '0000-00-00', '', '0', '0', '0', 0, '0', '0', 1, 2010, 'jeffadherent@jeff.com');
+(16, '2010-02-18', 'Trajet de test', '20', '25', '30', 50, '100', '175', 1, 2010, 'adhe@adhe.com'),
+(21, '2010-03-21', 'Trajet de test', '0', '10', '10', 100, '200', '230', 1, 2010, 'adhe@adhe.com');
 
 -- --------------------------------------------------------
 
@@ -138,7 +135,8 @@ INSERT INTO `ligue` (`id_ligue`, `lib_ligue`, `url_ligue`, `contact_ligue`, `tel
 (6, 'Judo', 'www.judograndest.fr', 'www.judograndest.fr', '03 88 26 94 11', 'jeffadmin@jeff.com'),
 (7, 'new1', 'ligur.com', 'contact', '06', 'b@b.com'),
 (13, 'nouveautest', 'ligur.com', 'ééééé', '11111', 'a@a.com'),
-(15, 'newddd', 'ligur.com', 'contact', '06', 'jeffcontroleur@jeff.com');
+(15, 'newddd', 'ligur.com', 'contact', '06', 'jeffcontroleur@jeff.com'),
+(20, 'newddd', 'ligur.com', 'contact', '06', 'jeffcontroleur@jeff.com');
 
 -- --------------------------------------------------------
 
@@ -179,10 +177,11 @@ CREATE TABLE `periode` (
 --
 
 INSERT INTO `periode` (`annee_per`, `forfait_km_per`, `statut_per`) VALUES
-(2010, '50', 0),
-(2017, '10', 1),
+(2010, '100', 1),
+(2017, '10', 0),
 (2018, '15', 0),
-(2020, '10', 0);
+(2020, '10', 0),
+(2050, '50558', 0);
 
 -- --------------------------------------------------------
 
@@ -231,9 +230,12 @@ INSERT INTO `utilisateur` (`email_util`, `password_util`, `nom_util`, `prenom_ut
 ('b@b.com', '$2y$10$8OPygv9xbLVm354PB10deOLcGiHSRHohUJ2HX4fp2meMx4rT9rZze', 'b', 'b01', '0', '260', 2),
 ('cont@cont.com', '$2y$10$b6bEDS3b84OqyXDqL/c0/Ozd6ZomoOKagOUYnOnsxzlcI2/BENi5O', 'cont', 'cont', '0', '370', 2),
 ('cre@test.com', '$2y$10$Ho7G.P5sc8yOVcz6c712Pe91iHkVLpQM6Tv.Gel3YyzClhzhTSWC.', 'TestCré', 'TestCré', '1', '680', 2),
-('jeffadherent@jeff.com', '$2y$10$WnlSaqHs4EUy3OdYewjCQ.xGl3qEPKtrMXttG/A7OVv1GvSJyXyvG', 'adherent', 'jeff', '0', '', 3),
-('jeffadmin@jeff.com', '$2y$10$CfqzHirED8.zofAzoTA9Wu.njN2nOarXECtvzdAjhccbBVCeR9HTW', 'admin', 'jeff', '0', '', 1),
-('jeffcontroleur@jeff.com', '$2y$10$Q5cEe548hY4boS.eTtP4mOrcokB026q21Xqc9SkkKwHtfUyV57eXe', 'controleur', 'jeff', '0', '1111', 2),
+('jeffadherent@adherent.com', '$2y$10$i9my.0O07Xkb6gQwCI4LX.tc8gkCnAElb0rkLfSJ3AJQjSqCIYQ0.', 'adherent', 'jeff', '0', '0', 3),
+('jeffadherent@jeff.com', '$2y$10$u/t6/DUSS9e4B.Jvv2CoLuYQDTr/Wd/TVfPhypOjfsnAmb4a6.446', 'adherent', 'jeff', '0', '', 3),
+('jeffadmin@admin.com', '$2y$10$qRAqnanskSdcPceuODGpK.k/HwmnlkJ591u..0dXLrwJv1fVBAYk.', 'admin', 'jeff', '0', '0', 1),
+('jeffadmin@jeff.com', '$2y$10$unt55/sFf60bWYTuESFVdu2Lns.zw2ebnw0D9DVO81w5mIUVlEanG', 'admin', 'jeff', '1', '', 1),
+('jeffcontroleur@controleur.com', '$2y$10$W6rxd.uwksxSbgGah27.l.M1YsOOvDx17pytKP44o12II6DG4thoq', 'controleur', 'jeff', '0', '931', 2),
+('jeffcontroleur@jeff.com', '$2y$10$SB.yPqd8pYUSQ2kNMVu0qerxzm1cJyLDJPhmD9GbWV3RQWgi1dhey', 'controleur', 'jeff', '0', '1111', 2),
 ('oui@oui.fr', '$2y$10$RLbQ5TBLrrcRlj1TE9RxWOsemuUFAqUWd0/wFCtHOYwQ671A92Q4e', 'oui', 'oui', '0', '', 1),
 ('ree@po.com', '$2y$10$hPsL8wbxRtgBqH2Iv6GCg.xuxeBTOeexVorOGPayaNzYUff9se.Mm', 'aaa', 'aaa', '1', '816', 2),
 ('t@t.com', '$2y$10$lENynxofKIOMgSofgknKoeUZkxa12TNwGbwKuIdCnW8Fe5DbJ7Toe', 't', 't', '1', '', 1),
@@ -306,19 +308,19 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `club`
 --
 ALTER TABLE `club`
-  MODIFY `id_club` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_club` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `ligne_de_frais`
 --
 ALTER TABLE `ligne_de_frais`
-  MODIFY `id_ldf` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_ldf` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT pour la table `ligue`
 --
 ALTER TABLE `ligue`
-  MODIFY `id_ligue` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_ligue` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT pour la table `motif_de_frais`
