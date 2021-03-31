@@ -1,6 +1,7 @@
 
 <?php
 
+
 include_once "../init.php";
 
 function envoi_json($erreur) {
@@ -9,7 +10,7 @@ function envoi_json($erreur) {
     echo $json;
 }
 
-
+// Verification de l'email fourni et du mot de passe 
 if (!isset($_GET['email']) || !isset($_GET['password'])) {
     $json = array(
         "message" => "Message « KO : erreur email et/ou mot de passe non fourni(s)»"
@@ -27,7 +28,7 @@ if (!isset($_GET['email']) || !isset($_GET['password'])) {
     $temp_req = $DAO->executer($connexion);
     $r_connexion = $temp_req->fetch();
 
-    //verification si email existant
+    //verification si email existant / message erreur si l'utilisateur est inconnu
     If ($r_connexion[0] == 0) {
         $erreur = array("message" => "Message « KO : erreur utilisateur inconnu »");
         envoi_json($erreur);
@@ -38,10 +39,10 @@ if (!isset($_GET['email']) || !isset($_GET['password'])) {
         $temp_req = $DAO->executer($r_connexion2);
         $resultat_connexion_2 = $temp_req->fetch();
 
-        //verification du hash
+        //verification du hashashage 
         $mdp_resultat = password_verify($mdp, $resultat_connexion_2[1]);
 
-        //Si le mdp est faux
+        // message d'erreur si le mdp est faux 
         if ($mdp_resultat == false) {
             $erreur = array("message" => "Message « KO : erreur utilisateur inconnu »");
             envoi_json($erreur);
@@ -73,11 +74,16 @@ if (!isset($_GET['email']) || !isset($_GET['password'])) {
 
 
             //lignes ---------------------------------------
-            $req_1 = "SELECT id_ldf, date_ldf, lib_trajet_ldf, cout_peage_ldf, cout_repas_ldf, cout_hebergement_ldf, nb_km_ldf, total_km_ldf, total_ldf, lib_mdf  FROM ligne_de_frais, motif_de_frais WHERE email_util = '" . $email . "' AND annee_per = '" . $info_periode[0] . "' AND ligne_de_frais.id_mdf = motif_de_frais.id_mdf";
+            $req_1 = "SELECT id_ldf, date_ldf, lib_trajet_ldf, cout_peage_ldf, cout_repas_ldf, cout_hebergement_ldf, nb_km_ldf, total_km_ldf, total_ldf, lib_mdf 
+            FROM ligne_de_frais, motif_de_frais 
+            WHERE email_util = '" . $email . "' 
+            AND annee_per = '" . $info_periode[0] . "' 
+            AND ligne_de_frais.id_mdf = motif_de_frais.id_mdf";
+
             $temp_req = $DAO->executer($req_1);
             $info_lignes = $temp_req->fetchAll();
 
-
+            //  
             if (count($info_lignes) == 0) {
                 $json = array(
                     "message" => "Message « KO : pas de note »"
@@ -100,7 +106,7 @@ if (!isset($_GET['email']) || !isset($_GET['password'])) {
                     );
                     $tableau_lignes[] = $ligne_array;
                 }
-
+              // on regroupe les tableaux pour faire un json final     
                 $json_final = array(
                     "message" => "Message « OK : note générée »",
                     "utilisateur" => $tableau_util,
