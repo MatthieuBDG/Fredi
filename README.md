@@ -15,13 +15,13 @@ utilisateur , administrateur , adhérent
 
 Utilisateurs de test : 
 - (admin) : pseudo = jeffadmin, 
-             adresse mail = jeffadmin@jeff.com, 
+             adresse mail = jeffadmin@admin.com, 
              password = admin;
 - (Adhérent) : pseudo = jeffadherent, 
-               adresse mail = jeffadherent@jeff.com, 
+               adresse mail = jeffadherent@adherent.com, 
                password = adherent;
 - (Contôleur) : pseudo = jeffcontroleur, 
-                adresse mail = jeffcontroleur@jeff.com, 
+                adresse mail = jeffcontroleur@controleur.com, 
                 password = controleur;
 ----
 ## Utilisation 
